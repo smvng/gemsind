@@ -51,4 +51,11 @@ public class AllSoundEvents {
     public static final Supplier<SoundEvent> ALLOYING_FURNACE_FINISH = registerSoundEvent("alloying_furnace_finish", List.of(
             "deep_fizz"
     ));
+
+    public static final Supplier<SoundEvent> GEODE_CONTAINING_BLOCK_CRACK = registerSoundEvent("geode_containing_block_crack", List.of(
+            "centrifuge_ambient_1" // TODO:CHANGE
+    ));
+    public static final Supplier<SoundEvent> GEODE_CONTAINING_BLOCK_BREAK = registerSoundEvent("geode_containing_block_break", List.of(
+            "centrifuge_ambient_1"
+    ));
 }

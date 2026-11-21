@@ -21,7 +21,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import java.util.List;
 
 public class GeodeItem extends Item {
-    public final int defaultToughness;
+    public final int toughness;
     public final String geodeName;
     public final String defaultLootTableName;
     private final List<DeferredItem<?>> defaultDrops; // should only be used by the datagen/tooltip
@@ -45,7 +45,7 @@ public class GeodeItem extends Item {
                 .component(AllDataComponents.GEODE_CRACK_PROGRESS, 0f)
         );
         this.geodeName = geodeName;
-        defaultToughness = toughness;
+        this.toughness = toughness;
         defaultLootTableName = GemstoneIndustryMod.MODID+":geode_drops/"+geodeName;
         defaultDrops = drops;
         var highestValue = 0;

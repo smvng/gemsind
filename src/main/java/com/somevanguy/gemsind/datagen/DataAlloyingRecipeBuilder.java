@@ -20,12 +20,14 @@ import java.util.Map;
 
 public class DataAlloyingRecipeBuilder implements RecipeBuilder {
     protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
+    protected final List<String> displayElements;
     protected final List<Ingredient> ingredients;
     protected final int fluxCount;
     protected final int alloyingTime;
     protected final ItemStack result;
 
-    public DataAlloyingRecipeBuilder(List<Ingredient> ingredients, int fluxCount, int alloyingTime, ItemStack result) {
+    public DataAlloyingRecipeBuilder(List<String> displayElements, List<Ingredient> ingredients, int fluxCount, int alloyingTime, ItemStack result) {
+        this.displayElements = displayElements;
         this.ingredients = ingredients;
         this.fluxCount = fluxCount;
         this.alloyingTime = alloyingTime;
@@ -55,7 +57,7 @@ public class DataAlloyingRecipeBuilder implements RecipeBuilder {
                 .rewards(AdvancementRewards.Builder.recipe(id))
                 .requirements(AdvancementRequirements.Strategy.OR);
         criteria.forEach(advancement::addCriterion);
-        AlloyingRecipe recipe = new AlloyingRecipe(ingredients, fluxCount, alloyingTime, result);
+        AlloyingRecipe recipe = new AlloyingRecipe(displayElements, ingredients, fluxCount, alloyingTime, result);
         recipeOutput.accept(id, recipe, advancement.build(id.withPrefix("recipes/alloying/")));
     }
 }

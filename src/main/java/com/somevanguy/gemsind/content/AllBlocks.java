@@ -5,6 +5,7 @@ import com.somevanguy.gemsind.content.alloying_furnace.AlloyingFurnaceBlock;
 import com.somevanguy.gemsind.content.counter.CounterBlock;
 import com.somevanguy.gemsind.content.acid_purifier.AcidPurifierBlock;
 import com.somevanguy.gemsind.content.centrifuge.CentrifugeBlock;
+import com.somevanguy.gemsind.content.geode_containing_block.GeodeContainingBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -30,6 +31,7 @@ public class AllBlocks {
     }
 
     public static <T extends Block> void registerBlockItem(String name, Item.Properties properties, DeferredBlock<T> block) {
+        GemstoneIndustryMod.LOGGER.info(name);
         AllItems.ITEMS.register(name, () -> new BlockItem(block.get(), properties));
     }
 
@@ -39,8 +41,10 @@ public class AllBlocks {
 
     public static final DeferredBlock<Block> COUNTER = registerBlock("counter", CounterBlock::new);
 
-    public static final DeferredBlock<Block> ACID_PURIFIER = registerBlock("acid_purifier", AcidPurifierBlock::new);
-    public static final DeferredBlock<Block> CENTRIFUGE = registerBlock("centrifuge", CentrifugeBlock::new);
+    public static final DeferredBlock<AcidPurifierBlock> ACID_PURIFIER = registerBlock("acid_purifier", AcidPurifierBlock::new);
+    public static final DeferredBlock<CentrifugeBlock> CENTRIFUGE = registerBlock("centrifuge", CentrifugeBlock::new);
     public static final DeferredBlock<Block> TUMBLER = registerBlock("tumbler", () -> new Block(BlockBehaviour.Properties.of()));
-    public static final DeferredBlock<Block> ALLOYING_FURNACE = registerBlock("alloying_furnace", AlloyingFurnaceBlock::new);
+    public static final DeferredBlock<AlloyingFurnaceBlock> ALLOYING_FURNACE = registerBlock("alloying_furnace", AlloyingFurnaceBlock::new);
+
+    public static final DeferredBlock<GeodeContainingBlock> GEODE_CONTAINING_BLOCK = registerBlock("geode_containing_block", GeodeContainingBlock::new);
 }

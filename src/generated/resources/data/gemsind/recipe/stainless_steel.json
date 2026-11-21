@@ -1,6 +1,11 @@
 {
   "type": "gemsind:alloying",
-  "alloyingTime": 1200,
+  "craftingTime": 1200,
+  "displayElements": [
+    "Fe",
+    "C",
+    "Cr"
+  ],
   "ingredients": [
     {
       "tag": "gemsind:has_element/fe"

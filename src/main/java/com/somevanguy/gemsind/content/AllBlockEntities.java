@@ -5,6 +5,7 @@ import com.somevanguy.gemsind.content.alloying_furnace.AlloyingFurnaceBlockEntit
 import com.somevanguy.gemsind.content.counter.CounterBlockEntity;
 import com.somevanguy.gemsind.content.acid_purifier.AcidPurifierBlockEntity;
 import com.somevanguy.gemsind.content.centrifuge.CentrifugeBlockEntity;
+import com.somevanguy.gemsind.content.geode_containing_block.GeodeContainingBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -36,5 +37,8 @@ public class AllBlockEntities {
 //            registerBlockEntity("tumbler_entity", AllBlocks.TUMBLER, TumblerBlockEntity::new);
     public static final Supplier<BlockEntityType<AlloyingFurnaceBlockEntity>> ALLOYING_FURNACE_ENTITY =
             registerBlockEntity("alloying_furnace_entity", AllBlocks.ALLOYING_FURNACE, AlloyingFurnaceBlockEntity::new);
+
+    public static final Supplier<BlockEntityType<GeodeContainingBlockEntity>> GEODE_CONTAINING_BLOCK_ENTITY =
+            registerBlockEntity("geode_containing_block_entity", AllBlocks.GEODE_CONTAINING_BLOCK, GeodeContainingBlockEntity::new);
 
 }

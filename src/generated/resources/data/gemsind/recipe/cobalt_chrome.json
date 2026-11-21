@@ -1,6 +1,10 @@
 {
   "type": "gemsind:alloying",
-  "alloyingTime": 1800,
+  "craftingTime": 1800,
+  "displayElements": [
+    "Co",
+    "Cr"
+  ],
   "ingredients": [
     {
       "tag": "gemsind:has_element/co"

@@ -2,9 +2,15 @@ package com.somevanguy.gemsind.datagen;
 
 import com.somevanguy.gemsind.GemstoneIndustryMod;
 import com.somevanguy.gemsind.content.AllBlocks;
+import com.somevanguy.gemsind.content.AllTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -44,5 +50,26 @@ public class DataBlockTagProvider extends BlockTagsProvider {
                         AllBlocks.TUMBLER.getKey(),
                         AllBlocks.ALLOYING_FURNACE.getKey()
                 ));
+
+        tag(AllTags.PickTests.CONTAINS_RIVER_GEODE)
+                .add(Blocks.CLAY);
+
+        tag(AllTags.PickTests.CONTAINS_GRANITE_GEODE)
+                .add(Blocks.GRANITE);
+
+        tag(AllTags.PickTests.CONTAINS_NETHERRACK_GEODE)
+                .add(Blocks.NETHERRACK);
+
+        tag(AllTags.PickTests.CONTAINS_SLATED_GEODE)
+                .addTag(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+
+        tag(AllTags.PickTests.CONTAINS_MOUNTAIN_GEODE)
+                .add(Blocks.STONE);
+
+        tag(AllTags.PickTests.CONTAINS_LAVA_GEODE)
+                .add(Blocks.NETHERRACK);
+
+        tag(AllTags.PickTests.CONTAINS_UNEARTHLY_GEODE)
+                .add(Blocks.END_STONE);
     }
 }

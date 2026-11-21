@@ -1,0 +1,49 @@
+{
+  "message.gemsind.hammer_not_strong_enough": "Your hammer isn't strong enough to break this geode.",
+
+  // blocks
+  "block.gemsind.counter": "Стойка",
+  "block.gemsind.acid_purifier": "Кислотный Очиститель",
+  "block.gemsind.centrifuge": "Центрифуга",
+  "block.gemsind.tumbler": "Галтовочный Барабан",
+  "block.gemsind.alloying_furnace": "Легирующая Печь",
+
+  // item tabs
+  "tab.gemsind.gemsind": "Gemstone Industry",
+  "tab.gemsind.geodes_and_valuables": "Жеоды, Сплавы, Самоцветы",
+  "jei_tab.gemsind.alloying": "Легирование",
+
+  // tools
+  "item.gemsind.hammer.not_usable_tooltip": "удачи разламать камень палкой",
+  "item.gemsind.wooden_hammer": "Деревянный Молот",
+  "item.gemsind.iron_hammer": "Железный Молот",
+  "item.gemsind.golden_hammer": "Золотой Молот",
+  "item.gemsind.diamond_hammer": "Алмазный Молот",
+  "item.gemsind.reinforced_hammer": "Укреплённый Молот",
+
+  // generic gem
+  "item.gemsind.gem.holdshifttoexpand": "Зажми Shift для полного описания",
+  "item.gemsind.gem.purity": "Чистота: ",
+  "item.gemsind.gem.polish": "Полировка: ",
+  "item.gemsind.gem.acid_tolerance": "Устойчивость к Кислоте уровня: ",
+  "item.gemsind.gem.flux": "Флюсовый",
+
+  // generic acid pack
+  "item.gemsind.acid_pack.strength": "Уровень Кислоты: ",
+
+  // acid packs
+  "item.gemsind.empty_acid_pack": "Пустой Контейнер Кислоты",
+  "item.gemsind.acetic_acid_pack": "Контейнер Уксусной Кислоты",
+  "item.gemsind.oxalic_acid_pack": "Контейнер Щавелевой Кислоты",
+  "item.gemsind.hydrochloric_acid_pack": "Контейнер Соляной Кислоты",
+
+  // alloys
+  "item.gemsind.steel": "Сталь",
+  "item.gemsind.stainless_steel": "Нержавеющая Сталь",
+  "item.gemsind.cobalt_chrome": "Кобальт-Хром",
+  "item.gemsind.electrum": "Электрум",
+  "item.gemsind.endhithyte": "Эндхитит",
+
+  // generic geode
+  "item.gemsind.geode.best_drop": "Лучший Самоцвет: "
+}

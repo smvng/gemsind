@@ -1,6 +1,12 @@
 {
   "type": "gemsind:alloying",
-  "alloyingTime": 9600,
+  "craftingTime": 9600,
+  "displayElements": [
+    "??",
+    "As",
+    "Fe",
+    "Ti"
+  ],
   "ingredients": [
     {
       "tag": "gemsind:has_element/unknown"
@@ -18,6 +24,6 @@
   "minFluxCount": 4,
   "result": {
     "count": 1,
-    "id": "gemsind:endithyte"
+    "id": "gemsind:endhithyte"
   }
 }

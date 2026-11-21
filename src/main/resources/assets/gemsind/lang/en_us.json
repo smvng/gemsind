@@ -1,6 +1,8 @@
 {
-  "message.gemsind.hammer_not_strong_enough": "Your hammer isn't strong enough to break this geode.",
-  "message.gemsind.alloying": "Alloying",
+  "message.gemsind.pick_found": "Odd sounds detected",
+  "message.gemsind.pick_not_found": "Sound is normal",
+  "message.gemsind.hammer_not_strong_enough": "Your Hammer isn't strong enough",
+  "message.gemsind.pick_not_strong_enough": "Your Pick isn't strong enough",
 
   // blocks
   "block.gemsind.counter": "Counter",
@@ -12,20 +14,29 @@
   "block.gemsind.tumbler": "Tumbler",
   "block.gemsind.tumbler.tooltip": "Increases a Gem's Polish, powered by Furnace Fuel. Fuel and Gems can be inputted from any side. If the Fuel turns into another item on consumption (like Lava Buckets turn into Buckets), they will be outputted.",
   "block.gemsind.alloying_furnace": "Alloying Furnace",
-  "block.gemsind.alloying_furnace.tooltip": "Creates an Alloy out of 2 (or more) Element Gems and 1 (or more) Flux Gems. Alloys gain value based on their input Element and Flux Gems' value (Enargite Cu > Malachite Cu). REQUIRES A LOT OF FUEL. JEI Compatible.",
+  "block.gemsind.alloying_furnace.tooltip": "REQUIRES A LOT OF FUEL. Creates an Alloy out of 2 (or more) Element Gems and 1 (or more) Flux Gems. Alloys gain value based on their input Element and Flux Gems' value (Enargite Cu > Malachite Cu). JEI Compatible.",
 
   // item tabs
   "tab.gemsind.gemsind": "Gemstone Industry",
   "tab.gemsind.geodes_and_valuables": "Geodes & Valuables",
+  "jei_tab.gemsind.alloying": "Alloying",
 
   // tools
-  "item.gemsind.hammer.tooltip": "Used to crack Geodes, put a Geode on a Counter and then Left Click the top face of the Counter while holding the Hammer.",
+  "item.gemsind.hammer.tooltip": "Used to crack Geodes, put a Geode on a Counter and then Right Click the top face of the Counter while holding a Pick in your offhand.",
   "item.gemsind.hammer.not_usable_tooltip": "please get a better hammer",
   "item.gemsind.wooden_hammer": "Wooden Hammer",
   "item.gemsind.iron_hammer": "Iron Hammer",
   "item.gemsind.golden_hammer": "Golden Hammer",
   "item.gemsind.diamond_hammer": "Diamond Hammer",
   "item.gemsind.reinforced_hammer": "Reinforced Hammer",
+
+  "item.gemsind.pick.tooltip": "Used to detect Geodes. Picks of weaker materials may not be able to detect certain Geodes.",
+  "item.gemsind.pick.not_usable_tooltip": "please get a better pick",
+  "item.gemsind.wooden_pick": "Wooden Pick",
+  "item.gemsind.iron_pick": "Iron Pick",
+  "item.gemsind.golden_pick": "Golden Pick",
+  "item.gemsind.diamond_pick": "Diamond Pick",
+  "item.gemsind.reinforced_pick": "Reinforced Pick",
 
   // generic gem
   "item.gemsind.gem.holdshifttoexpand": "Hold Shift to Expand",
@@ -49,7 +60,7 @@
   "item.gemsind.stainless_steel": "Stainless Steel",
   "item.gemsind.cobalt_chrome": "Cobalt-Chrome",
   "item.gemsind.electrum": "Electrum",
-  "item.gemsind.endithyte": "Endithyte",
+  "item.gemsind.endhithyte": "Endhithyte", // en-di-thyte
 
   // generic geode
   "item.gemsind.geode.best_drop": "Best Gem: ",
@@ -71,15 +82,15 @@
   "item.gemsind.enargite": "Enargite",
   "item.gemsind.uvarovite": "Uvarovite",
 
-  "item.gemsind.mountain_geode": "Mountain Geode",
-  "item.gemsind.mountain_geode.tooltip": "Found near the top of the tallest Mountains.",
+  "item.gemsind.slated_geode": "Slated Geode",
+  "item.gemsind.slated_geode.tooltip": "Found in Deepslate deep underground.",
   "item.gemsind.pyrite": "Pyrite",
   "item.gemsind.barite": "Barite",
   "item.gemsind.ferroselite": "Ferroselite",
   "item.gemsind.magnetite": "Magnetite",
 
-  "item.gemsind.slated_geode": "Slated Geode",
-  "item.gemsind.slated_geode.tooltip": "Found in Deepslate very deep underground.",
+  "item.gemsind.mountain_geode": "Mountain Geode",
+  "item.gemsind.mountain_geode.tooltip": "Found near the top of the tallest Mountains.",
   "item.gemsind.milky_quartz": "Milky Quartz",
   "item.gemsind.ilmenite": "Ilmenite",
   "item.gemsind.calaverite": "Calaverite",

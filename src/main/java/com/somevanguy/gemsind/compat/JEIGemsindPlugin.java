@@ -2,15 +2,14 @@ package com.somevanguy.gemsind.compat;
 
 import com.somevanguy.gemsind.GemstoneIndustryMod;
 import com.somevanguy.gemsind.content.AllBlocks;
+import com.somevanguy.gemsind.content.AllMenus;
 import com.somevanguy.gemsind.content.AllRecipes;
+import com.somevanguy.gemsind.content.alloying_furnace.AlloyingFurnaceMenu;
 import com.somevanguy.gemsind.content.alloying_furnace.AlloyingFurnaceScreen;
 import com.somevanguy.gemsind.content.alloying_furnace.AlloyingRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.registration.IGuiHandlerRegistration;
-import mezz.jei.api.registration.IRecipeCatalystRegistration;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -36,8 +35,8 @@ public class JEIGemsindPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager manager = Minecraft.getInstance().level.getRecipeManager();
 
-        List<AlloyingRecipe> recipes = manager
-                .getAllRecipesFor(AllRecipes.ALLOYING_TYPE.get()).stream().map(RecipeHolder::value).toList();
+        List<RecipeHolder<AlloyingRecipe>> recipes = manager
+                .getAllRecipesFor(AllRecipes.ALLOYING_TYPE.get());
         registration.addRecipes(AlloyingRecipeCategory.ALLOYING_TYPE, recipes);
     }
 
@@ -50,4 +49,12 @@ public class JEIGemsindPlugin implements IModPlugin {
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(AllBlocks.ALLOYING_FURNACE.asItem(), AlloyingRecipeCategory.ALLOYING_TYPE);
     }
+
+//    @Override
+//    public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
+//        registration.addRecipeTransferHandler(
+//                new AlloyingFurnaceTransferHandler(),
+//                AlloyingRecipeCategory.ALLOYING_TYPE
+//        );
+//    }
 }

@@ -36,6 +36,7 @@ public class Generators {
         BlockTagsProvider blockTagsProvider = new DataBlockTagProvider(output, provider, helper);
         dataGenerator.addProvider(event.includeServer(), blockTagsProvider);
         dataGenerator.addProvider(event.includeServer(), new DataItemTagProvider(output, provider, blockTagsProvider.contentsGetter(), helper));
+        dataGenerator.addProvider(event.includeServer(), new DataBiomeTagProvider(output, provider, helper));
         dataGenerator.addProvider(event.includeServer(), new DataRecipeProvider(output, provider));
 
         dataGenerator.addProvider(event.includeClient(), new DataItemModelProvider(output, helper));

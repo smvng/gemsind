@@ -13,19 +13,23 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import org.jetbrains.annotations.Nullable;
 
-public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
+public class AlloyingRecipeCategory implements IRecipeCategory<RecipeHolder<AlloyingRecipe>> {
     public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(GemstoneIndustryMod.MODID, "alloying");
     public static final ResourceLocation BACKGROUND =  ResourceLocation.fromNamespaceAndPath(GemstoneIndustryMod.MODID,
             "textures/gui/jei_alloying.png");
 
-    public static final RecipeType<AlloyingRecipe> ALLOYING_TYPE =
-            new RecipeType<>(ID, AlloyingRecipe.class);
+    public static final RecipeType<RecipeHolder<AlloyingRecipe>> ALLOYING_TYPE =
+            RecipeType.createRecipeHolderType(ID);
 
     private final IDrawable background;
     private final IDrawable icon;
@@ -36,13 +40,13 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
     }
 
     @Override
-    public RecipeType<AlloyingRecipe> getRecipeType() {
+    public RecipeType<RecipeHolder<AlloyingRecipe>> getRecipeType() {
         return ALLOYING_TYPE;
     }
 
     @Override
     public Component getTitle() {
-        return Component.translatable("message.gemsind.alloying");
+        return Component.translatable("jei_tab.gemsind.alloying");
     }
 
     @Override
@@ -57,7 +61,8 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, AlloyingRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<AlloyingRecipe> recipeHolder, IFocusGroup focuses) {
+        var recipe = recipeHolder.value();
         for (int i = 0; i < 4; i++) {
             int x = 28 + 18 * i;
             if (recipe.ingredientCount() >= i + 1) {
@@ -82,8 +87,15 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
     }
 
     @Override
-    public void draw(AlloyingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        IRecipeCategory.super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
+    public void draw(RecipeHolder<AlloyingRecipe> recipeHolder, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        IRecipeCategory.super.draw(recipeHolder, recipeSlotsView, guiGraphics, mouseX, mouseY);
+        var recipe = recipeHolder.value();
         background.draw(guiGraphics);
+        Font font = Minecraft.getInstance().font;
+        StringBuilder elementsText = new StringBuilder();
+        for (String element : recipe.displayElements()) {
+            elementsText.append(element).append(" ");
+        }
+        guiGraphics.drawString(font, elementsText.toString(), 32, 28, 0xff8b8b8b, false);
     }
 }

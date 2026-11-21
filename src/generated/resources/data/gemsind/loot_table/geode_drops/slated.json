@@ -6,23 +6,23 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gemsind:ilmenite"
+          "name": "gemsind:pyrite"
         },
         {
           "type": "minecraft:item",
-          "name": "gemsind:milky_quartz"
+          "name": "gemsind:barite"
         },
         {
           "type": "minecraft:item",
-          "name": "gemsind:calaverite"
+          "name": "gemsind:ferroselite"
         },
         {
           "type": "minecraft:item",
-          "name": "gemsind:kosmochlor"
+          "name": "gemsind:magnetite"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gemsind:geode_drops/slated_geode"
+  "random_sequence": "gemsind:geode_drops/slated"
 }

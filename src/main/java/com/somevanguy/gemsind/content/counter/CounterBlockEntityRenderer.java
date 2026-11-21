@@ -32,7 +32,6 @@ public class CounterBlockEntityRenderer implements BlockEntityRenderer<CounterBl
             poseStack.translate(0.5f, 1.025f, 0.5f);
             poseStack.scale(0.5f, 0.5f, 0.5f);
             poseStack.mulPose(Axis.XP.rotationDegrees(90));
-
             itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED,
                     getLightLevel(level, counterBlockEntity.getBlockPos().above()),
                     OverlayTexture.NO_OVERLAY, poseStack, multiBufferSource, level, 1);

@@ -1,6 +1,10 @@
 {
   "type": "gemsind:alloying",
-  "alloyingTime": 60,
+  "craftingTime": 60,
+  "displayElements": [
+    "C",
+    "Os"
+  ],
   "ingredients": [
     {
       "tag": "gemsind:has_element/c"

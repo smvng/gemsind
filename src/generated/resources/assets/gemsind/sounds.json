@@ -37,5 +37,19 @@
       "gemsind:deep_fizz"
     ],
     "subtitle": "sounds.gemsind.centrifuge_finish"
+  },
+  "geode_containing_block_break": {
+    "replace": true,
+    "sounds": [
+      "gemsind:centrifuge_ambient_1"
+    ],
+    "subtitle": "sounds.gemsind.geode_containing_block_break"
+  },
+  "geode_containing_block_crack": {
+    "replace": true,
+    "sounds": [
+      "gemsind:centrifuge_ambient_1"
+    ],
+    "subtitle": "sounds.gemsind.geode_containing_block_crack"
   }
 }

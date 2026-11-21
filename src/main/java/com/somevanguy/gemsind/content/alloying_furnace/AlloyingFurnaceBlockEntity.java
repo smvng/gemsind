@@ -2,7 +2,6 @@ package com.somevanguy.gemsind.content.alloying_furnace;
 
 import com.somevanguy.gemsind.content.*;
 import com.somevanguy.gemsind.content.base.BaseTransmutatorBlockEntity;
-import com.somevanguy.gemsind.content.centrifuge.CentrifugeBlock;
 import com.somevanguy.gemsind.content.items.AlloyItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -10,7 +9,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
@@ -138,7 +136,7 @@ public class AlloyingFurnaceBlockEntity extends BaseTransmutatorBlockEntity {
         if (canCraft(level)) {
             var recipe = getRecipe(level);
             if (recipe.isPresent()) {
-                maxProgress = recipe.get().value().alloyingTime();
+                maxProgress = recipe.get().value().craftingTime();
                 progress += 1;
                 if (progress >= maxProgress) {
                     progress = 0;

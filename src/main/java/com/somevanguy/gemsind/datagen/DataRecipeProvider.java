@@ -137,8 +137,14 @@ public class DataRecipeProvider extends RecipeProvider implements IConditionBuil
                 var tag = AllTags.Items.getElementTag(element);
                 ingredients.add(Ingredient.of(tag));
             }
-            var builder = new DataAlloyingRecipeBuilder(ingredients, alloyItem.get().crafting.minFluxCount(),
-                    alloyItem.get().crafting.alloyingTime(), alloyItem.get().getDefaultInstance());
+
+            var builder = new DataAlloyingRecipeBuilder(
+                    alloyItem.get().crafting.getRequiredElements(),
+                    ingredients,
+                    alloyItem.get().crafting.minFluxCount(),
+                    alloyItem.get().crafting.craftingTime(),
+                    alloyItem.get().getDefaultInstance());
+
             for (String element : alloyItem.get().crafting.getRequiredElements()) {
                 builder.unlockedBy(GemItem.safeElementName(element), has(AllTags.Items.getElementTag(element)));
             }

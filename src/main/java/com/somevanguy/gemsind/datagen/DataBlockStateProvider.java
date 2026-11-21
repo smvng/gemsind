@@ -71,5 +71,9 @@ public class DataBlockStateProvider extends BlockStateProvider {
                     }
             ).modelFile(active ? alloyingFurnaceOnModel : alloyingFurnaceOffModel).build();
         });
+
+        ModelFile geodeContainingBlockModel = models().cubeAll("geode_containing_block",
+                mcLoc("block/debug"));
+        simpleBlockWithItem(AllBlocks.GEODE_CONTAINING_BLOCK.get(), geodeContainingBlockModel);
     }
 }

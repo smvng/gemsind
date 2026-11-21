@@ -85,9 +85,9 @@ public class CounterBlockEntity extends BaseItemHandlerBlockEntity {
                         });
                         return;
                     }
-                    if (hammerItem.getStrength() >= geodeItem.defaultToughness) {
+                    if (hammerItem.getStrength() >= geodeItem.toughness) {
                         var progress = storedGeode.getOrDefault(AllDataComponents.GEODE_CRACK_PROGRESS, 0f);
-                        progress += hammerItem.getProgressGainAgainst(geodeItem.defaultToughness);
+                        progress += hammerItem.getProgressGainAgainst(geodeItem.toughness);
                         if (progress >= 1f) {
                             ItemStack drop = geodeItem.getDrop(storedGeode, (ServerLevel) level, player);
                             if (drop.isEmpty()) {
@@ -97,6 +97,7 @@ public class CounterBlockEntity extends BaseItemHandlerBlockEntity {
                         } else {
                             storedGeode.set(AllDataComponents.GEODE_CRACK_PROGRESS, progress);
                         }
+                        player.getCooldowns().addCooldown(hammerItem, hammerItem.useCooldown);
                         usedHammer.hurtAndBreak(1, (ServerLevel) level, player, item -> {});
                         level.playSound(null, getBlockPos(), SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 0.9f, 1.5f);
                         RandomSource random = level.getRandom();

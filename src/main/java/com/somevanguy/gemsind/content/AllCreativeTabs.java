@@ -32,9 +32,13 @@ public class AllCreativeTabs {
                         output.accept(AllBlocks.ALLOYING_FURNACE.asItem());
 
                         output.accept(AllItems.IRON_HAMMER.asItem());
+                        output.accept(AllItems.IRON_PICK.asItem());
                         output.accept(AllItems.GOLDEN_HAMMER.asItem());
+                        output.accept(AllItems.GOLDEN_PICK.asItem());
                         output.accept(AllItems.DIAMOND_HAMMER.asItem());
+                        output.accept(AllItems.DIAMOND_PICK.asItem());
                         output.accept(AllItems.REINFORCED_HAMMER.asItem());
+                        output.accept(AllItems.REINFORCED_PICK.asItem());
 
                         output.accept(AllItems.EMPTY_ACID_PACK.asItem());
                         for (DeferredHolder<Item, AcidPackItem> acidPack : AllItems.ACIDS) {
@@ -42,6 +46,7 @@ public class AllCreativeTabs {
                         }
 
                         output.accept(AllItems.WOODEN_HAMMER.asItem());
+                        //output.accept(AllItems.WOODEN_PICK.asItem());
                     })
                     .build());
 

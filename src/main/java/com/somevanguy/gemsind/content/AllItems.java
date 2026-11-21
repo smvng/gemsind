@@ -57,6 +57,11 @@ public class AllItems {
     public static final DeferredItem<HammerItem> DIAMOND_HAMMER = AllItems.registerItem("diamond_hammer", () -> new HammerItem(2, new Item.Properties().durability(1250)));
     public static final DeferredItem<HammerItem> REINFORCED_HAMMER = AllItems.registerItem("reinforced_hammer", () -> new HammerItem(3, new Item.Properties().durability(2750).fireResistant()));
 
+    public static final DeferredItem<PickItem> IRON_PICK = AllItems.registerItem("iron_pick", () -> new PickItem(1, 1, new Item.Properties().durability(250)));
+    public static final DeferredItem<PickItem> GOLDEN_PICK = AllItems.registerItem("golden_pick", () -> new PickItem(4, 3, new Item.Properties().durability(60)));
+    public static final DeferredItem<PickItem> DIAMOND_PICK = AllItems.registerItem("diamond_pick", () -> new PickItem(2, 2, new Item.Properties().durability(1250)));
+    public static final DeferredItem<PickItem> REINFORCED_PICK = AllItems.registerItem("reinforced_pick", () -> new PickItem(3, 3, new Item.Properties().durability(2750)));
+
     // acids
     public static final DeferredItem<Item> EMPTY_ACID_PACK = AllItems.registerItem("empty_acid_pack", () -> new Item(new Item.Properties()));
     public static final DeferredItem<AcidPackItem> ACETIC_ACID_PACK = AllItems.registerBasicAcid("acetic_acid_pack",
@@ -77,7 +82,7 @@ public class AllItems {
             new AlloyItem.Crafting(1, (int) (1.5*60*20), "Co", "Cr"), new GemItem.GainInfo(false, 1750, 1.9f, 0.6f));
     public static final DeferredItem<AlloyItem> ELECTRUM = AllItems.registerBasicAlloy("electrum",
             new AlloyItem.Crafting(3, 2*60*20, "Au", "Ag"), new GemItem.GainInfo(false, 2000, 1.4f, 1.1f));
-    public static final DeferredItem<AlloyItem> ENDITHYTE = AllItems.registerBasicAlloy("endithyte",
+    public static final DeferredItem<AlloyItem> ENDHITHYTE = AllItems.registerBasicAlloy("endhithyte",
             new AlloyItem.Crafting(4, 8*60*20, "??", "As", "Fe", "Ti"), new GemItem.GainInfo(false, 5000, 0.8f, 1.7f));
 
     // river geode [Na, Fe, Cl] (in clay in a river biome)
@@ -129,7 +134,7 @@ public class AllItems {
     public static final DeferredItem<GemItem> MAGNETITE = AllItems.registerBasicGem("magnetite", "Fe3O4", 3,
             new GemItem.GainInfo(420, 0.2f, 0.8f));
 
-    public static final DeferredItem<GeodeItem> MOUNTAIN_GEODE = AllItems.registerBasicGeode("mountain_geode", 2,
+    public static final DeferredItem<GeodeItem> SLATED_GEODE = AllItems.registerBasicGeode("slated", 2,
             List.of(
                     PYRITE,
                     BARITE,
@@ -147,7 +152,7 @@ public class AllItems {
     public static final DeferredItem<GemItem> KOSMOCHLOR = AllItems.registerBasicGem("kosmochlor", "NaCrSi2O6", 1,
             new GemItem.GainInfo(2250, 0.55f, 0.45f));
 
-    public static final DeferredItem<GeodeItem> SLATED_GEODE = AllItems.registerBasicGeode("slated_geode", 3,
+    public static final DeferredItem<GeodeItem> MOUNTAIN_GEODE = AllItems.registerBasicGeode("mountain_geode", 3,
             List.of(
                     ILMENITE,
                     MILKY_QUARTZ,

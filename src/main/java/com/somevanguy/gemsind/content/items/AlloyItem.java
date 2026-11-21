@@ -1,9 +1,7 @@
 package com.somevanguy.gemsind.content.items;
 
 import com.somevanguy.gemsind.GemstoneIndustryMod;
-import com.somevanguy.gemsind.content.AllDataComponents;
 import net.minecraft.util.Mth;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -37,7 +35,7 @@ public class AlloyItem extends GemItem {
         return bonusValue;
     }
 
-    public record Crafting(int minFluxCount, int alloyingTime, String el1, String el2, @Nullable String el3, @Nullable String el4) {
+    public record Crafting(int minFluxCount, int craftingTime, String el1, String el2, @Nullable String el3, @Nullable String el4) {
         public @NotNull ArrayList<String> getRequiredElements() {
             var list = new ArrayList<String>();
             list.add(el1);
@@ -53,7 +51,7 @@ public class AlloyItem extends GemItem {
 
         public Crafting {
             minFluxCount = Mth.clamp(minFluxCount, 1, 4);
-            alloyingTime = Mth.clamp(alloyingTime, 1, 86400*20);
+            craftingTime = Mth.clamp(craftingTime, 1, 86400*20);
         }
 
         public Crafting(int minFluxCount, int alloyingTime, String el1, String el2) {

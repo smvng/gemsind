@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // recipe file contents
-public record AlloyingRecipe(List<Ingredient> ingredients, int minFluxCount, int alloyingTime, ItemStack result) implements Recipe<AlloyingRecipeInput> {
+public record AlloyingRecipe(List<String> displayElements, List<Ingredient> ingredients, int minFluxCount, int craftingTime, ItemStack result) implements Recipe<AlloyingRecipeInput> {
     @Override
     public NonNullList<Ingredient> getIngredients() {
         return NonNullList.copyOf(ingredients);
@@ -88,9 +88,10 @@ public record AlloyingRecipe(List<Ingredient> ingredients, int minFluxCount, int
 
     public static class Serializer implements RecipeSerializer<AlloyingRecipe> {
         public static final MapCodec<AlloyingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+                Codec.list(Codec.STRING, 2, 4).fieldOf("displayElements").forGetter(AlloyingRecipe::displayElements),
                 Codec.list(Ingredient.CODEC_NONEMPTY, 2, 4).fieldOf("ingredients").forGetter(AlloyingRecipe::getIngredients),
                 Codec.intRange(1, 4).fieldOf("minFluxCount").forGetter(AlloyingRecipe::minFluxCount),
-                Codec.intRange(1, 86400*20).fieldOf("alloyingTime").forGetter(AlloyingRecipe::alloyingTime),
+                Codec.intRange(1, 86400*20).fieldOf("craftingTime").forGetter(AlloyingRecipe::craftingTime),
                 ItemStack.CODEC.fieldOf("result").forGetter(AlloyingRecipe::result)
         ).apply(instance, AlloyingRecipe::new));
 
@@ -100,9 +101,10 @@ public record AlloyingRecipe(List<Ingredient> ingredients, int minFluxCount, int
         }
 
         public static final StreamCodec<RegistryFriendlyByteBuf, AlloyingRecipe> STREAM_CODEC = StreamCodec.composite(
+                ByteBufCodecs.collection(ArrayList::new, ByteBufCodecs.STRING_UTF8), AlloyingRecipe::displayElements,
                 ByteBufCodecs.collection(ArrayList::new, Ingredient.CONTENTS_STREAM_CODEC), AlloyingRecipe::ingredients,
                 ByteBufCodecs.INT, AlloyingRecipe::minFluxCount,
-                ByteBufCodecs.INT, AlloyingRecipe::alloyingTime,
+                ByteBufCodecs.INT, AlloyingRecipe::craftingTime,
                 ItemStack.STREAM_CODEC, AlloyingRecipe::result,
                 AlloyingRecipe::new
         );

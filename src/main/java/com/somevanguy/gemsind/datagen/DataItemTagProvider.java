@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
 public class DataItemTagProvider extends ItemTagsProvider {
-
     public DataItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTags, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, blockTags, GemstoneIndustryMod.MODID, existingFileHelper);
     }

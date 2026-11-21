@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "gemsind:block/geode_containing_block"
+    }
+  }
+}
