@@ -24,8 +24,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class CounterBlockEntity extends BaseItemHandlerBlockEntity {
-    public CounterBlockEntity(BlockPos pos, BlockState blockState) {
+public class CounterEntity extends BaseItemHandlerBlockEntity {
+    public CounterEntity(BlockPos pos, BlockState blockState) {
         super(AllBlockEntities.COUNTER_ENTITY.get(), pos, blockState);
         setItemHandler(new CounterItemHandler(this)); // for the player
         setAutomationItemHandler(new CounterItemHandler.Automation(getItemHandler()));

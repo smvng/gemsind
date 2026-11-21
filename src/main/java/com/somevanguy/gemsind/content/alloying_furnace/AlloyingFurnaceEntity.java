@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class AlloyingFurnaceBlockEntity extends BaseTransmutatorBlockEntity {
+public class AlloyingFurnaceEntity extends BaseTransmutatorBlockEntity {
     public int fuelLeft = 0;
     public int maxFuelLeft = 1;
     public int progress = 0;
@@ -33,7 +33,7 @@ public class AlloyingFurnaceBlockEntity extends BaseTransmutatorBlockEntity {
     public boolean isWorking = false;
     protected final ContainerData data;
 
-    public AlloyingFurnaceBlockEntity(BlockPos pos, BlockState blockState) {
+    public AlloyingFurnaceEntity(BlockPos pos, BlockState blockState) {
         super(AllBlockEntities.ALLOYING_FURNACE_ENTITY.get(), pos, blockState);
         setItemHandler(new AlloyingFurnaceItemHandler(this, 10));
         setAutomationItemHandler(new AlloyingFurnaceItemHandler.Automation((AlloyingFurnaceItemHandler) getItemHandler()));

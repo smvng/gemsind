@@ -55,7 +55,7 @@ public class AcidPurifierItemHandler extends BaseItemHandler {
         @Override
         public ItemStack insertItem(int slot, ItemStack itemStack, boolean b) {
             if (slot != ACID_SLOT) {
-                if (mainHandler.blockEntity instanceof AcidPurifierBlockEntity acidPurifierBlockEntity && itemStack.getItem() instanceof GemItem gemItem) {
+                if (mainHandler.blockEntity instanceof AcidPurifierEntity acidPurifierBlockEntity && itemStack.getItem() instanceof GemItem gemItem) {
                     if (acidPurifierBlockEntity.getAcidStrength().isPresent()) {
                         if (acidPurifierBlockEntity.getAcidStrength().getAsInt() > gemItem.maxAcidTolerance) {
                             return ItemStack.EMPTY; // do not insert gems that will be destroyed

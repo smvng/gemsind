@@ -3,10 +3,9 @@ package com.somevanguy.gemsind;
 import com.somevanguy.gemsind.content.AllBlockEntities;
 import com.somevanguy.gemsind.content.AllBlocks;
 import com.somevanguy.gemsind.content.alloying_furnace.AlloyingFurnaceScreen;
-import com.somevanguy.gemsind.content.counter.CounterBlockEntityRenderer;
+import com.somevanguy.gemsind.content.counter.CounterRenderer;
 import com.somevanguy.gemsind.content.geode_containing_block.GeodeContainingBlockBakedModel;
 import com.somevanguy.gemsind.content.geode_containing_block.GeodeContainingBlockEntity;
-import com.somevanguy.gemsind.content.geode_containing_block.GeodeContainingBlockEntityRenderer;
 import com.somevanguy.gemsind.content.items.AcidPackItem;
 import com.somevanguy.gemsind.content.AllItems;
 import com.somevanguy.gemsind.content.AllMenus;
@@ -31,8 +30,6 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.registries.DeferredItem;
-
-import java.util.HashMap;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = GemstoneIndustryMod.MODID, dist = Dist.CLIENT)
@@ -63,8 +60,7 @@ public class GemstoneIndustryModClient {
 
     @SubscribeEvent
     public static void onEntityRenderersEvent(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(AllBlockEntities.COUNTER_ENTITY.get(), CounterBlockEntityRenderer::new);
-        //event.registerBlockEntityRenderer(AllBlockEntities.GEODE_CONTAINING_BLOCK_ENTITY.get(), GeodeContainingBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(AllBlockEntities.COUNTER_ENTITY.get(), CounterRenderer::new);
     }
 
     @SubscribeEvent

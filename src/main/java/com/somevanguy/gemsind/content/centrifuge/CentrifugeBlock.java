@@ -61,7 +61,7 @@ public class CentrifugeBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new CentrifugeBlockEntity(blockPos, blockState);
+        return new CentrifugeEntity(blockPos, blockState);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class CentrifugeBlock extends BaseEntityBlock {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (level.getBlockEntity(pos) instanceof CentrifugeBlockEntity blockEntity) {
+        if (level.getBlockEntity(pos) instanceof CentrifugeEntity blockEntity) {
             if (!level.isClientSide()) {
                 ((ServerPlayer) player).openMenu(new SimpleMenuProvider(blockEntity, blockEntity.getDisplayName()), pos);
             }
@@ -107,7 +107,7 @@ public class CentrifugeBlock extends BaseEntityBlock {
     @Override
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (state.getBlock() != newState.getBlock()) {
-            if (level.getBlockEntity(pos) instanceof CentrifugeBlockEntity centrifugeBlockEntity) {
+            if (level.getBlockEntity(pos) instanceof CentrifugeEntity centrifugeBlockEntity) {
                 centrifugeBlockEntity.dropContents();
                 level.updateNeighbourForOutputSignal(pos, this);
             }

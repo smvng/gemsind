@@ -53,7 +53,7 @@ public class CounterBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new CounterBlockEntity(blockPos, blockState);
+        return new CounterEntity(blockPos, blockState);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class CounterBlock extends BaseEntityBlock {
 
     @Override
     protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (level.getBlockEntity(pos) instanceof CounterBlockEntity blockEntity) {
+        if (level.getBlockEntity(pos) instanceof CounterEntity blockEntity) {
             return blockEntity.trySwapItem(stack, InteractionHand.MAIN_HAND, player);
         }
         return ItemInteractionResult.FAIL;
@@ -92,7 +92,7 @@ public class CounterBlock extends BaseEntityBlock {
 
     //    @Override
 //    protected void attack(BlockState state, Level level, BlockPos pos, Player player) {
-//        if (level.getBlockEntity(pos) instanceof CounterBlockEntity blockEntity) {
+//        if (level.getBlockEntity(pos) instanceof CounterEntity blockEntity) {
 //            if (!level.isClientSide()) {
 //                blockEntity.onAttack((ServerPlayer) player);
 //            }
@@ -101,7 +101,7 @@ public class CounterBlock extends BaseEntityBlock {
 //    }
 
     public void onHammerHit(BlockPos pos, ItemStack hammer, ServerLevel level, ServerPlayer player) {
-        if (level.getBlockEntity(pos) instanceof CounterBlockEntity blockEntity) {
+        if (level.getBlockEntity(pos) instanceof CounterEntity blockEntity) {
             if (!level.isClientSide()) {
                 blockEntity.tryCrack(hammer, player);
             }
@@ -111,7 +111,7 @@ public class CounterBlock extends BaseEntityBlock {
     @Override
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (state.getBlock() != newState.getBlock()) {
-            if (level.getBlockEntity(pos) instanceof CounterBlockEntity counterBlockEntity) {
+            if (level.getBlockEntity(pos) instanceof CounterEntity counterBlockEntity) {
                 counterBlockEntity.dropContents();
                 level.updateNeighbourForOutputSignal(pos, this);
             }

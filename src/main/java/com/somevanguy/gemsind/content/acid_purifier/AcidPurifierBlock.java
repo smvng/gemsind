@@ -61,7 +61,7 @@ public class AcidPurifierBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new AcidPurifierBlockEntity(blockPos, blockState);
+        return new AcidPurifierEntity(blockPos, blockState);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class AcidPurifierBlock extends BaseEntityBlock {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (level.getBlockEntity(pos) instanceof AcidPurifierBlockEntity blockEntity) {
+        if (level.getBlockEntity(pos) instanceof AcidPurifierEntity blockEntity) {
             if (!level.isClientSide()) {
                 ((ServerPlayer) player).openMenu(new SimpleMenuProvider(blockEntity, blockEntity.getDisplayName()), pos);
             }
@@ -93,7 +93,7 @@ public class AcidPurifierBlock extends BaseEntityBlock {
     @Override
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (state.getBlock() != newState.getBlock()) {
-            if (level.getBlockEntity(pos) instanceof AcidPurifierBlockEntity blockEntity) {
+            if (level.getBlockEntity(pos) instanceof AcidPurifierEntity blockEntity) {
                 blockEntity.dropContents();
                 level.updateNeighbourForOutputSignal(pos, this);
             }

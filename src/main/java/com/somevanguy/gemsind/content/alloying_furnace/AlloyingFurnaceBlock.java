@@ -2,8 +2,6 @@ package com.somevanguy.gemsind.content.alloying_furnace;
 
 import com.mojang.serialization.MapCodec;
 import com.somevanguy.gemsind.content.AllBlockEntities;
-import com.somevanguy.gemsind.content.acid_purifier.AcidPurifierBlock;
-import com.somevanguy.gemsind.content.acid_purifier.AcidPurifierBlockEntity;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,7 +25,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
@@ -85,7 +82,7 @@ public class AlloyingFurnaceBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new AlloyingFurnaceBlockEntity(blockPos, blockState);
+        return new AlloyingFurnaceEntity(blockPos, blockState);
     }
 
     @Override
@@ -106,7 +103,7 @@ public class AlloyingFurnaceBlock extends BaseEntityBlock {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (level.getBlockEntity(pos) instanceof AlloyingFurnaceBlockEntity blockEntity) {
+        if (level.getBlockEntity(pos) instanceof AlloyingFurnaceEntity blockEntity) {
             if (!level.isClientSide()) {
                 ((ServerPlayer) player).openMenu(new SimpleMenuProvider(blockEntity, blockEntity.getDisplayName()), pos);
             }
@@ -117,7 +114,7 @@ public class AlloyingFurnaceBlock extends BaseEntityBlock {
     @Override
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (state.getBlock() != newState.getBlock()) {
-            if (level.getBlockEntity(pos) instanceof AlloyingFurnaceBlockEntity blockEntity) {
+            if (level.getBlockEntity(pos) instanceof AlloyingFurnaceEntity blockEntity) {
                 blockEntity.dropContents();
                 level.updateNeighbourForOutputSignal(pos, this);
             }

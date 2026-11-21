@@ -11,7 +11,7 @@ import net.neoforged.neoforge.items.SlotItemHandler;
 
 public class AcidPurifierMenu extends BaseTransmutatorMenu {
     public AcidPurifierMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(AcidPurifierBlockEntity.dataSlotCount)); // TODO:FIX EXTRA DATA
+        this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(AcidPurifierEntity.dataSlotCount)); // TODO:FIX EXTRA DATA
     }
 
     public AcidPurifierMenu(int containerId, Inventory inv, BlockEntity be, ContainerData data) {

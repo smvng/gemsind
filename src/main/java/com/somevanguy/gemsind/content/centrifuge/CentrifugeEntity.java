@@ -8,7 +8,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -22,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CentrifugeBlockEntity extends BaseTransmutatorBlockEntity {
+public class CentrifugeEntity extends BaseTransmutatorBlockEntity {
     public Map<Integer, Integer> progresses = new HashMap<>();
     public static final int ticksUntilDone = 25 * 20;
     public int fuelLeft = 0;
@@ -31,7 +30,7 @@ public class CentrifugeBlockEntity extends BaseTransmutatorBlockEntity {
     public boolean isWorking = false;
     protected final ContainerData data;
 
-    public CentrifugeBlockEntity(BlockPos pos, BlockState blockState) {
+    public CentrifugeEntity(BlockPos pos, BlockState blockState) {
         super(AllBlockEntities.CENTRIFUGE_ENTITY.get(), pos, blockState);
         setItemHandler(new CentrifugeItemHandler(this, 10)); // for the player
         setAutomationItemHandler(new CentrifugeItemHandler.Automation((CentrifugeItemHandler) getItemHandler())); // for hoppers/automation mods

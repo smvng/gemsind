@@ -15,13 +15,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 
-public class CounterBlockEntityRenderer implements BlockEntityRenderer<CounterBlockEntity> {
-    public CounterBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
+public class CounterRenderer implements BlockEntityRenderer<CounterEntity> {
+    public CounterRenderer(BlockEntityRendererProvider.Context context) {
 
     }
 
     @Override
-    public void render(CounterBlockEntity counterBlockEntity, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight, int packedOverlay) {
+    public void render(CounterEntity counterBlockEntity, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight, int packedOverlay) {
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         var itemHandler = counterBlockEntity.getItemHandler();
         var level = counterBlockEntity.getLevel();

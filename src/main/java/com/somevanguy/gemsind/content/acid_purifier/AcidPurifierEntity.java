@@ -11,7 +11,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
@@ -28,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.OptionalInt;
 
-public class AcidPurifierBlockEntity extends BaseTransmutatorBlockEntity {
+public class AcidPurifierEntity extends BaseTransmutatorBlockEntity {
     public Map<Integer, Integer> progresses = new HashMap<>();
     public static final int ticksUntilDone = 35 * 20;
     public @Nullable AcidPackItem acidContained = null;
@@ -46,7 +45,7 @@ public class AcidPurifierBlockEntity extends BaseTransmutatorBlockEntity {
         return OptionalInt.empty();
     }
 
-    public AcidPurifierBlockEntity(BlockPos pos, BlockState blockState) {
+    public AcidPurifierEntity(BlockPos pos, BlockState blockState) {
         super(AllBlockEntities.ACID_PURIFIER_ENTITY.get(), pos, blockState);
         setItemHandler(new AcidPurifierItemHandler(this, 10)); // for the player
         setAutomationItemHandler(new AcidPurifierItemHandler.Automation((AcidPurifierItemHandler) getItemHandler())); // for hoppers/automation mods

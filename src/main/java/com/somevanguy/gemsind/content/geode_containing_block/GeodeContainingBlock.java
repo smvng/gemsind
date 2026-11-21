@@ -1,17 +1,12 @@
 package com.somevanguy.gemsind.content.geode_containing_block;
 
 import com.mojang.serialization.MapCodec;
-import com.somevanguy.gemsind.content.AllBlocks;
 import com.somevanguy.gemsind.content.AllSoundEvents;
-import com.somevanguy.gemsind.content.counter.CounterBlock;
-import com.somevanguy.gemsind.content.counter.CounterBlockEntity;
 import com.somevanguy.gemsind.content.items.GeodeItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
