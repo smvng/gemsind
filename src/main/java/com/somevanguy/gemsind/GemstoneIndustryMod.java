@@ -17,11 +17,10 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
+@SuppressWarnings("unused")
 @Mod(GemstoneIndustryMod.MODID)
 public class GemstoneIndustryMod {
-    // Define mod id in a common place for everything to reference
     public static final String MODID = "gemsind";
-    // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public GemstoneIndustryMod(IEventBus modEventBus, ModContainer modContainer) {

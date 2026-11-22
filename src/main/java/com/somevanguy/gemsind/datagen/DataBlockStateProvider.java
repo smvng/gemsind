@@ -6,9 +6,7 @@ import com.somevanguy.gemsind.content.alloying_furnace.AlloyingFurnaceBlock;
 import com.somevanguy.gemsind.content.centrifuge.CentrifugeBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
-import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class DataBlockStateProvider extends BlockStateProvider {
@@ -18,11 +16,16 @@ public class DataBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-
         ModelFile counterModel = models().cubeTop("counter",
                 modLoc("block/counter_side"),
                 modLoc("block/counter_top"));
         simpleBlockWithItem(AllBlocks.COUNTER.get(), counterModel);
+
+        ModelFile acidPurifierModel = models().getExistingFile(modLoc("block/acid_purifier"));
+        simpleBlockItem(AllBlocks.ACID_PURIFIER.get(), acidPurifierModel);
+        // too lazy to make blockstates myself
+        getVariantBuilder(AllBlocks.ACID_PURIFIER.get()).forAllStates(blockState ->
+                ConfiguredModel.builder().modelFile(acidPurifierModel).build());
 
         ModelFile centrifugeOffModel = models().cubeTop("centrifuge_off",
                 modLoc("block/centrifuge_side"),
@@ -37,20 +40,20 @@ public class DataBlockStateProvider extends BlockStateProvider {
         });
 
         ModelFile alloyingFurnaceOffModel = models().cube("alloying_furnace_off",
-                modLoc("block/alloying_furnace_side"),
-                modLoc("block/alloying_furnace_side"),
-                modLoc("block/alloying_furnace_front"),
-                modLoc("block/alloying_furnace_side"),
-                modLoc("block/alloying_furnace_side"),
-                modLoc("block/alloying_furnace_side"))
+                        modLoc("block/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace_front"),
+                        modLoc("block/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace_side"))
                 .texture("particle", "block/alloying_furnace_front");
         ModelFile alloyingFurnaceOnModel = models().cube("alloying_furnace_on",
-                modLoc("block/alloying_furnace_side"),
-                modLoc("block/alloying_furnace_side"),
-                modLoc("block/alloying_furnace_front_on"),
-                modLoc("block/alloying_furnace_side"),
-                modLoc("block/alloying_furnace_side"),
-                modLoc("block/alloying_furnace_side"))
+                        modLoc("block/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace_front_on"),
+                        modLoc("block/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace_side"))
                 .texture("particle", "block/alloying_furnace_front_on");
         simpleBlockItem(AllBlocks.ALLOYING_FURNACE.get(), alloyingFurnaceOffModel);
         getVariantBuilder(AllBlocks.ALLOYING_FURNACE.get()).forAllStates(blockState -> {

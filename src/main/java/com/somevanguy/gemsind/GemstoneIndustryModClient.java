@@ -2,6 +2,7 @@ package com.somevanguy.gemsind;
 
 import com.somevanguy.gemsind.content.AllBlockEntities;
 import com.somevanguy.gemsind.content.AllBlocks;
+import com.somevanguy.gemsind.content.acid_purifier.AcidPurifierRenderer;
 import com.somevanguy.gemsind.content.alloying_furnace.AlloyingFurnaceScreen;
 import com.somevanguy.gemsind.content.counter.CounterRenderer;
 import com.somevanguy.gemsind.content.geode_containing_block.GeodeContainingBlockBakedModel;
@@ -32,6 +33,7 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
+@SuppressWarnings("unused")
 @Mod(value = GemstoneIndustryMod.MODID, dist = Dist.CLIENT)
 // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
 @EventBusSubscriber(modid = GemstoneIndustryMod.MODID, value = Dist.CLIENT)
@@ -61,6 +63,7 @@ public class GemstoneIndustryModClient {
     @SubscribeEvent
     public static void onEntityRenderersEvent(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(AllBlockEntities.COUNTER_ENTITY.get(), CounterRenderer::new);
+        event.registerBlockEntityRenderer(AllBlockEntities.ACID_PURIFIER_ENTITY.get(), AcidPurifierRenderer::new);
     }
 
     @SubscribeEvent

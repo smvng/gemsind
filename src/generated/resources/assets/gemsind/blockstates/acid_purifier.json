@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "gemsind:block/acid_purifier"
+    }
+  }
+}

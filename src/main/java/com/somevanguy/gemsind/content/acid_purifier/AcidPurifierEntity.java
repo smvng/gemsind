@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.OptionalInt;
 
+@SuppressWarnings("unused")
 public class AcidPurifierEntity extends BaseTransmutatorBlockEntity {
     public Map<Integer, Integer> progresses = new HashMap<>();
     public static final int ticksUntilDone = 35 * 20;
@@ -34,7 +35,7 @@ public class AcidPurifierEntity extends BaseTransmutatorBlockEntity {
     public int acidLeft = 0;
     public final int maxAcidLeft = (int) (6.0 * 20);
     public int tickSoundCooldown = 0;
-    public boolean isWorking = false;
+    //public boolean isWorking = false;
     protected final ContainerData data;
     public static final int dataSlotCount = 5;
 
@@ -81,10 +82,10 @@ public class AcidPurifierEntity extends BaseTransmutatorBlockEntity {
         if (acidLeft > 0) {
             if (tryProgressContents(level, pos, state)) {
                 acidLeft -= 1;
-                if (!isWorking) {
-                    isWorking = true;
-                    level.setBlockAndUpdate(pos, state.setValue(AcidPurifierBlock.HAS_ACID, true));
-                }
+//                if (!isWorking) {
+//                    isWorking = true;
+//                    level.setBlockAndUpdate(pos, state.setValue(AcidPurifierBlock.HAS_ACID, true));
+//                }
                 tickSoundCooldown -= 1;
                 if (tickSoundCooldown <= 0) {
                     tickSoundCooldown = 60;
@@ -95,13 +96,13 @@ public class AcidPurifierEntity extends BaseTransmutatorBlockEntity {
         if (acidLeft < maxAcidLeft) {
             tryRegainAcid(pos, state);
         }
-        if (acidLeft <= 0) {
-            if (isWorking) {
-                isWorking = false;
-                level.setBlockAndUpdate(pos, state.setValue(AcidPurifierBlock.HAS_ACID, false));
-                //level.playSound(null, getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 2.5f, 0.15f);
-            }
-        }
+//        if (acidLeft <= 0) {
+//            if (isWorking) {
+//                isWorking = false;
+//                level.setBlockAndUpdate(pos, state.setValue(AcidPurifierBlock.HAS_ACID, false));
+//                //level.playSound(null, getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 2.5f, 0.15f);
+//            }
+//        }
     }
 
     public boolean tryProgressContents(Level level, BlockPos pos, BlockState state) {

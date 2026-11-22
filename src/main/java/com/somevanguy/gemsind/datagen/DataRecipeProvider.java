@@ -162,7 +162,7 @@ public class DataRecipeProvider extends RecipeProvider implements IConditionBuil
                 .define('b', Items.BUCKET)
                 .define('i', Items.IRON_INGOT)
                 .define('g', Items.GOLD_INGOT)
-                .define('C', AllBlocks.COUNTER.asItem())
+                .define('C', Blocks.SMOOTH_STONE.asItem())
                 .unlockedBy(getSafeNameOfItem(AllBlocks.COUNTER.asItem()), has(AllBlocks.COUNTER.get().asItem()))
                 .save(recipeOutput, locationBlockCrafting(getSafeNameOfItem(AllBlocks.ACID_PURIFIER.asItem())));
 
