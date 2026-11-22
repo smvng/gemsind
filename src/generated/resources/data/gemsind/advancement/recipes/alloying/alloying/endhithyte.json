@@ -1,21 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "c": {
+    "as": {
       "conditions": {
         "items": [
           {
-            "items": "#gemsind:has_element/c"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "cr": {
-      "conditions": {
-        "items": [
-          {
-            "items": "#gemsind:has_element/cr"
+            "items": "#gemsind:has_element/as"
           }
         ]
       },
@@ -33,22 +23,43 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gemsind:stainless_steel"
+        "recipe": "gemsind:alloying/endhithyte"
       },
       "trigger": "minecraft:recipe_unlocked"
+    },
+    "ti": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#gemsind:has_element/ti"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "unknown": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#gemsind:has_element/unknown"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
+      "unknown",
+      "as",
       "fe",
-      "c",
-      "cr"
+      "ti"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gemsind:stainless_steel"
+      "gemsind:alloying/endhithyte"
     ]
   }
 }

@@ -1,21 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "c": {
+    "acid_purifier": {
       "conditions": {
         "items": [
           {
-            "items": "#gemsind:has_element/c"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "fe": {
-      "conditions": {
-        "items": [
-          {
-            "items": "#gemsind:has_element/fe"
+            "items": "gemsind:acid_purifier"
           }
         ]
       },
@@ -23,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gemsind:steel"
+        "recipe": "gemsind:crafting/blocks/centrifuge"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -31,13 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "fe",
-      "c"
+      "acid_purifier"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gemsind:steel"
+      "gemsind:crafting/blocks/centrifuge"
     ]
   }
 }

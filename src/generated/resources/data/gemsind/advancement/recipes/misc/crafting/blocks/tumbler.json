@@ -1,32 +1,32 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "gemsind:alloying_furnace"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "tumbler": {
+    "centrifuge": {
       "conditions": {
         "items": [
           {
-            "items": "gemsind:tumbler"
+            "items": "gemsind:centrifuge"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gemsind:crafting/blocks/tumbler"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "tumbler"
+      "centrifuge"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gemsind:alloying_furnace"
+      "gemsind:crafting/blocks/tumbler"
     ]
   }
 }

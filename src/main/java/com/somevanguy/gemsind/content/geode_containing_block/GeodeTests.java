@@ -19,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public class GeodeTests {
     public static boolean isExposed(ServerLevel serverLevel, BlockPos pos) {
         for (Direction direction : Direction.values()) {

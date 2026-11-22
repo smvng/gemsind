@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "counter": {
+    "diamond": {
       "conditions": {
         "items": [
           {
-            "items": "gemsind:counter"
+            "items": "minecraft:diamond"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gemsind:acid_purifier"
+        "recipe": "gemsind:crafting/picks/diamond_pick"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "counter"
+      "diamond"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gemsind:acid_purifier"
+      "gemsind:crafting/picks/diamond_pick"
     ]
   }
 }

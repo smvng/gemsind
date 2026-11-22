@@ -1,21 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "co": {
+    "diamond_hammer": {
       "conditions": {
         "items": [
           {
-            "items": "#gemsind:has_element/co"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "cr": {
-      "conditions": {
-        "items": [
-          {
-            "items": "#gemsind:has_element/cr"
+            "items": "gemsind:diamond_hammer"
           }
         ]
       },
@@ -23,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gemsind:cobalt_chrome"
+        "recipe": "gemsind:crafting/hammers/reinforced_hammer"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -31,13 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "co",
-      "cr"
+      "diamond_hammer"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gemsind:cobalt_chrome"
+      "gemsind:crafting/hammers/reinforced_hammer"
     ]
   }
 }

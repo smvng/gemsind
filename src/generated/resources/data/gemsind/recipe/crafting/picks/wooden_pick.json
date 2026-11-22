@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "r": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "rr",
+    "r "
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemsind:wooden_pick"
+  }
+}
