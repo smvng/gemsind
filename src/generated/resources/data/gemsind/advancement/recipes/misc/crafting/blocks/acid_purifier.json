@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "acid_purifier": {
+    "counter": {
       "conditions": {
         "items": [
           {
-            "items": "gemsind:acid_purifier"
+            "items": "gemsind:counter"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gemsind:centrifuge"
+        "recipe": "gemsind:crafting/blocks/acid_purifier"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "acid_purifier"
+      "counter"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gemsind:centrifuge"
+      "gemsind:crafting/blocks/acid_purifier"
     ]
   }
 }

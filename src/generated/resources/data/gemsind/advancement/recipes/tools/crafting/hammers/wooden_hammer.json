@@ -3,15 +3,15 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gemsind:counter"
+        "recipe": "gemsind:crafting/hammers/wooden_hammer"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "iron_ingot": {
+    "root": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:iron_ingot"
+            "items": "#minecraft:planks"
           }
         ]
       },
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "iron_ingot"
+      "root"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gemsind:counter"
+      "gemsind:crafting/hammers/wooden_hammer"
     ]
   }
 }

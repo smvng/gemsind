@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gemsind:crafting/blocks/alloying_furnace"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "tumbler": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gemsind:tumbler"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "tumbler"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gemsind:crafting/blocks/alloying_furnace"
+    ]
+  }
+}

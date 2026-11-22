@@ -1,11 +1,21 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "centrifuge": {
+    "co": {
       "conditions": {
         "items": [
           {
-            "items": "gemsind:centrifuge"
+            "items": "#gemsind:has_element/co"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "cr": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#gemsind:has_element/cr"
           }
         ]
       },
@@ -13,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gemsind:tumbler"
+        "recipe": "gemsind:alloying/cobalt_chrome"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +31,13 @@
   "requirements": [
     [
       "has_the_recipe",
-      "centrifuge"
+      "co",
+      "cr"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gemsind:tumbler"
+      "gemsind:alloying/cobalt_chrome"
     ]
   }
 }

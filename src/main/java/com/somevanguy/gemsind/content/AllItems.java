@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+@SuppressWarnings("unused")
 public class AllItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(GemstoneIndustryMod.MODID);
 
@@ -57,6 +58,7 @@ public class AllItems {
     public static final DeferredItem<HammerItem> DIAMOND_HAMMER = AllItems.registerItem("diamond_hammer", () -> new HammerItem(2, new Item.Properties().durability(1250)));
     public static final DeferredItem<HammerItem> REINFORCED_HAMMER = AllItems.registerItem("reinforced_hammer", () -> new HammerItem(3, new Item.Properties().durability(2750).fireResistant()));
 
+    public static final DeferredItem<PickItem> WOODEN_PICK = AllItems.registerItem("wooden_pick", () -> new PickItem(false, 0, 1, new Item.Properties().durability(2)));
     public static final DeferredItem<PickItem> IRON_PICK = AllItems.registerItem("iron_pick", () -> new PickItem(1, 1, new Item.Properties().durability(250)));
     public static final DeferredItem<PickItem> GOLDEN_PICK = AllItems.registerItem("golden_pick", () -> new PickItem(4, 3, new Item.Properties().durability(60)));
     public static final DeferredItem<PickItem> DIAMOND_PICK = AllItems.registerItem("diamond_pick", () -> new PickItem(2, 2, new Item.Properties().durability(1250)));

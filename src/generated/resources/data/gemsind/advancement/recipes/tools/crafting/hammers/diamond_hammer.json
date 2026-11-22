@@ -1,32 +1,32 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "gemsind:iron_hammer"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "iron_ingot": {
+    "diamond": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:iron_ingot"
+            "items": "minecraft:diamond"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gemsind:crafting/hammers/diamond_hammer"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "iron_ingot"
+      "diamond"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gemsind:iron_hammer"
+      "gemsind:crafting/hammers/diamond_hammer"
     ]
   }
 }

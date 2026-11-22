@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "r": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    "rr",
+    "r "
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemsind:golden_pick"
+  }
+}

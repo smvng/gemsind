@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "diamond_hammer": {
+    "gold_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "gemsind:diamond_hammer"
+            "items": "minecraft:gold_ingot"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gemsind:reinforced_hammer"
+        "recipe": "gemsind:crafting/picks/golden_pick"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "diamond_hammer"
+      "gold_ingot"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gemsind:reinforced_hammer"
+      "gemsind:crafting/picks/golden_pick"
     ]
   }
 }

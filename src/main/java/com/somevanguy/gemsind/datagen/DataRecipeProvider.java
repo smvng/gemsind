@@ -1,15 +1,18 @@
 package com.somevanguy.gemsind.datagen;
 
+import com.somevanguy.gemsind.GemstoneIndustryMod;
 import com.somevanguy.gemsind.content.AllBlocks;
 import com.somevanguy.gemsind.content.AllItems;
 import com.somevanguy.gemsind.content.AllTags;
 import com.somevanguy.gemsind.content.items.AlloyItem;
 import com.somevanguy.gemsind.content.items.GemItem;
 import com.somevanguy.gemsind.content.items.HammerItem;
+import com.somevanguy.gemsind.content.items.PickItem;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -19,6 +22,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.registries.DeferredItem;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +37,26 @@ public class DataRecipeProvider extends RecipeProvider implements IConditionBuil
         return BuiltInRegistries.ITEM.getKey(item).getPath();
     }
 
+    public static ResourceLocation locationPickCrafting(String name) {
+        return ResourceLocation.fromNamespaceAndPath(GemstoneIndustryMod.MODID,
+                "crafting/picks/"+name);
+    }
+
+    public static ResourceLocation locationHammerCrafting(String name) {
+        return ResourceLocation.fromNamespaceAndPath(GemstoneIndustryMod.MODID,
+                "crafting/hammers/"+name);
+    }
+
+    public static ResourceLocation locationAlloying(String name) {
+        return ResourceLocation.fromNamespaceAndPath(GemstoneIndustryMod.MODID,
+                "alloying/"+name);
+    }
+
+    public static ResourceLocation locationBlockCrafting(String name) {
+        return ResourceLocation.fromNamespaceAndPath(GemstoneIndustryMod.MODID,
+                "crafting/blocks/"+name);
+    }
+
     public void genericHammer(HammerItem hammer, ItemLike resource, RecipeOutput recipeOutput) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, hammer)
                 .pattern("rrr")
@@ -41,7 +65,7 @@ public class DataRecipeProvider extends RecipeProvider implements IConditionBuil
                 .define('s', Items.STICK)
                 .define('r', resource)
                 .unlockedBy(getSafeNameOfItem(resource.asItem()), has(resource))
-                .save(recipeOutput);
+                .save(recipeOutput, locationHammerCrafting(getSafeNameOfItem(hammer)));
     }
 
     public void genericHammerFromTag(HammerItem hammer, TagKey<Item> resourceTag, RecipeOutput recipeOutput) {
@@ -52,7 +76,25 @@ public class DataRecipeProvider extends RecipeProvider implements IConditionBuil
                 .define('s', Items.STICK)
                 .define('r', resourceTag)
                 .unlockedBy(resourceTag.registry().registry().getPath(), has(resourceTag))
-                .save(recipeOutput);
+                .save(recipeOutput, locationHammerCrafting(getSafeNameOfItem(hammer)));
+    }
+
+    public void genericPick(PickItem pick, ItemLike resource, RecipeOutput recipeOutput) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, pick)
+                .pattern("rr")
+                .pattern("r ")
+                .define('r', resource)
+                .unlockedBy(getSafeNameOfItem(resource.asItem()), has(resource))
+                .save(recipeOutput, locationPickCrafting(getSafeNameOfItem(pick)));
+    }
+
+    public void genericPickFromTag(PickItem pick, TagKey<Item> resourceTag, RecipeOutput recipeOutput) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, pick)
+                .pattern("rr")
+                .pattern("r ")
+                .define('r', resourceTag)
+                .unlockedBy(resourceTag.registry().registry().getPath(), has(resourceTag))
+                .save(recipeOutput, locationPickCrafting(getSafeNameOfItem(pick)));
     }
 
     private void buildHammers(RecipeOutput recipeOutput) {
@@ -70,64 +112,14 @@ public class DataRecipeProvider extends RecipeProvider implements IConditionBuil
                 .define('I', Blocks.IRON_BLOCK.asItem())
                 .define('d', Items.DIAMOND)
                 .unlockedBy(getSafeNameOfItem(AllItems.DIAMOND_HAMMER.get()), has(AllItems.DIAMOND_HAMMER.get()))
-                .save(recipeOutput);
+                .save(recipeOutput, locationHammerCrafting(getSafeNameOfItem(AllItems.REINFORCED_HAMMER.get())));
     }
 
-    private void buildBlocks(RecipeOutput recipeOutput) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllBlocks.COUNTER.get())
-                .pattern("sss")
-                .pattern("ici")
-                .pattern("ccc")
-                .define('s', Blocks.SMOOTH_STONE.asItem())
-                .define('i', Items.IRON_INGOT)
-                .define('c', Blocks.COBBLESTONE.asItem())
-                .unlockedBy(getSafeNameOfItem(Items.IRON_INGOT), has(Items.IRON_INGOT))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllBlocks.ACID_PURIFIER.get())
-                .pattern("iii")
-                .pattern("ibi")
-                .pattern("gCg")
-                .define('b', Items.BUCKET)
-                .define('i', Items.IRON_INGOT)
-                .define('g', Items.GOLD_INGOT)
-                .define('C', AllBlocks.COUNTER.asItem())
-                .unlockedBy(getSafeNameOfItem(AllBlocks.COUNTER.asItem()), has(AllBlocks.COUNTER.get().asItem()))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllBlocks.CENTRIFUGE.get())
-                .pattern("rdr")
-                .pattern("IrI")
-                .pattern("gCg")
-                .define('r', Items.REDSTONE)
-                .define('d', Blocks.DIAMOND_BLOCK.asItem())
-                .define('g', Blocks.GOLD_BLOCK.asItem())
-                .define('I', Items.IRON_INGOT)
-                .define('C', AllBlocks.COUNTER.asItem())
-                .unlockedBy(getSafeNameOfItem(AllBlocks.ACID_PURIFIER.asItem()), has(AllBlocks.ACID_PURIFIER.asItem()))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllBlocks.TUMBLER.get())
-                .pattern("rdr")
-                .pattern("ICI")
-                .pattern("rdr")
-                .define('r', Blocks.REDSTONE_BLOCK.asItem())
-                .define('d', Blocks.DIAMOND_BLOCK.asItem())
-                .define('I', Blocks.IRON_BLOCK.asItem())
-                .define('C', AllBlocks.CENTRIFUGE.asItem())
-                .unlockedBy(getSafeNameOfItem(AllBlocks.CENTRIFUGE.asItem()), has(AllBlocks.CENTRIFUGE.asItem()))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllBlocks.ALLOYING_FURNACE.get())
-                .pattern("IbI")
-                .pattern("IbI")
-                .pattern("rCr")
-                .define('r', Blocks.REDSTONE_BLOCK.asItem())
-                .define('b', Blocks.BLAST_FURNACE.asItem())
-                .define('I', Blocks.IRON_BLOCK.asItem())
-                .define('C', AllBlocks.TUMBLER.asItem())
-                .unlockedBy(getSafeNameOfItem(AllBlocks.TUMBLER.asItem()), has(AllBlocks.TUMBLER.asItem()))
-                .save(recipeOutput);
+    private void buildPicks(RecipeOutput recipeOutput) {
+        genericPickFromTag(AllItems.WOODEN_PICK.get(), ItemTags.PLANKS, recipeOutput);
+        genericPick(AllItems.IRON_PICK.get(), Items.IRON_INGOT, recipeOutput);
+        genericPick(AllItems.GOLDEN_PICK.get(), Items.GOLD_INGOT, recipeOutput);
+        genericPick(AllItems.DIAMOND_PICK.get(), Items.DIAMOND, recipeOutput);
     }
 
     private void buildAlloys(RecipeOutput recipeOutput) {
@@ -148,14 +140,72 @@ public class DataRecipeProvider extends RecipeProvider implements IConditionBuil
             for (String element : alloyItem.get().crafting.getRequiredElements()) {
                 builder.unlockedBy(GemItem.safeElementName(element), has(AllTags.Items.getElementTag(element)));
             }
-            builder.save(recipeOutput);
+            builder.save(recipeOutput, locationAlloying(getSafeNameOfItem(alloyItem.get())));
         }
     }
 
+    private void buildBlocks(RecipeOutput recipeOutput) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllBlocks.COUNTER.get())
+                .pattern("sss")
+                .pattern("ici")
+                .pattern("ccc")
+                .define('s', Blocks.SMOOTH_STONE.asItem())
+                .define('i', Items.IRON_INGOT)
+                .define('c', Blocks.COBBLESTONE.asItem())
+                .unlockedBy(getSafeNameOfItem(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(recipeOutput, locationBlockCrafting(getSafeNameOfItem(AllBlocks.COUNTER.asItem())));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllBlocks.ACID_PURIFIER.get())
+                .pattern("iii")
+                .pattern("ibi")
+                .pattern("gCg")
+                .define('b', Items.BUCKET)
+                .define('i', Items.IRON_INGOT)
+                .define('g', Items.GOLD_INGOT)
+                .define('C', AllBlocks.COUNTER.asItem())
+                .unlockedBy(getSafeNameOfItem(AllBlocks.COUNTER.asItem()), has(AllBlocks.COUNTER.get().asItem()))
+                .save(recipeOutput, locationBlockCrafting(getSafeNameOfItem(AllBlocks.ACID_PURIFIER.asItem())));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllBlocks.CENTRIFUGE.get())
+                .pattern("rdr")
+                .pattern("IrI")
+                .pattern("gCg")
+                .define('r', Items.REDSTONE)
+                .define('d', Blocks.DIAMOND_BLOCK.asItem())
+                .define('g', Blocks.GOLD_BLOCK.asItem())
+                .define('I', Items.IRON_INGOT)
+                .define('C', AllBlocks.COUNTER.asItem())
+                .unlockedBy(getSafeNameOfItem(AllBlocks.ACID_PURIFIER.asItem()), has(AllBlocks.ACID_PURIFIER.asItem()))
+                .save(recipeOutput, locationBlockCrafting(getSafeNameOfItem(AllBlocks.CENTRIFUGE.asItem())));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllBlocks.TUMBLER.get())
+                .pattern("rdr")
+                .pattern("ICI")
+                .pattern("rdr")
+                .define('r', Blocks.REDSTONE_BLOCK.asItem())
+                .define('d', Blocks.DIAMOND_BLOCK.asItem())
+                .define('I', Blocks.IRON_BLOCK.asItem())
+                .define('C', AllBlocks.CENTRIFUGE.asItem())
+                .unlockedBy(getSafeNameOfItem(AllBlocks.CENTRIFUGE.asItem()), has(AllBlocks.CENTRIFUGE.asItem()))
+                .save(recipeOutput, locationBlockCrafting(getSafeNameOfItem(AllBlocks.TUMBLER.asItem())));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllBlocks.ALLOYING_FURNACE.get())
+                .pattern("IbI")
+                .pattern("IbI")
+                .pattern("rCr")
+                .define('r', Blocks.REDSTONE_BLOCK.asItem())
+                .define('b', Blocks.BLAST_FURNACE.asItem())
+                .define('I', Blocks.IRON_BLOCK.asItem())
+                .define('C', AllBlocks.TUMBLER.asItem())
+                .unlockedBy(getSafeNameOfItem(AllBlocks.TUMBLER.asItem()), has(AllBlocks.TUMBLER.asItem()))
+                .save(recipeOutput, locationBlockCrafting(getSafeNameOfItem(AllBlocks.ALLOYING_FURNACE.asItem())));
+    }
+
     @Override
-    protected void buildRecipes(RecipeOutput recipeOutput) {
+    protected void buildRecipes(@NotNull RecipeOutput recipeOutput) {
         buildHammers(recipeOutput);
-        buildBlocks(recipeOutput);
+        buildPicks(recipeOutput);
         buildAlloys(recipeOutput);
+        buildBlocks(recipeOutput);
     }
 }
