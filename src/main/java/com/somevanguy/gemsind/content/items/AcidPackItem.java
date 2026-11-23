@@ -1,5 +1,6 @@
 package com.somevanguy.gemsind.content.items;
 
+import com.somevanguy.gemsind.content.AllItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -24,6 +25,11 @@ public class AcidPackItem extends Item {
         this.b = b;
         // 0xRRGGBB
         this.RGB =  r << 16 | g << 8 | b;
+    }
+
+    @Override
+    public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
+        return AllItems.EMPTY_ACID_PACK.toStack();
     }
 
     @Override

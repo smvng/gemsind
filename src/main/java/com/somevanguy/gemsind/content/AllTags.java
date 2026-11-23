@@ -2,7 +2,6 @@ package com.somevanguy.gemsind.content;
 
 import com.somevanguy.gemsind.GemstoneIndustryMod;
 import com.somevanguy.gemsind.content.items.GemItem;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -46,7 +45,7 @@ public class AllTags {
         }
 
         public static void createProminentTags() {
-            for (String element : GemItem.prominentElements) {
+            for (String element : GemItem.PROMINENT_ELEMENTS) {
                 createElementTag(element);
             }
         }

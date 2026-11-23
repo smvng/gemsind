@@ -9,14 +9,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 public abstract class BaseTransmutatorMenu extends AbstractContainerMenu {
-    public final BaseTransmutatorBlockEntity blockEntity;
+    public final BaseTransmutatorEntity blockEntity;
     public final int slotCount;
     public final Level level;
     public final ContainerData data;
 
     public BaseTransmutatorMenu(MenuType<?> menuType, int containerId, Inventory inv, BlockEntity be1, ContainerData data) {
         super(menuType, containerId);
-        var be = (BaseTransmutatorBlockEntity) be1;
+        var be = (BaseTransmutatorEntity) be1;
         this.blockEntity = be;
         if (be.getItemHandler() != null) {
             this.slotCount = be.getItemHandler().getSlots();

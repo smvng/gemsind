@@ -8,18 +8,24 @@ import com.somevanguy.gemsind.content.items.AlloyItem;
 import com.somevanguy.gemsind.content.items.GemItem;
 import com.somevanguy.gemsind.content.items.HammerItem;
 import com.somevanguy.gemsind.content.items.PickItem;
+import com.somevanguy.gemsind.datagen.recipe_builders.DataAlloyingRecipeBuilder;
+import com.somevanguy.gemsind.datagen.recipe_builders.DataDesalinatingRecipeBuilder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import org.jetbrains.annotations.NotNull;
@@ -52,9 +58,19 @@ public class DataRecipeProvider extends RecipeProvider implements IConditionBuil
                 "alloying/"+name);
     }
 
+    public static ResourceLocation locationDesalinating(String name) {
+        return ResourceLocation.fromNamespaceAndPath(GemstoneIndustryMod.MODID,
+                "desalinating/"+name);
+    }
+
     public static ResourceLocation locationBlockCrafting(String name) {
         return ResourceLocation.fromNamespaceAndPath(GemstoneIndustryMod.MODID,
                 "crafting/blocks/"+name);
+    }
+
+    public static ResourceLocation locationMiscCrafting(String name) {
+        return ResourceLocation.fromNamespaceAndPath(GemstoneIndustryMod.MODID,
+                "crafting/misc/"+name);
     }
 
     public void genericHammer(HammerItem hammer, ItemLike resource, RecipeOutput recipeOutput) {
@@ -95,6 +111,12 @@ public class DataRecipeProvider extends RecipeProvider implements IConditionBuil
                 .define('r', resourceTag)
                 .unlockedBy(resourceTag.registry().registry().getPath(), has(resourceTag))
                 .save(recipeOutput, locationPickCrafting(getSafeNameOfItem(pick)));
+    }
+
+    private void genericDesalination(RecipeOutput recipeOutput, int craftingTime, TagKey<Fluid> fluid, ItemStack result) {
+        new DataDesalinatingRecipeBuilder(craftingTime, fluid, result)
+                .unlockedBy(getSafeNameOfItem(AllBlocks.COUNTER.asItem()), has(AllBlocks.COUNTER.asItem()))
+                .save(recipeOutput, locationDesalinating(getSafeNameOfItem(result.getItem())));
     }
 
     private void buildHammers(RecipeOutput recipeOutput) {
@@ -201,11 +223,65 @@ public class DataRecipeProvider extends RecipeProvider implements IConditionBuil
                 .save(recipeOutput, locationBlockCrafting(getSafeNameOfItem(AllBlocks.ALLOYING_FURNACE.asItem())));
     }
 
+    private void buildMisc(RecipeOutput recipeOutput) {
+        genericDesalination(recipeOutput, 5*60*20, FluidTags.WATER, AllItems.CHLORINATING_SALT.toStack());
+        genericDesalination(recipeOutput, 10*60*20, FluidTags.LAVA, AllItems.TEST_ALLOY.toStack()); // TODO:CHANGE TO IMBUEMENT INGREDIENT
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllItems.EMPTY_ACID_PACK.get())
+                .pattern("i i")
+                .pattern("i i")
+                .pattern("iii")
+                .define('i', Items.IRON_NUGGET)
+                .unlockedBy(getSafeNameOfItem(AllBlocks.ACID_PURIFIER.asItem()), has(AllBlocks.ACID_PURIFIER.asItem()))
+                .save(recipeOutput, locationMiscCrafting(getSafeNameOfItem(AllItems.EMPTY_ACID_PACK.get())));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllItems.ACETIC_ACID_PACK.get())
+                .pattern("aba")
+                .pattern(" e ")
+                .define('a', Items.APPLE)
+                .define('b', Items.SWEET_BERRIES)
+                .define('e', AllItems.EMPTY_ACID_PACK.get())
+                .unlockedBy(getSafeNameOfItem(AllBlocks.ACID_PURIFIER.asItem()), has(AllBlocks.ACID_PURIFIER.asItem()))
+                .save(recipeOutput, locationMiscCrafting(getSafeNameOfItem(AllItems.ACETIC_ACID_PACK.get())));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllItems.OXALIC_ACID_PACK.get())
+                .pattern("bpb")
+                .pattern(" e ")
+                .define('b', Items.BEETROOT)
+                .define('p', Items.POISONOUS_POTATO)
+                .define('e', AllItems.EMPTY_ACID_PACK.get())
+                .unlockedBy(getSafeNameOfItem(AllBlocks.ACID_PURIFIER.asItem()), has(AllBlocks.ACID_PURIFIER.asItem()))
+                .save(recipeOutput, locationMiscCrafting(getSafeNameOfItem(AllItems.OXALIC_ACID_PACK.get())));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllItems.HYDROCHLORIC_ACID_PACK.get())
+                .pattern("sSs")
+                .pattern(" e ")
+                .define('S', Blocks.SOUL_SAND)
+                .define('s', AllItems.CHLORINATING_SALT.get())
+                .define('e', AllItems.EMPTY_ACID_PACK.get())
+                .unlockedBy(getSafeNameOfItem(AllBlocks.ACID_PURIFIER.asItem()), has(AllBlocks.ACID_PURIFIER.asItem()))
+                .save(recipeOutput, locationMiscCrafting(getSafeNameOfItem(AllItems.HYDROCHLORIC_ACID_PACK.get())));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, AllItems.ANTHRACITE.get())
+                .requires(ItemTags.COALS)
+                .requires(ItemTags.COALS)
+                .requires(ItemTags.COALS)
+                .requires(ItemTags.COALS)
+                .requires(ItemTags.COALS)
+                .requires(ItemTags.COALS)
+                .requires(ItemTags.COALS)
+                .requires(ItemTags.COALS)
+                .requires(Blocks.COAL_BLOCK.asItem())
+                .unlockedBy(getSafeNameOfItem(AllBlocks.CENTRIFUGE.asItem()), has(AllBlocks.CENTRIFUGE.asItem()))
+                .save(recipeOutput, locationMiscCrafting(getSafeNameOfItem(AllItems.ANTHRACITE.get())));
+    }
+
     @Override
     protected void buildRecipes(@NotNull RecipeOutput recipeOutput) {
         buildHammers(recipeOutput);
         buildPicks(recipeOutput);
         buildAlloys(recipeOutput);
         buildBlocks(recipeOutput);
+        buildMisc(recipeOutput);
     }
 }

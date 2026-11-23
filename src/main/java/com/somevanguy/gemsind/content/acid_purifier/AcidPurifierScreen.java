@@ -25,7 +25,7 @@ public class AcidPurifierScreen extends BaseTransmutatorScreen<AcidPurifierMenu>
         //if (menu.isProgressing()) {
             RenderSystem.enableBlend();
             RenderSystem.setShaderColor(menu.getColor(2), menu.getColor(3), menu.getColor(4), 1f);
-            int acidHeight = menu.baseAcidHeight()/2;//menu.getAcidHeight();
+            int acidHeight = menu.getAcidHeight();
             guiGraphics.blit(ACID_OVERLAY, x + 76, y + 11 + menu.baseAcidHeight() - acidHeight, 0, menu.baseAcidHeight() - acidHeight, 81, acidHeight, 81, 63);
             RenderSystem.setShaderColor(1f,1f, 1f, 1f);
             RenderSystem.disableBlend();

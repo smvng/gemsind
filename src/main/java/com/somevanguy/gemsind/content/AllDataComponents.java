@@ -41,12 +41,12 @@ public class AllDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Float>> GEODE_CRACK_PROGRESS = registerDataComponent("geode_crack_progress",
             builder -> builder.persistent(Codec.floatRange(0,1)));
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ACID_GAIN = registerDataComponent("acid_gain",
-            builder -> builder.persistent(Codec.intRange(0,Integer.MAX_VALUE)));
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> TUMBLER_GAIN = registerDataComponent("tumbler_gain",
-            builder -> builder.persistent(Codec.intRange(0,Integer.MAX_VALUE)));
+//    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ACID_GAIN = registerDataComponent("acid_gain",
+//            builder -> builder.persistent(Codec.intRange(0,Integer.MAX_VALUE)));
+//    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> TUMBLER_GAIN = registerDataComponent("tumbler_gain",
+//            builder -> builder.persistent(Codec.intRange(0,Integer.MAX_VALUE)));
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> ACID_USED = registerDataComponent("acid_used",
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> ACID_PURIFIER_USED = registerDataComponent("acid_purifier_used",
             builder -> builder.persistent(Codec.BOOL));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> CENTRIFUGE_USED = registerDataComponent("centrifuge_used",
             builder -> builder.persistent(Codec.BOOL));

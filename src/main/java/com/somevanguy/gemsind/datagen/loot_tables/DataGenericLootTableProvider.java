@@ -1,4 +1,4 @@
-package com.somevanguy.gemsind.datagen;
+package com.somevanguy.gemsind.datagen.loot_tables;
 
 import com.somevanguy.gemsind.content.AllItems;
 import com.somevanguy.gemsind.content.items.GeodeItem;

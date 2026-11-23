@@ -13,7 +13,7 @@
       "tag": "gemsind:has_element/ag"
     }
   ],
-  "minFluxCount": 3,
+  "minFluxCount": 2,
   "result": {
     "count": 1,
     "id": "gemsind:electrum"

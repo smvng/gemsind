@@ -1,4 +1,4 @@
-package com.somevanguy.gemsind.datagen;
+package com.somevanguy.gemsind.datagen.models;
 
 import com.somevanguy.gemsind.GemstoneIndustryMod;
 import com.somevanguy.gemsind.content.AllBlocks;

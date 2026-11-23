@@ -2,6 +2,7 @@ package com.somevanguy.gemsind.content.acid_purifier;
 
 import com.somevanguy.gemsind.content.base.BaseItemHandler;
 import com.somevanguy.gemsind.content.AllDataComponents;
+import com.somevanguy.gemsind.content.items.AcidPackItem;
 import com.somevanguy.gemsind.content.items.GemItem;
 import com.somevanguy.gemsind.content.AllTags;
 import net.minecraft.world.item.ItemStack;
@@ -20,14 +21,18 @@ public class AcidPurifierItemHandler extends BaseItemHandler {
         super(blockEntity, slotCount);
     }
 
-    public static int acidValue(ItemStack stack) {
-        return stack.getOrDefault(AllDataComponents.ACID_GAIN.get(), 0);
+//    public static int acidValue(ItemStack stack) {
+//        return stack.getOrDefault(AllDataComponents.ACID_GAIN.get(), 0);
+//    }
+
+    public static boolean isAcidPack(ItemStack stack) {
+        return stack.getItem() instanceof AcidPackItem;
     }
 
     @Override
     public boolean isItemValid(int slot, @NotNull ItemStack stack) {
         boolean is_gem = stack.is(AllTags.Items.GEMSTONE);
-        boolean is_acid = acidValue(stack) > 0;
+        boolean is_acid = isAcidPack(stack);
         Boolean used = stack.getOrDefault(AllDataComponents.CENTRIFUGE_USED, false);
         return (slot != ACID_SLOT && is_gem && !is_acid && !used) || (slot == ACID_SLOT && is_acid);
     }
@@ -56,9 +61,9 @@ public class AcidPurifierItemHandler extends BaseItemHandler {
         public ItemStack insertItem(int slot, ItemStack itemStack, boolean b) {
             if (slot != ACID_SLOT) {
                 if (mainHandler.blockEntity instanceof AcidPurifierEntity acidPurifierBlockEntity && itemStack.getItem() instanceof GemItem gemItem) {
-                    if (acidPurifierBlockEntity.getAcidStrength().isPresent()) {
-                        if (acidPurifierBlockEntity.getAcidStrength().getAsInt() > gemItem.maxAcidTolerance) {
-                            return ItemStack.EMPTY; // do not insert gems that will be destroyed
+                    if (acidPurifierBlockEntity.acidPackContained != null) {
+                        if (acidPurifierBlockEntity.acidPackContained.acidStrength > gemItem.maxAcidTolerance) {
+                            return itemStack; // do not insert gems that will be destroyed
                         }
                     }
                 }
@@ -69,13 +74,12 @@ public class AcidPurifierItemHandler extends BaseItemHandler {
         @Override
         public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
             ItemStack stack = getStackInSlot(slot);
-            Boolean used = stack.getOrDefault(AllDataComponents.CENTRIFUGE_USED, false);
+            Boolean used = stack.getOrDefault(AllDataComponents.ACID_PURIFIER_USED, false);
             if (slot != ACID_SLOT && !used) {
                 // do not extract if its not been used
                 return ItemStack.EMPTY;
             }
-            if (slot == ACID_SLOT && acidValue(stack) > 0) {
-                // do not extract fuel however spent fuel (or non fuel) can be extracted
+            if (slot == ACID_SLOT && isAcidPack(stack)) {
                 return ItemStack.EMPTY;
             }
             return mainHandler.extractItem(slot, amount, simulate);

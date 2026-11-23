@@ -8,18 +8,25 @@
   "block.gemsind.counter": "Counter",
   "block.gemsind.counter.tooltip": "Holds an Item, can be used to crack Geodes with a Hammer.",
   "block.gemsind.acid_purifier": "Acid Purifier",
-  "block.gemsind.acid_purifier.tooltip": "Increases a Gem's Purity. Stronger Acids purify faster and better. However, using an Acid too strong for that Gem will destroy it. [W.I.P.; this block will be fully reworked soon]",
+  "block.gemsind.acid_purifier.tooltip": "Increases a Gem's Purity. Stronger Acids purify faster and better. However, using an Acid too strong for that Gem will destroy it.",
   "block.gemsind.centrifuge": "Centrifuge",
   "block.gemsind.centrifuge.tooltip": "Increases a Gem's Purity, powered by Furnace Fuel. Fuel and Gems can be inputted from any side. If the Fuel turns into another item on consumption (like Lava Buckets turn into Buckets), they will be outputted.",
   "block.gemsind.tumbler": "Tumbler",
   "block.gemsind.tumbler.tooltip": "Increases a Gem's Polish, powered by Furnace Fuel. Fuel and Gems can be inputted from any side. If the Fuel turns into another item on consumption (like Lava Buckets turn into Buckets), they will be outputted.",
   "block.gemsind.alloying_furnace": "Alloying Furnace",
-  "block.gemsind.alloying_furnace.tooltip": "REQUIRES A LOT OF FUEL. Creates an Alloy out of 2 (or more) Element Gems and 1 (or more) Flux Gems. Alloys gain value based on their input Element and Flux Gems' value (Enargite Cu > Malachite Cu). JEI Compatible.",
+  "block.gemsind.alloying_furnace.tooltip": "Powered by Anthracite. Creates an Alloy out of 2 (or more) Element Gems and 1 (or more) Flux Gems. Alloys gain value based on their input Element and Flux Gems' value (Enargite Cu > Malachite Cu). JEI Compatible.",
+  "block.gemsind.geode_containing_block": "Geode Containing Block",
 
   // item tabs
   "tab.gemsind.gemsind": "Gemstone Industry",
   "tab.gemsind.geodes_and_valuables": "Geodes & Valuables",
   "jei_tab.gemsind.alloying": "Alloying",
+
+  // misc
+  "item.gemsind.ash": "Ash",
+  "item.gemsind.chlorinating_salt": "Chlorinating Salt",
+  "item.gemsind.anthracite": "Anthracite",
+  "item.gemsind.anthracite.tooltip": "The strongest fuel there is.",
 
   // tools
   "item.gemsind.hammer.tooltip": "Used to crack Geodes, put a Geode on a Counter and then Right Click the top face of the Counter while holding a Pick in your offhand.",
@@ -46,8 +53,8 @@
   "item.gemsind.gem.flux": "Flux",
 
   // generic acid pack
-  "item.gemsind.acid_pack.tooltip": "...",
   "item.gemsind.acid_pack.strength": "Acid Strength: ",
+  "item.gemsind.acid_pack.tooltip": "Used to Refill an Acid Purifier. If the Acid Purifier already has Acid of another type, it will immediately Refill and Replace the Acid with this Acid Pack.",
 
   // acid packs
   "item.gemsind.empty_acid_pack": "Empty Acid Pack",

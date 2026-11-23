@@ -95,7 +95,7 @@ public class AlloyingRecipeCategory implements IRecipeCategory<RecipeHolder<Allo
         StringBuilder elementsText = new StringBuilder();
         for (String element : recipe.displayElements()) {
             elementsText.append(element).append(" ");
-        }
+        } // TODO: ADD TIME TEXT
         guiGraphics.drawString(font, elementsText.toString(), 32, 28, 0xff8b8b8b, false);
     }
 }

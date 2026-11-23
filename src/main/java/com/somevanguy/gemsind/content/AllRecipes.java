@@ -2,6 +2,7 @@ package com.somevanguy.gemsind.content;
 
 import com.somevanguy.gemsind.GemstoneIndustryMod;
 import com.somevanguy.gemsind.content.alloying_furnace.AlloyingRecipe;
+import com.somevanguy.gemsind.content.desalinator.DesalinatingRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -22,7 +23,15 @@ public class AllRecipes {
     public static final DeferredHolder<RecipeType<?>, RecipeType<AlloyingRecipe>> ALLOYING_TYPE = TYPES.register("alloying", () -> new RecipeType<AlloyingRecipe>() {
         @Override
         public String toString() {
-            return "alloying_furnace";
+            return "alloying";
+        }
+    });
+
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<DesalinatingRecipe>> DESALINATING_SERIALIZER = SERIALIZERS.register("desalinating", DesalinatingRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<DesalinatingRecipe>> DESALINATING_TYPE = TYPES.register("desalinating", () -> new RecipeType<DesalinatingRecipe>() {
+        @Override
+        public String toString() {
+            return "desalinating";
         }
     });
 }

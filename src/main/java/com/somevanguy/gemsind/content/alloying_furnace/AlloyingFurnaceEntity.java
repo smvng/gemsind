@@ -1,7 +1,7 @@
 package com.somevanguy.gemsind.content.alloying_furnace;
 
 import com.somevanguy.gemsind.content.*;
-import com.somevanguy.gemsind.content.base.BaseTransmutatorBlockEntity;
+import com.somevanguy.gemsind.content.base.BaseTransmutatorEntity;
 import com.somevanguy.gemsind.content.items.AlloyItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -18,13 +18,14 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class AlloyingFurnaceEntity extends BaseTransmutatorBlockEntity {
+public class AlloyingFurnaceEntity extends BaseTransmutatorEntity {
     public int fuelLeft = 0;
     public int maxFuelLeft = 1;
     public int progress = 0;
@@ -161,6 +162,8 @@ public class AlloyingFurnaceEntity extends BaseTransmutatorBlockEntity {
                     result.set(AllDataComponents.GEM_BONUS_VALUE, bonusValue);
                     itemHandler.setStackInSlot(AlloyingFurnaceItemHandler.ALLOY_SLOT, result);
                 }
+                setChanged();
+                level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
             }
         } else {
             drainProgress();
@@ -169,16 +172,18 @@ public class AlloyingFurnaceEntity extends BaseTransmutatorBlockEntity {
 
     public boolean tryRegainFuel(Level level, BlockPos pos, BlockState state) {
         var fuelStack = itemHandler.getStackInSlot(AlloyingFurnaceItemHandler.FUEL_SLOT);
-        if (fuelStack.getBurnTime(null) > 0) {
+        var burnValue = AlloyingFurnaceItemHandler.getBurnValue(fuelStack);
+        if (burnValue > 0) {
             if (canCraft(level)) {
-                var burnTime = (int)(fuelStack.getBurnTime(null) * 0.05);
-                maxFuelLeft = burnTime;
-                fuelLeft = burnTime;
+                maxFuelLeft = burnValue;
+                fuelLeft = burnValue;
                 var returnStack = fuelStack.getCraftingRemainingItem().copy();
                 fuelStack.shrink(1);
                 if (fuelStack.isEmpty() && !returnStack.isEmpty()) {
                     itemHandler.setStackInSlot(AlloyingFurnaceItemHandler.FUEL_SLOT, returnStack);
                 }
+                setChanged();
+                level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
                 return true;
             }
         }

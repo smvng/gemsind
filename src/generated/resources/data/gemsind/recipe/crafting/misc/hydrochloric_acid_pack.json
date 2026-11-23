@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "minecraft:soul_sand"
+    },
+    "e": {
+      "item": "gemsind:empty_acid_pack"
+    },
+    "s": {
+      "item": "gemsind:chlorinating_salt"
+    }
+  },
+  "pattern": [
+    "sSs",
+    " e "
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemsind:hydrochloric_acid_pack"
+  }
+}

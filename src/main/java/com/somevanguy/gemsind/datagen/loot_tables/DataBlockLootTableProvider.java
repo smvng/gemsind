@@ -1,4 +1,4 @@
-package com.somevanguy.gemsind.datagen;
+package com.somevanguy.gemsind.datagen.loot_tables;
 
 import com.somevanguy.gemsind.content.AllBlocks;
 import net.minecraft.core.HolderLookup;
@@ -9,12 +9,12 @@ import net.minecraft.world.level.block.Block;
 import java.util.Set;
 
 public class DataBlockLootTableProvider extends BlockLootSubProvider {
-    protected DataBlockLootTableProvider(HolderLookup.Provider registries) {
+    public DataBlockLootTableProvider(HolderLookup.Provider registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 
     @Override
-    protected void generate() {
+    public void generate() {
         dropSelf(AllBlocks.COUNTER.get());
         dropSelf(AllBlocks.ACID_PURIFIER.get());
         dropSelf(AllBlocks.CENTRIFUGE.get());
@@ -23,7 +23,7 @@ public class DataBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     @Override
-    protected Iterable<Block> getKnownBlocks() {
+    public Iterable<Block> getKnownBlocks() {
         return AllBlocks.BLOCKS.getEntries().stream().map(holder -> (Block)holder.get())::iterator;
     }
 }

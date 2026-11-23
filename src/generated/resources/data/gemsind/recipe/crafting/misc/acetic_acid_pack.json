@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:apple"
+    },
+    "b": {
+      "item": "minecraft:sweet_berries"
+    },
+    "e": {
+      "item": "gemsind:empty_acid_pack"
+    }
+  },
+  "pattern": [
+    "aba",
+    " e "
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemsind:acetic_acid_pack"
+  }
+}

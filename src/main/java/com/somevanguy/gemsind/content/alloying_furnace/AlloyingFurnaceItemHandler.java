@@ -2,10 +2,10 @@ package com.somevanguy.gemsind.content.alloying_furnace;
 
 import com.somevanguy.gemsind.content.AllTags;
 import com.somevanguy.gemsind.content.base.BaseItemHandler;
+import com.somevanguy.gemsind.content.items.AnthraciteItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.items.ItemStackHandler;
 
 public class AlloyingFurnaceItemHandler extends BaseItemHandler {
     public static final int FUEL_SLOT = 0;
@@ -19,6 +19,10 @@ public class AlloyingFurnaceItemHandler extends BaseItemHandler {
         return i > 5 && i <= 9;
     }
 
+    public static int getBurnValue(ItemStack stack) {
+        return stack.getItem() instanceof AnthraciteItem fuelItem ? fuelItem.ALLOYING_BURN_TIME : 0;
+    }
+
     public AlloyingFurnaceItemHandler(BlockEntity blockEntity, int slotCount) {
         super(blockEntity, slotCount);
     }
@@ -28,7 +32,7 @@ public class AlloyingFurnaceItemHandler extends BaseItemHandler {
         if (slot == ALLOY_SLOT && stack.is(AllTags.Items.ALLOY)) {
             return true;
         }
-        if (slot == FUEL_SLOT && stack.getBurnTime(null) > 0) {
+        if (slot == FUEL_SLOT && getBurnValue(stack) > 0) {
             return true;
         }
         if (isFluxSlot(slot) && stack.is(AllTags.Items.FLUX)) {
@@ -38,6 +42,14 @@ public class AlloyingFurnaceItemHandler extends BaseItemHandler {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public ItemStack insertItem(int slot, ItemStack newStack, boolean simulate) {
+        if (slot == ALLOY_SLOT) {
+            return newStack;
+        }
+        return super.insertItem(slot, newStack, simulate);
     }
 
     @Override
@@ -66,7 +78,7 @@ public class AlloyingFurnaceItemHandler extends BaseItemHandler {
 
         @Override
         public ItemStack extractItem(int slot, int amount, boolean b) {
-            if (slot == FUEL_SLOT && mainHandler.getStackInSlot(slot).getBurnTime(null) > 0) {
+            if (slot == FUEL_SLOT && getBurnValue(mainHandler.getStackInSlot(slot)) > 0) {
                 return ItemStack.EMPTY;
             }
             if (isElementSlot(slot)) {

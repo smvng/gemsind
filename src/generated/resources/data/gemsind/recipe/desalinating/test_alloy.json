@@ -1,0 +1,9 @@
+{
+  "type": "gemsind:desalinating",
+  "craftingTime": 12000,
+  "fluid": "minecraft:lava",
+  "result": {
+    "count": 1,
+    "id": "gemsind:test_alloy"
+  }
+}

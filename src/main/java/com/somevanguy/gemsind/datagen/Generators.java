@@ -1,11 +1,17 @@
 package com.somevanguy.gemsind.datagen;
 
 import com.somevanguy.gemsind.GemstoneIndustryMod;
+import com.somevanguy.gemsind.datagen.loot_tables.DataBlockLootTableProvider;
+import com.somevanguy.gemsind.datagen.loot_tables.DataGenericLootTableProvider;
+import com.somevanguy.gemsind.datagen.models.DataBlockStateProvider;
+import com.somevanguy.gemsind.datagen.models.DataItemModelProvider;
+import com.somevanguy.gemsind.datagen.tags.DataBiomeTagProvider;
+import com.somevanguy.gemsind.datagen.tags.DataBlockTagProvider;
+import com.somevanguy.gemsind.datagen.tags.DataItemTagProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;

@@ -1,6 +1,6 @@
-package com.somevanguy.gemsind.datagen;
+package com.somevanguy.gemsind.datagen.recipe_builders;
 
-import com.somevanguy.gemsind.content.alloying_furnace.AlloyingRecipe;
+import com.somevanguy.gemsind.content.desalinator.DesalinatingRecipe;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
@@ -9,28 +9,24 @@ import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.material.Fluid;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
-public class DataAlloyingRecipeBuilder implements RecipeBuilder {
+public class DataDesalinatingRecipeBuilder implements RecipeBuilder {
     protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
-    protected final List<String> displayElements;
-    protected final List<Ingredient> ingredients;
-    protected final int fluxCount;
-    protected final int alloyingTime;
+    protected final int craftingTime;
+    protected final TagKey<Fluid> fluid;
     protected final ItemStack result;
 
-    public DataAlloyingRecipeBuilder(List<String> displayElements, List<Ingredient> ingredients, int fluxCount, int alloyingTime, ItemStack result) {
-        this.displayElements = displayElements;
-        this.ingredients = ingredients;
-        this.fluxCount = fluxCount;
-        this.alloyingTime = alloyingTime;
+    public DataDesalinatingRecipeBuilder(int craftingTime, TagKey<Fluid> fluid, ItemStack result) {
+        this.craftingTime = craftingTime;
+        this.fluid = fluid;
         this.result = result;
     }
 
@@ -41,7 +37,7 @@ public class DataAlloyingRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public RecipeBuilder group(@Nullable String group) {
+    public RecipeBuilder group(@Nullable String name) {
         return this;
     }
 
@@ -57,7 +53,7 @@ public class DataAlloyingRecipeBuilder implements RecipeBuilder {
                 .rewards(AdvancementRewards.Builder.recipe(id))
                 .requirements(AdvancementRequirements.Strategy.OR);
         criteria.forEach(advancement::addCriterion);
-        AlloyingRecipe recipe = new AlloyingRecipe(displayElements, ingredients, fluxCount, alloyingTime, result);
-        recipeOutput.accept(id, recipe, advancement.build(id.withPrefix("recipes/alloying/")));
+        DesalinatingRecipe recipe = new DesalinatingRecipe(craftingTime, fluid, result);
+        recipeOutput.accept(id, recipe, advancement.build(id.withPrefix("recipes/desalination/")));
     }
 }

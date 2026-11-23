@@ -1,7 +1,7 @@
 package com.somevanguy.gemsind.content.counter;
 
 import com.somevanguy.gemsind.content.AllBlockEntities;
-import com.somevanguy.gemsind.content.base.BaseItemHandlerBlockEntity;
+import com.somevanguy.gemsind.content.base.BaseItemHandlerEntity;
 import com.somevanguy.gemsind.content.AllDataComponents;
 import com.somevanguy.gemsind.content.items.GeodeItem;
 import com.somevanguy.gemsind.content.items.HammerItem;
@@ -24,7 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class CounterEntity extends BaseItemHandlerBlockEntity {
+public class CounterEntity extends BaseItemHandlerEntity {
     public CounterEntity(BlockPos pos, BlockState blockState) {
         super(AllBlockEntities.COUNTER_ENTITY.get(), pos, blockState);
         setItemHandler(new CounterItemHandler(this)); // for the player

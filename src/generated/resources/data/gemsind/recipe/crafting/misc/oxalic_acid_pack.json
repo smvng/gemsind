@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "minecraft:beetroot"
+    },
+    "e": {
+      "item": "gemsind:empty_acid_pack"
+    },
+    "p": {
+      "item": "minecraft:poisonous_potato"
+    }
+  },
+  "pattern": [
+    "bpb",
+    " e "
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemsind:oxalic_acid_pack"
+  }
+}

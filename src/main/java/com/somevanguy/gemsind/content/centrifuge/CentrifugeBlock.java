@@ -88,7 +88,7 @@ public class CentrifugeBlock extends BaseEntityBlock {
 //    @Override
 //    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
 //        var entity = level.getBlockEntity(pos);
-//        if (entity instanceof BaseTransmutatorBlockEntity blockEntity) {
+//        if (entity instanceof BaseTransmutatorEntity blockEntity) {
 //            return blockEntity.getAnalogSignal();
 //        }
 //        return 0;

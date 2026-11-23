@@ -11,7 +11,7 @@ import net.minecraft.world.item.TooltipFlag;
 import java.util.List;
 
 public class GemItem extends Item {
-    public static final float gemGainLimit = 1f;
+    public static final float GEM_GAIN_LIMIT = 1f;
 
     public boolean showFormula() {
         return formula != null && !formula.isEmpty();
@@ -28,8 +28,8 @@ public class GemItem extends Item {
             this.maxPurityGain = maxPurityGain;
             this.maxPolishGain = maxPolishGain;
             if (doWarn) {
-                if (maxPurityGain + maxPolishGain != gemGainLimit) {
-                    GemstoneIndustryMod.LOGGER.warn("A gem with maxPurityGain of {} and maxPolishGain {} doesn't add up to {}", maxPurityGain, maxPolishGain, gemGainLimit);
+                if (maxPurityGain + maxPolishGain != GEM_GAIN_LIMIT) {
+                    GemstoneIndustryMod.LOGGER.warn("A gem with maxPurityGain of {} and maxPolishGain {} doesn't add up to {}", maxPurityGain, maxPolishGain, GEM_GAIN_LIMIT);
                 }
             }
         }
@@ -41,7 +41,7 @@ public class GemItem extends Item {
     public String formula;
     public int maxAcidTolerance;
 
-    public static final List<String> prominentElements = List.of(
+    public static final List<String> PROMINENT_ELEMENTS = List.of(
             "??", "Fe", "Si", "Au", "Ag", "Cu", "As", "Co", "Al", "Ti", "Ba", "Cr", "Ni", "Os", "P", "C", "Pt"
     );
 
@@ -107,7 +107,7 @@ public class GemItem extends Item {
                 .component(AllDataComponents.GEM_POLISH, 0f)
                 .component(AllDataComponents.GEM_IMBUEMENTS, 0)
                 .component(AllDataComponents.GEM_BONUS_VALUE, 0)
-                .component(AllDataComponents.ACID_USED, false)
+                .component(AllDataComponents.ACID_PURIFIER_USED, false)
                 .component(AllDataComponents.CENTRIFUGE_USED, false)
         );
         this.name = name;
@@ -127,7 +127,7 @@ public class GemItem extends Item {
         return (int)(gainInfo.baseValue + gain + bonusGain);
     }
 
-    public static final ChatFormatting maxStatFormat = ChatFormatting.LIGHT_PURPLE;
+    public static final ChatFormatting MAX_STAT_FORMAT = ChatFormatting.LIGHT_PURPLE;
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         int value = getValue(stack);
@@ -139,12 +139,12 @@ public class GemItem extends Item {
         tooltipComponents.add(Component.translatable("item.gemsind.gem.purity")
                 .withStyle(ChatFormatting.GRAY)
                 .append(Component.literal((int)(purity*100)+"%")
-                        .withStyle(purity >= 1f ? maxStatFormat : ChatFormatting.GRAY)));
+                        .withStyle(purity >= 1f ? MAX_STAT_FORMAT : ChatFormatting.GRAY)));
 
         tooltipComponents.add(Component.translatable("item.gemsind.gem.polish")
                 .withStyle(ChatFormatting.GRAY)
                 .append(Component.literal((int)(polish*100)+"%")
-                        .withStyle(polish >= 1f ? maxStatFormat : ChatFormatting.GRAY)));
+                        .withStyle(polish >= 1f ? MAX_STAT_FORMAT : ChatFormatting.GRAY)));
 
         tooltipComponents.add(Component.translatable("item.gemsind.gem.acid_tolerance")
                 .append(Component.literal(String.valueOf(maxAcidTolerance)))

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "counter": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gemsind:counter"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gemsind:desalinating/chlorinating_salt"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "counter"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gemsind:desalinating/chlorinating_salt"
+    ]
+  }
+}

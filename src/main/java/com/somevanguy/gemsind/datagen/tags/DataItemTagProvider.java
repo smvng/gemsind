@@ -1,4 +1,4 @@
-package com.somevanguy.gemsind.datagen;
+package com.somevanguy.gemsind.datagen.tags;
 
 import com.somevanguy.gemsind.GemstoneIndustryMod;
 import com.somevanguy.gemsind.content.AllItems;
@@ -8,9 +8,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.Nullable;
@@ -28,7 +26,7 @@ public class DataItemTagProvider extends ItemTagsProvider {
         HashMap<String, Integer> elementCounts = new HashMap<>();
         for (DeferredHolder<Item, GemItem> gemstoneHolder : AllItems.GEMSTONES) {
             tag(AllTags.Items.GEMSTONE).add(gemstoneHolder.get());
-            for (String element : GemItem.prominentElements) {
+            for (String element : GemItem.PROMINENT_ELEMENTS) {
                 if (gemstoneHolder.get().hasElement(element)) {
                     elementCounts.put(element, elementCounts.getOrDefault(element, 0) + 1);
                     tag(AllTags.Items.getElementTag(element)).add(gemstoneHolder.get());
@@ -38,7 +36,7 @@ public class DataItemTagProvider extends ItemTagsProvider {
                 tag(AllTags.Items.FLUX).add(gemstoneHolder.get());
             }
         }
-        for (String element : GemItem.prominentElements) {
+        for (String element : GemItem.PROMINENT_ELEMENTS) {
             if (elementCounts.getOrDefault(element, 0) < 3) {
                 GemstoneIndustryMod.LOGGER.warn("Element \"{}\" has less than 3 gems with it ({} total)", element, elementCounts.getOrDefault(element, 0));
             }

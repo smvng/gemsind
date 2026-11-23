@@ -2,7 +2,7 @@ package com.somevanguy.gemsind.content.centrifuge;
 
 import com.somevanguy.gemsind.content.AllBlockEntities;
 import com.somevanguy.gemsind.content.AllSoundEvents;
-import com.somevanguy.gemsind.content.base.BaseTransmutatorBlockEntity;
+import com.somevanguy.gemsind.content.base.BaseTransmutatorEntity;
 import com.somevanguy.gemsind.content.AllDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -21,9 +22,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CentrifugeEntity extends BaseTransmutatorBlockEntity {
+public class CentrifugeEntity extends BaseTransmutatorEntity {
     public Map<Integer, Integer> progresses = new HashMap<>();
-    public static final int ticksUntilDone = 25 * 20;
+    public static final int TICKS_UNTIL_DONE = 25 * 20;
     public int fuelLeft = 0;
     public int maxFuelLeft = 1;
     public int tickSoundCooldown = 0;
@@ -73,6 +74,8 @@ public class CentrifugeEntity extends BaseTransmutatorBlockEntity {
                 level.playSound(null, getBlockPos(), AllSoundEvents.CENTRIFUGE_AMBIENT.get(), SoundSource.BLOCKS);
             }
             tryProgressContents(level, pos, state);
+            setChanged();
+            level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
         } else {
             if (!tryRegainFuel(pos, state)) {
                 if (isWorking) {
@@ -95,7 +98,7 @@ public class CentrifugeEntity extends BaseTransmutatorBlockEntity {
                     continue;
                 }
                 var progress = progresses.getOrDefault(i, 0);
-                if (progress >= ticksUntilDone) {
+                if (progress >= TICKS_UNTIL_DONE) {
                     var purity = stack.getOrDefault(AllDataComponents.GEM_PURITY, 0f);
                     if (purity < 1f) {
                         purity = Math.min(1f, purity + 0.45f);
@@ -131,6 +134,8 @@ public class CentrifugeEntity extends BaseTransmutatorBlockEntity {
                 if (fuelStack.isEmpty() && !returnStack.isEmpty()) {
                     itemHandler.setStackInSlot(CentrifugeItemHandler.FUEL_SLOT, returnStack);
                 }
+                setChanged();
+                level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
                 return true;
             }
         }

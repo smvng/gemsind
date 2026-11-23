@@ -7,8 +7,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class BaseTransmutatorBlockEntity extends BaseItemHandlerBlockEntity implements MenuProvider {
-    public BaseTransmutatorBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
+public abstract class BaseTransmutatorEntity extends BaseItemHandlerEntity implements MenuProvider {
+    public BaseTransmutatorEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
 

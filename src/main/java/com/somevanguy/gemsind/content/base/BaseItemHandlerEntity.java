@@ -17,8 +17,8 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class BaseItemHandlerBlockEntity extends BlockEntity {
-    public BaseItemHandlerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
+public abstract class BaseItemHandlerEntity extends BlockEntity {
+    public BaseItemHandlerEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
 

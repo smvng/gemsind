@@ -7,16 +7,17 @@ public class RenderHelper {
     public static void renderBox(PoseStack poseStack, VertexConsumer consumer,
                                  float minX, float minY, float minZ,
                                  float maxX, float maxY, float maxZ,
-                                 float u0, float v0, float u1, float v1,
+                                 float textureAtlasU0, float textureAtlasV0,
+                                 float textureAtlasU1, float textureAtlasV1,
                                  int packedLight,
                                  float a, float r, float g, float b) {
         // up / maxY
         renderQuad(poseStack, consumer,
+                maxX, maxY, minZ,
                 minX, maxY, minZ,
                 minX, maxY, maxZ,
                 maxX, maxY, maxZ,
-                maxX, maxY, minZ,
-                u0, v0, u1, v1,
+                textureAtlasU0, textureAtlasV0, textureAtlasU1, textureAtlasV1,
                 packedLight,
                 a, r, g, b);
         // down / minY
@@ -25,43 +26,43 @@ public class RenderHelper {
                 maxX, minY, minZ,
                 maxX, minY, maxZ,
                 minX, minY, maxZ,
-                u0, v0, u1, v1,
+                textureAtlasU0, textureAtlasV0, textureAtlasU1, textureAtlasV1,
                 packedLight,
                 a, r, g, b);
         // north / minZ
         renderQuad(poseStack, consumer,
-                minX, minY, minZ,
                 minX, maxY, minZ,
                 maxX, maxY, minZ,
                 maxX, minY, minZ,
-                u0, v0, u1, v1,
+                minX, minY, minZ,
+                textureAtlasU0, textureAtlasV0, textureAtlasU1, textureAtlasV1,
                 packedLight,
                 a, r, g, b);
         // east / maxX
         renderQuad(poseStack, consumer,
-                maxX, minY, minZ,
                 maxX, maxY, minZ,
                 maxX, maxY, maxZ,
                 maxX, minY, maxZ,
-                u0, v0, u1, v1,
+                maxX, minY, minZ,
+                textureAtlasU0, textureAtlasV0, textureAtlasU1, textureAtlasV1,
                 packedLight,
                 a, r, g, b);
         // south / maxZ
         renderQuad(poseStack, consumer,
-                minX, minY, maxZ,
-                maxX, minY, maxZ,
                 maxX, maxY, maxZ,
                 minX, maxY, maxZ,
-                u0, v0, u1, v1,
+                minX, minY, maxZ,
+                maxX, minY, maxZ,
+                textureAtlasU0, textureAtlasV0, textureAtlasU1, textureAtlasV1,
                 packedLight,
                 a, r, g, b);
         // west / minX
         renderQuad(poseStack, consumer,
-                minX, minY, minZ,
-                minX, minY, maxZ,
                 minX, maxY, maxZ,
                 minX, maxY, minZ,
-                u0, v0, u1, v1,
+                minX, minY, minZ,
+                minX, minY, maxZ,
+                textureAtlasU0, textureAtlasV0, textureAtlasU1, textureAtlasV1,
                 packedLight,
                 a, r, g, b);
     }

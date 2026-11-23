@@ -23,11 +23,18 @@ public class BaseItemHandler extends ItemStackHandler {
     }
 
     @Override
-    public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-        if (!isItemValid(slot, stack)) {
-            return stack;
+    public ItemStack insertItem(int slot, ItemStack newStack, boolean simulate) {
+        if (!isItemValid(slot, newStack)) {
+            return newStack;
         }
+//        var oldStack = getStackInSlot(slot);
+//        if (!oldStack.is(newStack.getItem()) && !oldStack.isEmpty()) {
+//            return newStack;
+//        }
+//        if (oldStack.getCount() + newStack.getCount() > getSlotLimit(slot)) {
+//            return newStack;
+//        }
 
-        return super.insertItem(slot, stack, simulate);
+        return super.insertItem(slot, newStack, simulate);
     }
 }

@@ -21,30 +21,36 @@ public class AcidPurifierRenderer implements BlockEntityRenderer<AcidPurifierEnt
     public AcidPurifierRenderer(BlockEntityRendererProvider.Context context) {
         blockRenderer = context.getBlockRenderDispatcher();
         var extensions = IClientFluidTypeExtensions.of(Fluids.WATER);
-        var stillTexture = extensions.getStillTexture();
-        sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(stillTexture);
+        var texture = extensions.getStillTexture();
+        //var texture = ResourceLocation.withDefaultNamespace("block/jigsaw_side");
+        sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(texture);
     }
 
     public final TextureAtlasSprite sprite;
 
-    public static final float MIN = (float) 1 / 16;
-    public static final float MAX = (float) 15 / 16;
+    public static final float PIXEL = (float) 1 / 16;
 
     @Override
     public void render(AcidPurifierEntity acidPurifierEntity, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight, int packedOverlay) {
-        if (acidPurifierEntity.acidContained != null && acidPurifierEntity.acidLeft > 0) {
+        if (acidPurifierEntity.acidPackContained != null && acidPurifierEntity.acidLeft > 0) {
             VertexConsumer consumer = multiBufferSource.getBuffer(RenderType.TRANSLUCENT);
 
-            float height = (float) acidPurifierEntity.acidLeft / acidPurifierEntity.maxAcidLeft;
-            float red = (float) acidPurifierEntity.acidContained.r / 255;
-            float green = (float) acidPurifierEntity.acidContained.g / 255;
-            float blue = (float) acidPurifierEntity.acidContained.b / 255;
+            float height = (float) acidPurifierEntity.acidLeft / acidPurifierEntity.MAX_ACID_LEFT;
+            float red = (float) acidPurifierEntity.acidPackContained.r / 255;
+            float green = (float) acidPurifierEntity.acidPackContained.g / 255;
+            float blue = (float) acidPurifierEntity.acidPackContained.b / 255;
 
+            poseStack.pushPose();
             RenderHelper.renderBox(poseStack, consumer,
-                    MIN, MIN, MIN, MAX, height * MAX, MAX,
+                    PIXEL, PIXEL, PIXEL, PIXEL * 15, PIXEL + height * 14 * PIXEL, PIXEL * 15,
                     sprite.getU0(), sprite.getV0(), sprite.getU1(), sprite.getV1(),
                     LightTexture.FULL_BRIGHT,
                     1f, red, green, blue);
+            poseStack.popPose();
+
+            // TODO:RENDER ITEMS
+            //var containedGems = acidPurifierEntity.getContained();
+
 //            poseStack.pushPose();
 //            poseStack.translate(PIXEL, 0, PIXEL);
 //            poseStack.scale(PIXELSUB, height * PIXELSUB, PIXELSUB);

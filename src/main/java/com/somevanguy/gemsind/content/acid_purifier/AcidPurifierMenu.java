@@ -11,7 +11,7 @@ import net.neoforged.neoforge.items.SlotItemHandler;
 
 public class AcidPurifierMenu extends BaseTransmutatorMenu {
     public AcidPurifierMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(AcidPurifierEntity.dataSlotCount)); // TODO:FIX EXTRA DATA
+        this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(AcidPurifierEntity.DATA_SLOT_COUNT)); // TODO:FIX EXTRA DATA
     }
 
     public AcidPurifierMenu(int containerId, Inventory inv, BlockEntity be, ContainerData data) {
@@ -48,6 +48,6 @@ public class AcidPurifierMenu extends BaseTransmutatorMenu {
         int maxProgress = this.data.get(1);
         int acidHeight = baseAcidHeight();
 
-        return maxProgress != 0 && progress != 0 ? acidHeight - (progress * acidHeight / maxProgress) : 0;
+        return maxProgress > 0 && progress > 0 ? (int) Math.max(3f, (float) (progress * acidHeight / maxProgress)) : 0;
     }
 }
