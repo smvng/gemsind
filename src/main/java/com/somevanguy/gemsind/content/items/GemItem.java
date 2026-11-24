@@ -107,7 +107,7 @@ public class GemItem extends Item {
                 .component(AllDataComponents.GEM_POLISH, 0f)
                 .component(AllDataComponents.GEM_IMBUEMENTS, 0)
                 .component(AllDataComponents.GEM_BONUS_VALUE, 0)
-                .component(AllDataComponents.ACID_PURIFIER_USED, false)
+                .component(AllDataComponents.ACIDITY, 0)
                 .component(AllDataComponents.CENTRIFUGE_USED, false)
         );
         this.name = name;

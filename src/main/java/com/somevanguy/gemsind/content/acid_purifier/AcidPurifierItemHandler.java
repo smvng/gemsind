@@ -31,7 +31,7 @@ public class AcidPurifierItemHandler extends BaseItemHandler {
 
     @Override
     public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-        boolean is_gem = stack.is(AllTags.Items.GEMSTONE);
+        boolean is_gem = stack.is(AllTags.Items.GEMSTONE) || stack.is(AllTags.Items.ALLOY);
         boolean is_acid = isAcidPack(stack);
         Boolean used = stack.getOrDefault(AllDataComponents.CENTRIFUGE_USED, false);
         return (slot != ACID_SLOT && is_gem && !is_acid && !used) || (slot == ACID_SLOT && is_acid);
@@ -39,10 +39,7 @@ public class AcidPurifierItemHandler extends BaseItemHandler {
 
     @Override
     public int getSlotLimit(int slot) {
-        if (slot != 0) {
-            return 1;
-        }
-        return super.getSlotLimit(slot);
+        return 1;
     }
 
     // for hoppers
@@ -74,8 +71,8 @@ public class AcidPurifierItemHandler extends BaseItemHandler {
         @Override
         public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
             ItemStack stack = getStackInSlot(slot);
-            Boolean used = stack.getOrDefault(AllDataComponents.ACID_PURIFIER_USED, false);
-            if (slot != ACID_SLOT && !used) {
+            var acidity = stack.getOrDefault(AllDataComponents.ACIDITY, 0);
+            if (slot != ACID_SLOT && acidity < AcidPackItem.MAX_ACID_STRENGTH) {
                 // do not extract if its not been used
                 return ItemStack.EMPTY;
             }

@@ -28,6 +28,7 @@ public class AllCreativeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(AllBlocks.COUNTER.asItem());
                         output.accept(AllBlocks.ACID_PURIFIER.asItem());
+                        output.accept(AllBlocks.DESALINATOR.asItem());
                         output.accept(AllBlocks.CENTRIFUGE.asItem());
                         output.accept(AllBlocks.TUMBLER.asItem());
                         output.accept(AllBlocks.ALLOYING_FURNACE.asItem());

@@ -1,0 +1,9 @@
+{
+  "type": "gemsind:desalinating",
+  "craftingTime": 1000,
+  "fluidTag": "create:honey",
+  "result": {
+    "count": 1,
+    "id": "minecraft:sugar"
+  }
+}

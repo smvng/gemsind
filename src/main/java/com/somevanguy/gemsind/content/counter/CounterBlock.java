@@ -2,6 +2,7 @@ package com.somevanguy.gemsind.content.counter;
 
 import com.mojang.serialization.MapCodec;
 import com.somevanguy.gemsind.content.AllBlockEntities;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -64,9 +65,9 @@ public class CounterBlock extends BaseEntityBlock {
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
-            tooltipComponents.add(Component.translatable("block.gemsind.counter.tooltip"));
+            tooltipComponents.add(Component.translatable("block.gemsind.counter.tooltip").withStyle(ChatFormatting.GRAY));
         } else {
-            tooltipComponents.add(Component.translatable("item.gemsind.gem.holdshifttoexpand"));
+            tooltipComponents.add(Component.translatable("item.gemsind.gem.holdshifttoexpand").withStyle(ChatFormatting.GRAY));
         }
 
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);

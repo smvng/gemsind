@@ -21,12 +21,12 @@ import java.util.Map;
 public class DataDesalinatingRecipeBuilder implements RecipeBuilder {
     protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
     protected final int craftingTime;
-    protected final TagKey<Fluid> fluid;
+    protected final TagKey<Fluid> fluidTag;
     protected final ItemStack result;
 
-    public DataDesalinatingRecipeBuilder(int craftingTime, TagKey<Fluid> fluid, ItemStack result) {
+    public DataDesalinatingRecipeBuilder(int craftingTime, TagKey<Fluid> fluidTag, ItemStack result) {
         this.craftingTime = craftingTime;
-        this.fluid = fluid;
+        this.fluidTag = fluidTag;
         this.result = result;
     }
 
@@ -53,7 +53,7 @@ public class DataDesalinatingRecipeBuilder implements RecipeBuilder {
                 .rewards(AdvancementRewards.Builder.recipe(id))
                 .requirements(AdvancementRequirements.Strategy.OR);
         criteria.forEach(advancement::addCriterion);
-        DesalinatingRecipe recipe = new DesalinatingRecipe(craftingTime, fluid, result);
+        DesalinatingRecipe recipe = new DesalinatingRecipe(craftingTime, fluidTag, result);
         recipeOutput.accept(id, recipe, advancement.build(id.withPrefix("recipes/desalination/")));
     }
 }

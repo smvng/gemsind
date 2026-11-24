@@ -2,6 +2,7 @@ package com.somevanguy.gemsind.content.alloying_furnace;
 
 import com.mojang.serialization.MapCodec;
 import com.somevanguy.gemsind.content.AllBlockEntities;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -93,9 +94,9 @@ public class AlloyingFurnaceBlock extends BaseEntityBlock {
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
-            tooltipComponents.add(Component.translatable("block.gemsind.alloying_furnace.tooltip"));
+            tooltipComponents.add(Component.translatable("block.gemsind.alloying_furnace.tooltip").withStyle(ChatFormatting.GRAY));
         } else {
-            tooltipComponents.add(Component.translatable("item.gemsind.gem.holdshifttoexpand"));
+            tooltipComponents.add(Component.translatable("item.gemsind.gem.holdshifttoexpand").withStyle(ChatFormatting.GRAY));
         }
 
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);

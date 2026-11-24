@@ -15,6 +15,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -178,15 +179,26 @@ public class DataRecipeProvider extends RecipeProvider implements IConditionBuil
                 .save(recipeOutput, locationBlockCrafting(getSafeNameOfItem(AllBlocks.COUNTER.asItem())));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllBlocks.ACID_PURIFIER.get())
-                .pattern("iii")
-                .pattern("ibi")
-                .pattern("gCg")
+                .pattern("ggg")
+                .pattern("gbg")
+                .pattern("dGd")
                 .define('b', Items.BUCKET)
-                .define('i', Items.IRON_INGOT)
+                .define('d', Items.DIAMOND)
                 .define('g', Items.GOLD_INGOT)
-                .define('C', Blocks.SMOOTH_STONE.asItem())
+                .define('G', Blocks.GOLD_BLOCK.asItem())
                 .unlockedBy(getSafeNameOfItem(AllBlocks.COUNTER.asItem()), has(AllBlocks.COUNTER.get().asItem()))
                 .save(recipeOutput, locationBlockCrafting(getSafeNameOfItem(AllBlocks.ACID_PURIFIER.asItem())));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllBlocks.DESALINATOR.get())
+                .pattern("ICI")
+                .pattern("chc")
+                .pattern(" h ")
+                .define('c', Items.COPPER_INGOT)
+                .define('h', Blocks.HOPPER.asItem())
+                .define('I', Blocks.IRON_BLOCK.asItem())
+                .define('C', Blocks.COPPER_BLOCK.asItem())
+                .unlockedBy(getSafeNameOfItem(AllBlocks.ACID_PURIFIER.asItem()), has(AllBlocks.ACID_PURIFIER.get().asItem()))
+                .save(recipeOutput, locationBlockCrafting(getSafeNameOfItem(AllBlocks.DESALINATOR.asItem())));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllBlocks.CENTRIFUGE.get())
                 .pattern("rdr")

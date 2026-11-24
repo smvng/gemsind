@@ -2,6 +2,8 @@ package com.somevanguy.gemsind.content.acid_purifier;
 
 import com.somevanguy.gemsind.content.AllMenus;
 import com.somevanguy.gemsind.content.base.BaseTransmutatorMenu;
+import com.somevanguy.gemsind.content.items.AcidPackItem;
+import com.somevanguy.gemsind.helpers.RenderHelper;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ContainerData;
@@ -31,23 +33,35 @@ public class AcidPurifierMenu extends BaseTransmutatorMenu {
         }
     }
 
-    public float getColor(int i) {
-        return (float) this.data.get(i) / 255;
+    public float getDullingProgress() {
+        return (float) this.data.get(5) / 100;
+    }
+
+    public float getRed() {
+        return RenderHelper.inQuintEase(getDullingProgress(), (float) AcidPackItem.DULL_R / 255, (float) this.data.get(2) / 255);
+    }
+
+    public float getGreen() {
+        return RenderHelper.inQuintEase(getDullingProgress(), (float) AcidPackItem.DULL_G / 255, (float) this.data.get(3) / 255);
+    }
+
+    public float getBlue() {
+        return RenderHelper.inQuintEase(getDullingProgress(), (float) AcidPackItem.DULL_B / 255, (float) this.data.get(4) / 255);
     }
 
     public boolean isProgressing() {
         return this.data.get(0) > 0;
     }
 
-    public int baseAcidHeight() {
-        return 63;
-    }
-
-    public int getAcidHeight() {
-        int progress = this.data.get(0);
-        int maxProgress = this.data.get(1);
-        int acidHeight = baseAcidHeight();
-
-        return maxProgress > 0 && progress > 0 ? (int) Math.max(3f, (float) (progress * acidHeight / maxProgress)) : 0;
-    }
+//    public int baseAcidHeight() {
+//        return 63;
+//    }
+//
+//    public int getAcidHeight() {
+//        int progress = this.data.get(0);
+//        int maxProgress = this.data.get(1);
+//        int acidHeight = baseAcidHeight();
+//
+//        return maxProgress > 0 && progress > 0 ? (int) Math.max(3f, (float) (progress * acidHeight / maxProgress)) : 0;
+//    }
 }

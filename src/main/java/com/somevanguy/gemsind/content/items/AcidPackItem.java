@@ -11,11 +11,15 @@ import net.minecraft.world.item.TooltipFlag;
 import java.util.List;
 
 public class AcidPackItem extends Item {
+    public static final int MAX_ACID_STRENGTH = 3;
     public final int acidStrength;
     public final int RGB;
     public final int r; // 0-255
     public final int g;
     public final int b;
+    public static final int DULL_R = 255;
+    public static final int DULL_G = 255;
+    public static final int DULL_B = 255;
 
     public AcidPackItem(Properties properties, int acidStrength, int r, int g, int b) {
         super(properties);
@@ -39,9 +43,9 @@ public class AcidPackItem extends Item {
                 .withStyle(ChatFormatting.GRAY));
 
         if (Screen.hasShiftDown()) {
-            tooltipComponents.add(Component.translatable("item.gemsind.acid_pack.tooltip"));
+            tooltipComponents.add(Component.translatable("item.gemsind.acid_pack.tooltip").withStyle(ChatFormatting.GRAY));
         } else {
-            tooltipComponents.add(Component.translatable("item.gemsind.gem.holdshifttoexpand"));
+            tooltipComponents.add(Component.translatable("item.gemsind.gem.holdshifttoexpand").withStyle(ChatFormatting.GRAY));
         }
 
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);

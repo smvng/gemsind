@@ -17,6 +17,7 @@ public class DataBlockLootTableProvider extends BlockLootSubProvider {
     public void generate() {
         dropSelf(AllBlocks.COUNTER.get());
         dropSelf(AllBlocks.ACID_PURIFIER.get());
+        dropSelf(AllBlocks.DESALINATOR.get());
         dropSelf(AllBlocks.CENTRIFUGE.get());
         dropSelf(AllBlocks.TUMBLER.get());
         dropSelf(AllBlocks.ALLOYING_FURNACE.get());

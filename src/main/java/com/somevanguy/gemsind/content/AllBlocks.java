@@ -39,9 +39,9 @@ public class AllBlocks {
         BLOCKS.register(eventBus);
     }
 
-    public static final DeferredBlock<Block> COUNTER = registerBlock("counter", CounterBlock::new);
-
+    public static final DeferredBlock<CounterBlock> COUNTER = registerBlock("counter", CounterBlock::new);
     public static final DeferredBlock<AcidPurifierBlock> ACID_PURIFIER = registerBlock("acid_purifier", AcidPurifierBlock::new);
+    public static final DeferredBlock<Block> DESALINATOR = registerBlock("desalinator", () -> new Block(BlockBehaviour.Properties.of()));
     public static final DeferredBlock<CentrifugeBlock> CENTRIFUGE = registerBlock("centrifuge", CentrifugeBlock::new);
     public static final DeferredBlock<Block> TUMBLER = registerBlock("tumbler", () -> new Block(BlockBehaviour.Properties.of()));
     public static final DeferredBlock<AlloyingFurnaceBlock> ALLOYING_FURNACE = registerBlock("alloying_furnace", AlloyingFurnaceBlock::new);

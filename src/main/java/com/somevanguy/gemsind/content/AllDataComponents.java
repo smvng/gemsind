@@ -2,6 +2,7 @@ package com.somevanguy.gemsind.content;
 
 import com.mojang.serialization.Codec;
 import com.somevanguy.gemsind.GemstoneIndustryMod;
+import com.somevanguy.gemsind.content.items.AcidPackItem;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.neoforged.bus.api.IEventBus;
@@ -46,8 +47,8 @@ public class AllDataComponents {
 //    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> TUMBLER_GAIN = registerDataComponent("tumbler_gain",
 //            builder -> builder.persistent(Codec.intRange(0,Integer.MAX_VALUE)));
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> ACID_PURIFIER_USED = registerDataComponent("acid_purifier_used",
-            builder -> builder.persistent(Codec.BOOL));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ACIDITY = registerDataComponent("acidity",
+            builder -> builder.persistent(Codec.intRange(0, AcidPackItem.MAX_ACID_STRENGTH)));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> CENTRIFUGE_USED = registerDataComponent("centrifuge_used",
             builder -> builder.persistent(Codec.BOOL));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> TUMBLER_USED = registerDataComponent("tumbler_used",

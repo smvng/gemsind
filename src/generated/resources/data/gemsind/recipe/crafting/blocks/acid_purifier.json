@@ -2,23 +2,23 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "C": {
-      "item": "minecraft:smooth_stone"
+    "G": {
+      "item": "minecraft:gold_block"
     },
     "b": {
       "item": "minecraft:bucket"
     },
+    "d": {
+      "item": "minecraft:diamond"
+    },
     "g": {
       "item": "minecraft:gold_ingot"
-    },
-    "i": {
-      "item": "minecraft:iron_ingot"
     }
   },
   "pattern": [
-    "iii",
-    "ibi",
-    "gCg"
+    "ggg",
+    "gbg",
+    "dGd"
   ],
   "result": {
     "count": 1,
