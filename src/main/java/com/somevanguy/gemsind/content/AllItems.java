@@ -43,8 +43,8 @@ public class AllItems {
         return r;
     }
 
-    public static DeferredItem<AlloyItem> registerBasicAlloy(String name, Rarity rarity, AlloyItem.Crafting craftData, GemItem.GainInfo info) {
-        var r = registerItem(name, () -> new AlloyItem(name, new Item.Properties().rarity(rarity), craftData, info));
+    public static DeferredItem<AlloyItem> registerBasicAlloy(String name, Rarity rarity, AlloyItem.CraftingData craftingData, GemItem.GainInfo info) {
+        var r = registerItem(name, () -> new AlloyItem(name, new Item.Properties().rarity(rarity), craftingData, info));
         ALLOYS.add(r);
         return r;
     }
@@ -80,84 +80,101 @@ public class AllItems {
 
     // alloys
     public static final DeferredItem<AlloyItem> TEST_ALLOY = AllItems.registerBasicAlloy("test_alloy", Rarity.COMMON,
-            new AlloyItem.Crafting(1, 3*20, "C", "Os"), new GemItem.GainInfo(false, 10000, 2.4f, 0.1f));
+            new AlloyItem.CraftingData(1, 3*20, "C", "Os"), new ValuableItem.GainInfo(10000, 2.4f, 0.1f));
     public static final DeferredItem<AlloyItem> STEEL = AllItems.registerBasicAlloy("steel", Rarity.COMMON,
-            new AlloyItem.Crafting(1, 30*20, "Fe", "C"), new GemItem.GainInfo(false, 350, 1.5f, 1f));
+            new AlloyItem.CraftingData(1, 30*20, "Fe", "C"), new ValuableItem.GainInfo(350, 1.5f, 1f));
     public static final DeferredItem<AlloyItem> STAINLESS_STEEL = AllItems.registerBasicAlloy("stainless_steel", Rarity.COMMON,
-            new AlloyItem.Crafting(2, 60*20, "Fe", "C", "Cr"), new GemItem.GainInfo(false, 1250, 1.25f, 1.25f));
+            new AlloyItem.CraftingData(2, 60*20, "Fe", "C", "Cr"), new ValuableItem.GainInfo(1250, 1.25f, 1.25f));
     public static final DeferredItem<AlloyItem> COBALT_CHROME = AllItems.registerBasicAlloy("cobalt_chrome", Rarity.COMMON,
-            new AlloyItem.Crafting(1, (int) (1.5*60*20), "Co", "Cr"), new GemItem.GainInfo(false, 1750, 1.9f, 0.6f));
+            new AlloyItem.CraftingData(1, (int) (1.5*60*20), "Co", "Cr"), new ValuableItem.GainInfo(1750, 1.9f, 0.6f));
     public static final DeferredItem<AlloyItem> ELECTRUM = AllItems.registerBasicAlloy("electrum", Rarity.UNCOMMON,
-            new AlloyItem.Crafting(2, 2*60*20, "Au", "Ag"), new GemItem.GainInfo(false, 2000, 1.4f, 1.1f));
+            new AlloyItem.CraftingData(2, 2*60*20, "Au", "Ag"), new ValuableItem.GainInfo(2000, 1.4f, 1.1f));
     public static final DeferredItem<AlloyItem> ENDHITHYTE = AllItems.registerBasicAlloy("endhithyte", Rarity.EPIC,
-            new AlloyItem.Crafting(4, 8*60*20, "??", "As", "Fe", "Ti"), new GemItem.GainInfo(false, 5000, 0.8f, 1.7f));
+            new AlloyItem.CraftingData(4, 8*60*20, "??", "As", "Fe", "Ti"), new ValuableItem.GainInfo(5000, 0.8f, 1.7f));
 
-    // river geode [Na, Fe, Cl] (in clay in a river biome)
-    public static final DeferredItem<GemItem> GOETHITE = AllItems.registerBasicGem("goethite", "FeO(OH)", 3, Rarity.COMMON,
-            new GemItem.GainInfo(30, 0.7f, 0.3f));
-    public static final DeferredItem<GemItem> HALITE = AllItems.registerBasicGem("halite", "NaCl", 2, Rarity.COMMON,
-            new GemItem.GainInfo(12, 0.85f, 0.15f));
-
-    public static final DeferredItem<GeodeItem> RIVER_GEODE = AllItems.registerBasicGeode("river_geode", 1, Rarity.COMMON,
-            List.of(
-                    HALITE,
-                    GOETHITE
-            ));
-
-    // granite geode [Cu, C, Cr] (in granite at y>30)
+    // granite geode [Cu, C, Cr] (in granite at y<30)
+    //35-115
     public static final DeferredItem<GemItem> MALACHITE = AllItems.registerBasicGem("malachite", "Cu2CO3(OH)2", 1, Rarity.COMMON,
-            new GemItem.GainInfo(56, 0.4f, 0.6f));
+            new ValuableItem.GainInfo(35, 0.4f, 0.6f));
+    public static final DeferredItem<GemItem> DELAFOSSITE = AllItems.registerBasicGem("delafossite", "CuFe02", 1, Rarity.COMMON,
+            new ValuableItem.GainInfo(55, 0.45f, 0.55f));
+    public static final DeferredItem<GemItem> TONGBAITE = AllItems.registerBasicGem("tongbaite", "Cr3C2", 2, Rarity.COMMON,
+            new ValuableItem.GainInfo(80, 0.65f, 0.35f));
     public static final DeferredItem<GemItem> PEPSYTE = AllItems.registerBasicGem("pepsyte", "Cr2O3", 3, Rarity.COMMON,
-            new GemItem.GainInfo(89, 0.2f, 0.8f));
+            new ValuableItem.GainInfo(115, 0.2f, 0.8f));
 
     public static final DeferredItem<GeodeItem> GRANITE_GEODE = AllItems.registerBasicGeode("granite_geode", 1, Rarity.COMMON,
             List.of(
                     MALACHITE,
+                    DELAFOSSITE,
+                    TONGBAITE,
                     PEPSYTE
             ));
 
+    // river geode [Na, Fe, Cl] (in clay in a river biome)
+    //325-675 TODO:COMPLETE
+    public static final DeferredItem<GemItem> HALITE = AllItems.registerBasicGem("halite", "NaCl", 2, Rarity.COMMON,
+            new ValuableItem.GainInfo(325, 0.85f, 0.15f));
+    public static final DeferredItem<GemItem> GOETHITE = AllItems.registerBasicGem("goethite", "FeO(OH)", 3, Rarity.COMMON,
+            new ValuableItem.GainInfo(26, 0.7f, 0.3f));
+    public static final DeferredItem<GemItem> MOLYSITE = AllItems.registerBasicGem("molysite", "Fe3Cl", 3, Rarity.COMMON,
+            new ValuableItem.GainInfo(33, 0.9f, 0.1f));
+    public static final DeferredItem<GemItem> MAGNETITE = AllItems.registerBasicGem("magnetite", "Fe3O4", 3, Rarity.COMMON,
+            new ValuableItem.GainInfo(675, 0.2f, 0.8f));
+
+    public static final DeferredItem<GeodeItem> RIVER_GEODE = AllItems.registerBasicGeode("river_geode", 1, Rarity.COMMON,
+            List.of(
+                    HALITE,
+                    GOETHITE,
+                    MOLYSITE,
+                    MAGNETITE
+            ));
+
     // netherrack geode [S, As, Cr] (in the nether at y< -30)
+    // 1255-1525 TODO:COMPLETE
     public static final DeferredItem<GemItem> TENNATITE = AllItems.registerBasicGem("tennatite", "(Cu,Fe)12As4S13", 2, Rarity.COMMON,
-            new GemItem.GainInfo(1050, 0.1f, 0.9f));
+            new ValuableItem.GainInfo(1255, 0.1f, 0.9f));
     public static final DeferredItem<GemItem> ENARGITE = AllItems.registerBasicGem("enargite", "Cu3AsS4", 1, Rarity.COMMON,
-            new GemItem.GainInfo(1200, 0.2f, 0.8f));
+            new ValuableItem.GainInfo(325, 0.2f, 0.8f));
+    public static final DeferredItem<GemItem> NATRITE = AllItems.registerBasicGem("natrite", "Na2CO3", 1, Rarity.COMMON,
+            new ValuableItem.GainInfo(380, 0.5f, 0.5f));
     public static final DeferredItem<GemItem> UVAROVITE = AllItems.registerBasicGem("uvarovite", "Ca3Cr2(SiO4)3", 1, Rarity.COMMON,
-            new GemItem.GainInfo(1450, 0.85f, 0.15f));
+            new ValuableItem.GainInfo(1525, 0.85f, 0.15f));
 
     public static final DeferredItem<GeodeItem> NETHERRACK_GEODE = AllItems.registerBasicGeode("netherrack_geode", 2, Rarity.COMMON,
             List.of(
                     TENNATITE,
                     ENARGITE,
+                    NATRITE,
                     UVAROVITE
             ));
 
     // mountain geode [Ba, Se, Ag] (in stone in a mountain biome at y>200)
+    // 2250-3275 TODO:COMPLETE
     public static final DeferredItem<GemItem> PYRITE = AllItems.registerBasicGem("pyrite", "FeS2", 2, Rarity.COMMON,
-            new GemItem.GainInfo(255, 0.45f, 0.55f));
+            new ValuableItem.GainInfo(1050, 0.45f, 0.55f));
     public static final DeferredItem<GemItem> BARITE = AllItems.registerBasicGem("barite", "BaSO4", 2, Rarity.COMMON,
-            new GemItem.GainInfo(325, 0.15f, 0.85f));
+            new ValuableItem.GainInfo(1225, 0.15f, 0.85f));
     public static final DeferredItem<GemItem> FERROSELITE = AllItems.registerBasicGem("ferroselite", "FeSe2", 3, Rarity.COMMON,
-            new GemItem.GainInfo(380, 0.1f, 0.9f));
-    public static final DeferredItem<GemItem> MAGNETITE = AllItems.registerBasicGem("magnetite", "Fe3O4", 3, Rarity.COMMON,
-            new GemItem.GainInfo(420, 0.2f, 0.8f));
+            new ValuableItem.GainInfo(1450, 0.1f, 0.9f));
 
-    public static final DeferredItem<GeodeItem> SLATED_GEODE = AllItems.registerBasicGeode("slated", 2, Rarity.COMMON,
+    public static final DeferredItem<GeodeItem> SLATED_GEODE = AllItems.registerBasicGeode("slated_geode", 2, Rarity.COMMON,
             List.of(
                     PYRITE,
                     BARITE,
-                    FERROSELITE,
-                    MAGNETITE
+                    FERROSELITE
             ));
 
-    // slated geode [Si, Ti, Au] (in deepslate at y< -30)
+    // slated geode [Si, Ti, Au] (in deepslate at y< -40)
+    //5250-7000
     public static final DeferredItem<GemItem> MILKY_QUARTZ = AllItems.registerBasicGem("milky_quartz", "SiO2", 2, Rarity.RARE,
-            new GemItem.GainInfo(1050, 0.1f, 0.9f));
+            new ValuableItem.GainInfo(5250, 0.1f, 0.9f));
     public static final DeferredItem<GemItem> ILMENITE = AllItems.registerBasicGem("ilmenite", "FeTiO3", 2, Rarity.RARE,
-            new GemItem.GainInfo(1400, 0.2f, 0.8f));
+            new ValuableItem.GainInfo(5750, 0.2f, 0.8f));
     public static final DeferredItem<GemItem> CALAVERITE = AllItems.registerBasicGem("calaverite", "AuTe2", 1, Rarity.RARE,
-            new GemItem.GainInfo(1900, 0.9f, 0.1f));
+            new ValuableItem.GainInfo(6250, 0.9f, 0.1f));
     public static final DeferredItem<GemItem> KOSMOCHLOR = AllItems.registerBasicGem("kosmochlor", "NaCrSi2O6", 1, Rarity.RARE,
-            new GemItem.GainInfo(2250, 0.55f, 0.45f));
+            new ValuableItem.GainInfo(7000, 0.55f, 0.45f));
 
     public static final DeferredItem<GeodeItem> MOUNTAIN_GEODE = AllItems.registerBasicGeode("mountain_geode", 3, Rarity.RARE,
             List.of(
@@ -168,14 +185,15 @@ public class AllItems {
             ));
 
     // lava geode [Al, Pb, Pt] (under the lava pools in nether)
+    //10300-18600
     public static final DeferredItem<GemItem> CROCOITE = AllItems.registerBasicGem("crocoite", "PbCr04", 1, Rarity.RARE,
-            new GemItem.GainInfo(5300, 0.1f, 0.9f));
+            new ValuableItem.GainInfo(10300, 0.1f, 0.9f));
     public static final DeferredItem<GemItem> KYANITE = AllItems.registerBasicGem("kyanite", "Al2SiO5", 3, Rarity.RARE,
-            new GemItem.GainInfo(5700, 0.5f, 0.5f));
+            new ValuableItem.GainInfo(13575, 0.5f, 0.5f));
     public static final DeferredItem<GemItem> CLAUSTHALITE = AllItems.registerBasicGem("clausthalite", "PbSe", 3, Rarity.RARE,
-            new GemItem.GainInfo(6100, 0.7f, 0.3f));
+            new ValuableItem.GainInfo(15500, 0.7f, 0.3f));
     public static final DeferredItem<GemItem> SAPPHIRE = AllItems.registerBasicGem("sapphire", "Al2O3", 1, Rarity.RARE,
-            new GemItem.GainInfo(6600, 0.2f, 0.8f));
+            new ValuableItem.GainInfo(18600, 0.2f, 0.8f));
 
     public static final DeferredItem<GeodeItem> LAVA_GEODE = AllItems.registerBasicGeode("lava_geode", 4, Rarity.RARE,
             List.of(
@@ -186,14 +204,15 @@ public class AllItems {
             ));
 
     // unearthly geode [P, Os] (under the end islands)
+    //12200-17250
     public static final DeferredItem<GemItem> COSMOLITE = AllItems.registerBasicGem("cosmolite", "??Os3", 2, Rarity.RARE,
-            new GemItem.GainInfo(12200, 0.6f, 0.4f));
+            new ValuableItem.GainInfo(12200, 0.6f, 0.4f));
     public static final DeferredItem<GemItem> FLOALYTE = AllItems.registerBasicGem("floalyte", "??P5", 2, Rarity.RARE,
-            new GemItem.GainInfo(13900, 0.9f, 0.1f));
+            new ValuableItem.GainInfo(13900, 0.9f, 0.1f));
     public static final DeferredItem<GemItem> UNTYTE = AllItems.registerBasicGem("untyte", "??H2Cu(Cr2O7)2", 3, Rarity.RARE,
-            new GemItem.GainInfo(16150, 0.7f, 0.3f));
+            new ValuableItem.GainInfo(16150, 0.7f, 0.3f));
     public static final DeferredItem<GemItem> STAROTHALITE = AllItems.registerBasicGem("starothalite", "??(Os8As4)2", 1, Rarity.RARE,
-            new GemItem.GainInfo(17250, 0.1f, 0.9f));
+            new ValuableItem.GainInfo(17250, 0.1f, 0.9f));
 
     public static final DeferredItem<GeodeItem> UNEARTHLY_GEODE = AllItems.registerBasicGeode("unearthly_geode", 5, Rarity.RARE,
             List.of(

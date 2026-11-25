@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_top",
   "textures": {
-    "side": "gemsind:block/counter_side",
-    "top": "gemsind:block/counter_top"
+    "side": "gemsind:block/counter/counter_side",
+    "top": "gemsind:block/counter/counter_top"
   }
 }

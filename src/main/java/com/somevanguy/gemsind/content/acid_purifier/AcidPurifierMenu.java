@@ -20,7 +20,7 @@ public class AcidPurifierMenu extends BaseTransmutatorMenu {
         super(AllMenus.ACID_PURIFIER_MENU.get(), containerId, inv, be, data);
         var itemHandler = this.blockEntity.getItemHandler();
         if (itemHandler != null) {
-            addSlot(new SlotItemHandler(itemHandler, 0, 26, 34));
+            addSlot(new SlotItemHandler(itemHandler, 0, 26, 52));
             addSlot(new SlotItemHandler(itemHandler, 1, 90, 16));
             addSlot(new SlotItemHandler(itemHandler, 2, 108, 16));
             addSlot(new SlotItemHandler(itemHandler, 3, 126, 16));
@@ -49,9 +49,9 @@ public class AcidPurifierMenu extends BaseTransmutatorMenu {
         return RenderHelper.inQuintEase(getDullingProgress(), (float) AcidPackItem.DULL_B / 255, (float) this.data.get(4) / 255);
     }
 
-    public boolean isProgressing() {
-        return this.data.get(0) > 0;
-    }
+//    public boolean isProgressing() {
+//        return this.data.get(0) > 0;
+//    }
 
 //    public int baseAcidHeight() {
 //        return 63;

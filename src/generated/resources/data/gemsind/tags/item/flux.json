@@ -1,7 +1,9 @@
 {
   "values": [
-    "gemsind:halite",
     "gemsind:malachite",
+    "gemsind:halite",
+    "gemsind:molysite",
+    "gemsind:natrite",
     "gemsind:uvarovite",
     "gemsind:milky_quartz",
     "gemsind:kosmochlor",

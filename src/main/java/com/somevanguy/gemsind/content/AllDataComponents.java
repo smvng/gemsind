@@ -26,16 +26,14 @@ public class AllDataComponents {
         return registerDataComponent(processname+"_progress", builder -> builder.persistent(Codec.floatRange(0,1)));
     }
 
-//    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> GEM_CACHED_VALUE = registerDataComponent("gem_cached_value",
-//                builder -> builder.persistent(Codec.intRange(0,Integer.MAX_VALUE)));
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Float>> GEM_PURITY = registerDataComponent("gem_purity",
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Float>> PURITY = registerDataComponent("purity",
                 builder -> builder.persistent(Codec.floatRange(0,1)));
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Float>> GEM_POLISH = registerDataComponent("gem_polish",
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Float>> POLISH = registerDataComponent("polish",
                 builder -> builder.persistent(Codec.floatRange(0,1)));
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> GEM_IMBUEMENTS = registerDataComponent("gem_imbuements",
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> IMBUEMENTS = registerDataComponent("imbuements",
                 builder -> builder.persistent(Codec.intRange(0,255))); // super late game material for exponential gem worth increase TODO:ADD
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> GEM_BONUS_VALUE = registerDataComponent("gem_bonus_value",
-            builder -> builder.persistent(Codec.intRange(0,Integer.MAX_VALUE))); // when an alloy is forged with a gem that is worth more than the alloy TODO:aDD
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> BONUS_VALUE = registerDataComponent("bonus_value",
+            builder -> builder.persistent(Codec.intRange(0,Integer.MAX_VALUE)));
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<String>> GEODE_LOOT_TABLE = registerDataComponent("geode_loot_table",
                 builder -> builder.persistent(Codec.STRING));

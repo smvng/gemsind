@@ -14,6 +14,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "gemsind:natrite"
+        },
+        {
+          "type": "minecraft:item",
           "name": "gemsind:uvarovite"
         }
       ],

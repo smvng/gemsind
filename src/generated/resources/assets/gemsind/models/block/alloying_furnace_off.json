@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "down": "gemsind:block/alloying_furnace_side",
-    "east": "gemsind:block/alloying_furnace_side",
-    "north": "gemsind:block/alloying_furnace_front",
-    "particle": "gemsind:block/alloying_furnace_front",
-    "south": "gemsind:block/alloying_furnace_side",
-    "up": "gemsind:block/alloying_furnace_side",
-    "west": "gemsind:block/alloying_furnace_side"
+    "down": "gemsind:block/alloying_furnace/alloying_furnace_side",
+    "east": "gemsind:block/alloying_furnace/alloying_furnace_side",
+    "north": "gemsind:block/alloying_furnace/alloying_furnace_front",
+    "particle": "gemsind:block/alloying_furnace/alloying_furnace_front",
+    "south": "gemsind:block/alloying_furnace/alloying_furnace_side",
+    "up": "gemsind:block/alloying_furnace/alloying_furnace_side",
+    "west": "gemsind:block/alloying_furnace/alloying_furnace_side"
   }
 }

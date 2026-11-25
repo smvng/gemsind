@@ -16,7 +16,7 @@
   "block.gemsind.tumbler": "Tumbler",
   "block.gemsind.tumbler.tooltip": "Increases a Gem's Polish, powered by Furnace Fuel. Fuel and Gems can be inputted from any side. If the Fuel turns into another item on consumption (like Lava Buckets turn into Buckets), they will be outputted.",
   "block.gemsind.alloying_furnace": "Alloying Furnace",
-  "block.gemsind.alloying_furnace.tooltip": "Powered by Anthracite. Creates an Alloy out of 2 (or more) Element Gems and 1 (or more) Flux Gems. Alloys gain value based on their input Element and Flux Gems' value (Enargite Cu > Malachite Cu). JEI Compatible.",
+  "block.gemsind.alloying_furnace.tooltip": "Powered by Anthracite. Creates an Alloy out of 2 (or more) Element Gems and 1 (or more) Flux Gems. Alloys gain value based on their input Element and Flux Gems' value (Enargite Cu > Malachite Cu).",
   "block.gemsind.geode_containing_block": "Geode Containing Block",
 
   // item tabs
@@ -75,15 +75,15 @@
   "item.gemsind.geode.best_drop": "Best Gem: ",
 
   // geodes & gems
-  "item.gemsind.river_geode": "River Geode",
-  "item.gemsind.river_geode.tooltip": "Found in Clay under water.",
-  "item.gemsind.goethite": "Goethite",
-  "item.gemsind.halite": "Halite",
-
   "item.gemsind.granite_geode": "Granite Geode",
   "item.gemsind.granite_geode.tooltip": "Found in Granite deep underground.",
   "item.gemsind.malachite": "Malachite",
   "item.gemsind.pepsyte": "Pepsyte",
+
+  "item.gemsind.river_geode": "River Geode",
+  "item.gemsind.river_geode.tooltip": "Found in Clay under water.",
+  "item.gemsind.goethite": "Goethite",
+  "item.gemsind.halite": "Halite",
 
   "item.gemsind.netherrack_geode": "Netherrack Geode",
   "item.gemsind.netherrack_geode.tooltip": "Found in Netherrack close to the top of the Nether.",

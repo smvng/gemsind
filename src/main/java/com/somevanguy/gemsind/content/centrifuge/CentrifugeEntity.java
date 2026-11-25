@@ -99,12 +99,12 @@ public class CentrifugeEntity extends BaseTransmutatorEntity {
                 }
                 var progress = progresses.getOrDefault(i, 0);
                 if (progress >= TICKS_UNTIL_DONE) {
-                    var purity = stack.getOrDefault(AllDataComponents.GEM_PURITY, 0f);
+                    var purity = stack.getOrDefault(AllDataComponents.PURITY, 0f);
                     if (purity < 1f) {
                         purity = Math.min(1f, purity + 0.45f);
                     }
                     stack.set(AllDataComponents.CENTRIFUGE_USED, true);
-                    stack.set(AllDataComponents.GEM_PURITY, purity);
+                    stack.set(AllDataComponents.PURITY, purity);
                     progresses.put(i, 0);
                     continue;
                 }

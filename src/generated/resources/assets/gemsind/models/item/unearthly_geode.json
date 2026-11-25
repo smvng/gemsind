@@ -1,0 +1,6 @@
+{
+  "parent": "gemsind:item/base_geode",
+  "textures": {
+    "main": "gemsind:item/unearthly_geode/unearthly_geode"
+  }
+}

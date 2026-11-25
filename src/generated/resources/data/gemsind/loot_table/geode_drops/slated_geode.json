@@ -15,14 +15,10 @@
         {
           "type": "minecraft:item",
           "name": "gemsind:ferroselite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "gemsind:magnetite"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gemsind:geode_drops/slated"
+  "random_sequence": "gemsind:geode_drops/slated_geode"
 }

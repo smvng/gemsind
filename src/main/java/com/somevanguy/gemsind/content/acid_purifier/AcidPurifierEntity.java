@@ -6,7 +6,7 @@ import com.somevanguy.gemsind.content.AllSoundEvents;
 import com.somevanguy.gemsind.content.base.BaseTransmutatorEntity;
 import com.somevanguy.gemsind.content.items.AcidPackItem;
 import com.somevanguy.gemsind.content.AllDataComponents;
-import com.somevanguy.gemsind.content.items.GemItem;
+import com.somevanguy.gemsind.content.items.ValuableItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -32,7 +32,7 @@ import java.util.*;
 public class AcidPurifierEntity extends BaseTransmutatorEntity {
     public Map<Integer, Integer> progresses = new HashMap<>();
     public @Nullable AcidPackItem acidPackContained = null;
-    public boolean hasAcid = false;
+    //public boolean hasAcid = false;
     public int acidLeft = 0;
     public static final List<Integer> TICKS_UNTIL_DONE = generateTicksUntilDone();
     public static final int MAX_ACID_LEFT = 120 * 20;
@@ -40,6 +40,16 @@ public class AcidPurifierEntity extends BaseTransmutatorEntity {
     //public boolean isWorking = false;
     protected final ContainerData data;
     public static final int DATA_SLOT_COUNT = 6;
+    public float bobbingTick = 0f;
+    public static final float BOBBING_SPEED = 0.007f;
+
+    public float progressBobbing() {
+        bobbingTick += BOBBING_SPEED;
+        if (bobbingTick > 1) {
+            bobbingTick = 0;
+        }
+        return bobbingTick;
+    }
 
     public static int getTicksUntilDoneForAcidity(int acidity) {
         // just use desmos
@@ -130,9 +140,9 @@ public class AcidPurifierEntity extends BaseTransmutatorEntity {
         if (itemHandler == null) {
             return false;
         }
-        if (hasAcid == false) {
-            return false;
-        }
+//        if (hasAcid == false) {
+//            return false;
+//        }
         if (acidPackContained == null) {
             return false;
         }
@@ -140,9 +150,9 @@ public class AcidPurifierEntity extends BaseTransmutatorEntity {
             var stack = itemHandler.getStackInSlot(i);
             if (stack.isEmpty()) {
                 progresses.put(i, 0);
-            } else if (stack.getItem() instanceof GemItem gemItem) {
+            } else if (stack.getItem() instanceof ValuableItem valuableItem) {
                 if (acidPackContained != null) {
-                    if (gemItem.maxAcidTolerance < acidPackContained.acidStrength) {
+                    if (valuableItem.maxAcidTolerance < acidPackContained.acidStrength) {
                         if (level.getRandom().nextFloat() < (float) 1 / 90) {
                             var ashStack = AllItems.ASH.toStack();
                             ashStack.set(AllDataComponents.ACIDITY, AcidPackItem.MAX_ACID_STRENGTH);
@@ -157,12 +167,12 @@ public class AcidPurifierEntity extends BaseTransmutatorEntity {
                 }
                 var progress = progresses.getOrDefault(i, 0);
                 if (progress >= TICKS_UNTIL_DONE.get(acidity)) {
-                    float purity = stack.getOrDefault(AllDataComponents.GEM_PURITY, 0f);
+                    float purity = stack.getOrDefault(AllDataComponents.PURITY, 0f);
                     if (purity < 1f) {
                         purity = Math.min(1f, purity + 0.55f * acidPackContained.acidStrength / AcidPackItem.MAX_ACID_STRENGTH);
                     }
                     stack.set(AllDataComponents.ACIDITY, acidity + acidPackContained.acidStrength);
-                    stack.set(AllDataComponents.GEM_PURITY, purity);
+                    stack.set(AllDataComponents.PURITY, purity);
                     progresses.put(i, 0);
                     continue;
                 }
@@ -184,7 +194,7 @@ public class AcidPurifierEntity extends BaseTransmutatorEntity {
                 if (acidStack.isEmpty() && !returnStack.isEmpty()) {
                     itemHandler.setStackInSlot(AcidPurifierItemHandler.ACID_SLOT, returnStack);
                 }
-                hasAcid = true;
+                //hasAcid = true;
                 setChanged();
                 level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
             }
@@ -199,7 +209,7 @@ public class AcidPurifierEntity extends BaseTransmutatorEntity {
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        tag.putBoolean("hasAcid", hasAcid);
+        //tag.putBoolean("hasAcid", hasAcid);
         tag.putInt("acidLeft", Mth.clamp(acidLeft, 0, MAX_ACID_LEFT));
         tag.putString("acidPack",
                 acidPackContained != null ? BuiltInRegistries.ITEM.getKey(acidPackContained).toString() : "minecraft:air"
@@ -209,7 +219,7 @@ public class AcidPurifierEntity extends BaseTransmutatorEntity {
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        hasAcid = tag.getBoolean("hasAcid");
+        //hasAcid = tag.getBoolean("hasAcid");
         acidLeft = Mth.clamp(tag.getInt("acidLeft"), 0, MAX_ACID_LEFT);
         var containedItem = BuiltInRegistries.ITEM.getOptional(ResourceLocation.parse(tag.getString("acidPack")));
         if (containedItem.isPresent()) {

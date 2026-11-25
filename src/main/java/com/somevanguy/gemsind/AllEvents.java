@@ -56,10 +56,11 @@ public class AllEvents {
         BlockState blockState = level.getBlockState(event.getPos());
         Player player = event.getEntity();
         ItemStack heldItem = player.getMainHandItem();
-        if (AllBlocks.COUNTER.get() instanceof CounterBlock counterBlock) {
-            if (blockState.is(counterBlock)) {
-                if (event.getFace() == Direction.UP) {
-                    if (heldItem.getItem() instanceof HammerItem) {
+        var counterBlock = AllBlocks.COUNTER.get();
+        if (blockState.is(counterBlock)) {
+            if (event.getFace() == Direction.UP) {
+                if (heldItem.getItem() instanceof HammerItem hammerItem) {
+                    if (!event.getEntity().getCooldowns().isOnCooldown(hammerItem)) {
                         if (!level.isClientSide()) {
                             counterBlock.onHammerHit(event.getPos(), heldItem, (ServerLevel) level, (ServerPlayer) player);
                         }

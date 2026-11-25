@@ -2,14 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "i": {
-      "item": "minecraft:iron_nugget"
+    "g": {
+      "item": "minecraft:glass"
+    },
+    "n": {
+      "item": "minecraft:gold_nugget"
     }
   },
   "pattern": [
-    "i i",
-    "i i",
-    "iii"
+    "gng",
+    "g g",
+    "nnn"
   ],
   "result": {
     "count": 1,

@@ -5,6 +5,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.somevanguy.gemsind.content.AllRecipes;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -18,10 +19,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
 
 // recipe file contents
-public record DesalinatingRecipe(int craftingTime, TagKey<Fluid> fluidTag, ItemStack result) implements Recipe<DesalinatingRecipeInput> {
+public record DesalinatingRecipe(int craftingTime, Fluid fluid, ItemStack result) implements Recipe<DesalinatingRecipeInput> {
     @Override
     public boolean matches(DesalinatingRecipeInput input, Level level) {
-        return input.fluidState().is(fluidTag);
+        return input.fluidState().is(fluid);
     }
 
     @Override
@@ -52,7 +53,7 @@ public record DesalinatingRecipe(int craftingTime, TagKey<Fluid> fluidTag, ItemS
     public static class Serializer implements RecipeSerializer<DesalinatingRecipe> {
         public static final MapCodec<DesalinatingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                 Codec.intRange(1, 86400*20).fieldOf("craftingTime").forGetter(DesalinatingRecipe::craftingTime),
-                TagKey.codec(Registries.FLUID).fieldOf("fluidTag").forGetter(DesalinatingRecipe::fluidTag),
+                BuiltInRegistries.FLUID.byNameCodec().fieldOf("fluid").forGetter(DesalinatingRecipe::fluid),
                 ItemStack.CODEC.fieldOf("result").forGetter(DesalinatingRecipe::result)
         ).apply(instance, DesalinatingRecipe::new));
 
@@ -63,7 +64,7 @@ public record DesalinatingRecipe(int craftingTime, TagKey<Fluid> fluidTag, ItemS
 
         public static final StreamCodec<RegistryFriendlyByteBuf, DesalinatingRecipe> STREAM_CODEC = StreamCodec.composite(
                 ByteBufCodecs.INT, DesalinatingRecipe::craftingTime,
-                ByteBufCodecs.fromCodec(TagKey.codec(Registries.FLUID)), DesalinatingRecipe::fluidTag,
+                ByteBufCodecs.registry(Registries.FLUID), DesalinatingRecipe::fluid,
                 ItemStack.STREAM_CODEC, DesalinatingRecipe::result,
                 DesalinatingRecipe::new
         );

@@ -17,8 +17,8 @@ public class DataBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         ModelFile counterModel = models().cubeTop("counter",
-                modLoc("block/counter_side"),
-                modLoc("block/counter_top"));
+                modLoc("block/counter/counter_side"),
+                modLoc("block/counter/counter_top"));
         simpleBlockWithItem(AllBlocks.COUNTER.get(), counterModel);
 
         ModelFile acidPurifierModel = models().getExistingFile(modLoc("block/acid_purifier"));
@@ -28,11 +28,11 @@ public class DataBlockStateProvider extends BlockStateProvider {
                 ConfiguredModel.builder().modelFile(acidPurifierModel).build());
 
         ModelFile centrifugeOffModel = models().cubeTop("centrifuge_off",
-                modLoc("block/centrifuge_side"),
-                modLoc("block/centrifuge_top"));
+                modLoc("block/centrifuge/centrifuge_side"),
+                modLoc("block/centrifuge/centrifuge_top"));
         ModelFile centrifugeOnModel = models().cubeTop("centrifuge_on",
-                modLoc("block/centrifuge_side"),
-                modLoc("block/centrifuge_top_spin"));
+                modLoc("block/centrifuge/centrifuge_side"),
+                modLoc("block/centrifuge/centrifuge_top_spin"));
         simpleBlockItem(AllBlocks.CENTRIFUGE.get(), centrifugeOffModel);
         getVariantBuilder(AllBlocks.CENTRIFUGE.get()).forAllStates(blockState -> {
             boolean spinning = blockState.getValue(CentrifugeBlock.SPINNING);
@@ -40,21 +40,21 @@ public class DataBlockStateProvider extends BlockStateProvider {
         });
 
         ModelFile alloyingFurnaceOffModel = models().cube("alloying_furnace_off",
-                        modLoc("block/alloying_furnace_side"),
-                        modLoc("block/alloying_furnace_side"),
-                        modLoc("block/alloying_furnace_front"),
-                        modLoc("block/alloying_furnace_side"),
-                        modLoc("block/alloying_furnace_side"),
-                        modLoc("block/alloying_furnace_side"))
-                .texture("particle", "block/alloying_furnace_front");
+                        modLoc("block/alloying_furnace/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace/alloying_furnace_front"),
+                        modLoc("block/alloying_furnace/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace/alloying_furnace_side"))
+                .texture("particle", "block/alloying_furnace/alloying_furnace_front");
         ModelFile alloyingFurnaceOnModel = models().cube("alloying_furnace_on",
-                        modLoc("block/alloying_furnace_side"),
-                        modLoc("block/alloying_furnace_side"),
-                        modLoc("block/alloying_furnace_front_on"),
-                        modLoc("block/alloying_furnace_side"),
-                        modLoc("block/alloying_furnace_side"),
-                        modLoc("block/alloying_furnace_side"))
-                .texture("particle", "block/alloying_furnace_front_on");
+                        modLoc("block/alloying_furnace/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace/alloying_furnace_front_on"),
+                        modLoc("block/alloying_furnace/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace/alloying_furnace_side"),
+                        modLoc("block/alloying_furnace/alloying_furnace_side"))
+                .texture("particle", "block/alloying_furnace/alloying_furnace_front_on");
         simpleBlockItem(AllBlocks.ALLOYING_FURNACE.get(), alloyingFurnaceOffModel);
         getVariantBuilder(AllBlocks.ALLOYING_FURNACE.get()).forAllStates(blockState -> {
             boolean active = blockState.getValue(AlloyingFurnaceBlock.ACTIVE);

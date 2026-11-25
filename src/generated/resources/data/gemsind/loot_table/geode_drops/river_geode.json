@@ -11,6 +11,14 @@
         {
           "type": "minecraft:item",
           "name": "gemsind:goethite"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "gemsind:molysite"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "gemsind:magnetite"
         }
       ],
       "rolls": 1.0

@@ -71,6 +71,7 @@ public class AllTags {
         public static final TagKey<Biome> SPAWNS_MOUNTAIN_GEODE = createBiomeTag("spawns_mountain_geode");
 
         public static final TagKey<Block> CONTAINS_LAVA_GEODE = createBlockTag("contains_lava_geode");
+        public static final TagKey<Biome> SPAWNS_LAVA_GEODE = createBiomeTag("spawns_lava_geode");
 
         public static final TagKey<Block> CONTAINS_UNEARTHLY_GEODE = createBlockTag("contains_unearthly_geode");
     }

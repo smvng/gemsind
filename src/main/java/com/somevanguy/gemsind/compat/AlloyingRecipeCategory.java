@@ -73,6 +73,7 @@ public class AlloyingRecipeCategory implements IRecipeCategory<RecipeHolder<Allo
             }
         }
 
+        builder.addSlot(RecipeIngredientRole.INPUT, 6, 42).addItemStack(AllItems.ANTHRACITE.toStack());
         builder.addSlot(RecipeIngredientRole.OUTPUT, 6, 6).addItemStack(recipe.result());
     }
 

@@ -77,15 +77,15 @@ public class HammerItem extends Item {
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if (usable) {
             if (Screen.hasShiftDown()) {
-                tooltipComponents.add(Component.translatable("item.gemsind.hammer.tooltip"));
+                tooltipComponents.add(Component.translatable("item.gemsind.hammer.tooltip").withStyle(ChatFormatting.GRAY));
             } else {
-                tooltipComponents.add(Component.translatable("item.gemsind.gem.holdshifttoexpand"));
+                tooltipComponents.add(Component.translatable("item.gemsind.gem.holdshifttoexpand").withStyle(ChatFormatting.GRAY));
             }
         } else {
             if (Screen.hasShiftDown()) {
-                tooltipComponents.add(Component.translatable("item.gemsind.hammer.not_usable_tooltip"));
+                tooltipComponents.add(Component.translatable("item.gemsind.hammer.not_usable_tooltip").withStyle(ChatFormatting.GRAY));
             } else {
-                tooltipComponents.add(Component.translatable("item.gemsind.gem.holdshifttoexpand"));
+                tooltipComponents.add(Component.translatable("item.gemsind.gem.holdshifttoexpand").withStyle(ChatFormatting.GRAY));
             }
         }
 

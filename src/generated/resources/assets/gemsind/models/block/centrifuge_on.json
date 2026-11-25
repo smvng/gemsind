@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_top",
   "textures": {
-    "side": "gemsind:block/centrifuge_side",
-    "top": "gemsind:block/centrifuge_top_spin"
+    "side": "gemsind:block/centrifuge/centrifuge_side",
+    "top": "gemsind:block/centrifuge/centrifuge_top_spin"
   }
 }

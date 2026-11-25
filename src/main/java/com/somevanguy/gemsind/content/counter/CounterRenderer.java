@@ -21,6 +21,9 @@ public class CounterRenderer implements BlockEntityRenderer<CounterEntity> {
 
     @Override
     public void render(CounterEntity counterEntity, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight, int packedOverlay) {
+        if (!Minecraft.useFancyGraphics()) {
+            return;
+        }
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         var itemHandler = counterEntity.getItemHandler();
         var level = counterEntity.getLevel();
@@ -28,8 +31,8 @@ public class CounterRenderer implements BlockEntityRenderer<CounterEntity> {
             ItemStack stack = itemHandler.getStackInSlot(0);
 
             poseStack.pushPose();
-            poseStack.translate(0.5f, 1.025f, 0.5f);
-            poseStack.scale(0.5f, 0.5f, 0.5f);
+            poseStack.translate(0.5f, 1.02f, 0.5f);
+            poseStack.scale(0.75f, 0.75f, 0.75f);
             poseStack.mulPose(Axis.XP.rotationDegrees(90));
             itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED,
                     RenderHelper.getLightLevel(level, counterEntity.getBlockPos().above()),

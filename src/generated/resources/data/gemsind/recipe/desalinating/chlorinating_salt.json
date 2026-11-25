@@ -1,7 +1,7 @@
 {
   "type": "gemsind:desalinating",
-  "craftingTime": 6000,
-  "fluidTag": "minecraft:water",
+  "craftingTime": 3600,
+  "fluid": "minecraft:water",
   "result": {
     "count": 1,
     "id": "gemsind:chlorinating_salt"

@@ -13,13 +13,21 @@
   "tab.gemsind.geodes_and_valuables": "Жеоды, Сплавы, Самоцветы",
   "jei_tab.gemsind.alloying": "Легирование",
 
+  // misc
+  "item.gemsind.ash": "Мусор",
+  "item.gemsind.chlorinating_salt": "Концентрированная Соль",
+  "item.gemsind.anthracite": "Антрацит",
+  "item.gemsind.anthracite.tooltip": "Сильнейший.",
+
   // tools
-  "item.gemsind.hammer.not_usable_tooltip": "удачи разламать камень палкой",
+  "item.gemsind.hammer.not_usable_tooltip": "удачи разломать камень веткой",
   "item.gemsind.wooden_hammer": "Деревянный Молот",
   "item.gemsind.iron_hammer": "Железный Молот",
   "item.gemsind.golden_hammer": "Золотой Молот",
   "item.gemsind.diamond_hammer": "Алмазный Молот",
   "item.gemsind.reinforced_hammer": "Укреплённый Молот",
+
+  "item.gemsind.pick.not_usable_tooltip": "удачи разломать камень бруском",
 
   // generic gem
   "item.gemsind.gem.holdshifttoexpand": "Зажми Shift для полного описания",

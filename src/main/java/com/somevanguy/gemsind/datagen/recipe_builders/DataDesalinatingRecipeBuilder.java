@@ -9,7 +9,6 @@ import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
@@ -21,12 +20,12 @@ import java.util.Map;
 public class DataDesalinatingRecipeBuilder implements RecipeBuilder {
     protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
     protected final int craftingTime;
-    protected final TagKey<Fluid> fluidTag;
+    protected final Fluid fluid;
     protected final ItemStack result;
 
-    public DataDesalinatingRecipeBuilder(int craftingTime, TagKey<Fluid> fluidTag, ItemStack result) {
+    public DataDesalinatingRecipeBuilder(int craftingTime, Fluid fluid, ItemStack result) {
         this.craftingTime = craftingTime;
-        this.fluidTag = fluidTag;
+        this.fluid = fluid;
         this.result = result;
     }
 
@@ -53,7 +52,7 @@ public class DataDesalinatingRecipeBuilder implements RecipeBuilder {
                 .rewards(AdvancementRewards.Builder.recipe(id))
                 .requirements(AdvancementRequirements.Strategy.OR);
         criteria.forEach(advancement::addCriterion);
-        DesalinatingRecipe recipe = new DesalinatingRecipe(craftingTime, fluidTag, result);
+        DesalinatingRecipe recipe = new DesalinatingRecipe(craftingTime, fluid, result);
         recipeOutput.accept(id, recipe, advancement.build(id.withPrefix("recipes/desalination/")));
     }
 }

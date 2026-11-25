@@ -158,8 +158,8 @@ public class AlloyingFurnaceEntity extends BaseTransmutatorEntity {
                             itemHandler.setStackInSlot(i, ItemStack.EMPTY);
                         }
                     }
-                    int bonusValue = AlloyItem.getBonusValue(result, elementsAndFluxes);
-                    result.set(AllDataComponents.GEM_BONUS_VALUE, bonusValue);
+                    int bonusValue = AlloyItem.getBonusValue(elementsAndFluxes);
+                    result.set(AllDataComponents.BONUS_VALUE, bonusValue);
                     itemHandler.setStackInSlot(AlloyingFurnaceItemHandler.ALLOY_SLOT, result);
                 }
                 setChanged();

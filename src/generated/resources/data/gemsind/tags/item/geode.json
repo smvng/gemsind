@@ -1,9 +1,9 @@
 {
   "values": [
-    "gemsind:river_geode",
     "gemsind:granite_geode",
+    "gemsind:river_geode",
     "gemsind:netherrack_geode",
-    "gemsind:slated",
+    "gemsind:slated_geode",
     "gemsind:mountain_geode",
     "gemsind:lava_geode",
     "gemsind:unearthly_geode"

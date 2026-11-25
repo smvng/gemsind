@@ -1,7 +1,7 @@
 {
   "type": "gemsind:desalinating",
   "craftingTime": 2000,
-  "fluidTag": "create:chocolate",
+  "fluid": "create:chocolate",
   "result": {
     "count": 1,
     "id": "minecraft:sugar"

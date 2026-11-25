@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
@@ -83,15 +84,6 @@ public class GeodeTests {
         }
     }
 
-    // found in clay under rivers
-    public static final Test RIVER_GEODE_TEST = new Test(
-            AllItems.RIVER_GEODE,
-            45,
-            65,
-            AllTags.PickTests.CONTAINS_RIVER_GEODE,
-            AllTags.PickTests.SPAWNS_RIVER_GEODE,
-            Level.OVERWORLD);
-
     // found in granite
     public static final Test GRANITE_GEODE_TEST = new Test(
             AllItems.GRANITE_GEODE,
@@ -99,6 +91,15 @@ public class GeodeTests {
             50,
             AllTags.PickTests.CONTAINS_GRANITE_GEODE,
             null,
+            Level.OVERWORLD);
+
+    // found in clay under rivers
+    public static final Test RIVER_GEODE_TEST = new Test(
+            AllItems.RIVER_GEODE,
+            45,
+            65,
+            AllTags.PickTests.CONTAINS_RIVER_GEODE,
+            AllTags.PickTests.SPAWNS_RIVER_GEODE,
             Level.OVERWORLD);
 
     // found in netherrack
@@ -132,9 +133,9 @@ public class GeodeTests {
     public static final Test LAVA_GEODE_TEST = new Test(
             AllItems.LAVA_GEODE,
             null,
-            12,
+            24,
             AllTags.PickTests.CONTAINS_LAVA_GEODE,
-            null,
+            AllTags.PickTests.SPAWNS_LAVA_GEODE,
             Level.NETHER);
 
     // found under the end islands

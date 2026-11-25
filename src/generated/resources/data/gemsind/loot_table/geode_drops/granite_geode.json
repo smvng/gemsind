@@ -10,6 +10,14 @@
         },
         {
           "type": "minecraft:item",
+          "name": "gemsind:delafossite"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "gemsind:tongbaite"
+        },
+        {
+          "type": "minecraft:item",
           "name": "gemsind:pepsyte"
         }
       ],

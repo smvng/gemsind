@@ -2,50 +2,34 @@ package com.somevanguy.gemsind.content.items;
 
 import com.somevanguy.gemsind.GemstoneIndustryMod;
 import com.somevanguy.gemsind.content.AllDataComponents;
+import com.sun.jna.platform.unix.solaris.LibKstat;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class GemItem extends Item {
-    public static final float GEM_GAIN_LIMIT = 1f;
-
-    public boolean showFormula() {
-        return formula != null && !formula.isEmpty();
-    }
-
-    public record GainInfo(boolean doWarn, int baseValue, float maxPurityGain, float maxPolishGain) {
-        public GainInfo(int baseValue, float maxPurityGain, float maxPolishGain) {
-            this(true, baseValue, maxPurityGain, maxPolishGain);
-        }
-
-        public GainInfo(boolean doWarn, int baseValue, float maxPurityGain, float maxPolishGain) {
-            this.doWarn = doWarn;
-            this.baseValue = baseValue;
-            this.maxPurityGain = maxPurityGain;
-            this.maxPolishGain = maxPolishGain;
-            if (doWarn) {
-                if (maxPurityGain + maxPolishGain != GEM_GAIN_LIMIT) {
-                    GemstoneIndustryMod.LOGGER.warn("A gem with maxPurityGain of {} and maxPolishGain {} doesn't add up to {}", maxPurityGain, maxPolishGain, GEM_GAIN_LIMIT);
-                }
-            }
-        }
-    }
-
-    // separate for each GemItem instance (HALITE, MALACHITE, etc)
-    public GainInfo gainInfo;
-    public String name;
+public class GemItem extends ValuableItem {
     public String formula;
-    public int maxAcidTolerance;
+    private String owner;
+
+    public void trySetOwner(String owner) {
+        if (this.owner.isEmpty()) {
+            this.owner = owner;
+        }
+    }
+
+    public String getOwner() {
+        return this.owner;
+    }
 
     public static final List<String> PROMINENT_ELEMENTS = List.of(
             "??", "Fe", "Si", "Au", "Ag", "Cu", "As", "Co", "Al", "Ti", "Ba", "Cr", "Ni", "Os", "P", "C", "Pt"
     );
 
-    private static final String alphaRegex = "[A-Za-z]+";
     public boolean hasElement(String element) {
         var arr = formula.toCharArray();
         if (element.length() == 1) {
@@ -92,71 +76,22 @@ public class GemItem extends Item {
                 || (hasElement("Cl")); // chloride
     }
 
-    public GemItem(String name, Properties properties, String formula, int acidTolerance, GainInfo gainInfo) {
-        this(name, properties, gainInfo);
+    public GemItem(String name, Properties properties, String formula, int maxAcidTolerance, GainInfo gainInfo) {
+        super(name, gainInfo, 1f, maxAcidTolerance, properties);
         this.formula = formula;
-        this.maxAcidTolerance = acidTolerance;
         if (formula.isEmpty()) {
             GemstoneIndustryMod.LOGGER.warn("{} has no formula", name);
         }
     }
 
-    public GemItem(String name, Properties properties, GainInfo gainInfo) {
-        super(properties
-                .component(AllDataComponents.GEM_PURITY, 0f)
-                .component(AllDataComponents.GEM_POLISH, 0f)
-                .component(AllDataComponents.GEM_IMBUEMENTS, 0)
-                .component(AllDataComponents.GEM_BONUS_VALUE, 0)
-                .component(AllDataComponents.ACIDITY, 0)
-                .component(AllDataComponents.CENTRIFUGE_USED, false)
-        );
-        this.name = name;
-        this.gainInfo = gainInfo;
-    }
-
-    public int getValue(ItemStack stack) {
-        var purity = stack.getOrDefault(AllDataComponents.GEM_PURITY, 0f);
-        var polish = stack.getOrDefault(AllDataComponents.GEM_POLISH, 0f);
-
-        var purityGain = gainInfo.maxPurityGain * purity;
-        var polishGain = gainInfo.maxPolishGain * polish;
-
-        var gain = gainInfo.baseValue * (purityGain+polishGain);
-        var bonusGain = stack.getOrDefault(AllDataComponents.GEM_BONUS_VALUE, 0);
-
-        return (int)(gainInfo.baseValue + gain + bonusGain);
-    }
-
-    public static final ChatFormatting MAX_STAT_FORMAT = ChatFormatting.LIGHT_PURPLE;
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        int value = getValue(stack);
-        float purity = stack.getOrDefault(AllDataComponents.GEM_PURITY, 0f);
-        float polish = stack.getOrDefault(AllDataComponents.GEM_POLISH, 0f);
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
 
-        tooltipComponents.add(Component.literal(value+"$").withStyle(ChatFormatting.GRAY));
-
-        tooltipComponents.add(Component.translatable("item.gemsind.gem.purity")
-                .withStyle(ChatFormatting.GRAY)
-                .append(Component.literal((int)(purity*100)+"%")
-                        .withStyle(purity >= 1f ? MAX_STAT_FORMAT : ChatFormatting.GRAY)));
-
-        tooltipComponents.add(Component.translatable("item.gemsind.gem.polish")
-                .withStyle(ChatFormatting.GRAY)
-                .append(Component.literal((int)(polish*100)+"%")
-                        .withStyle(polish >= 1f ? MAX_STAT_FORMAT : ChatFormatting.GRAY)));
-
-        tooltipComponents.add(Component.translatable("item.gemsind.gem.acid_tolerance")
-                .append(Component.literal(String.valueOf(maxAcidTolerance)))
-                .withStyle(ChatFormatting.GRAY));
-
-        if (showFormula()) {
-            tooltipComponents.add(Component.literal(formula).withStyle(ChatFormatting.GRAY));
-        }
+        tooltipComponents.add(Component.literal(formula).withStyle(BASIC_STAT_FORMAT));
 
         if (isFlux()) {
-            tooltipComponents.add(Component.translatable("item.gemsind.gem.flux").withStyle(ChatFormatting.GRAY));
+            tooltipComponents.add(Component.translatable("item.gemsind.gem.flux").withStyle(BASIC_STAT_FORMAT));
         }
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 }

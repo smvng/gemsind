@@ -114,7 +114,7 @@ public class DataRecipeProvider extends RecipeProvider implements IConditionBuil
                 .save(recipeOutput, locationPickCrafting(getSafeNameOfItem(pick)));
     }
 
-    private void genericDesalination(RecipeOutput recipeOutput, int craftingTime, TagKey<Fluid> fluid, ItemStack result) {
+    private void genericDesalination(RecipeOutput recipeOutput, int craftingTime, Fluid fluid, ItemStack result) {
         new DataDesalinatingRecipeBuilder(craftingTime, fluid, result)
                 .unlockedBy(getSafeNameOfItem(AllBlocks.COUNTER.asItem()), has(AllBlocks.COUNTER.asItem()))
                 .save(recipeOutput, locationDesalinating(getSafeNameOfItem(result.getItem())));
@@ -236,14 +236,15 @@ public class DataRecipeProvider extends RecipeProvider implements IConditionBuil
     }
 
     private void buildMisc(RecipeOutput recipeOutput) {
-        genericDesalination(recipeOutput, 5*60*20, FluidTags.WATER, AllItems.CHLORINATING_SALT.toStack());
-        genericDesalination(recipeOutput, 10*60*20, FluidTags.LAVA, AllItems.TEST_ALLOY.toStack()); // TODO:CHANGE TO IMBUEMENT INGREDIENT
+        genericDesalination(recipeOutput, 3*60*20, Fluids.WATER, AllItems.CHLORINATING_SALT.toStack());
+        genericDesalination(recipeOutput, 10*60*20, Fluids.LAVA, AllItems.TEST_ALLOY.toStack()); // TODO:CHANGE TO IMBUEMENT INGREDIENT
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AllItems.EMPTY_ACID_PACK.get())
-                .pattern("i i")
-                .pattern("i i")
-                .pattern("iii")
-                .define('i', Items.IRON_NUGGET)
+                .pattern("gng")
+                .pattern("g g")
+                .pattern("nnn")
+                .define('g', Blocks.GLASS.asItem())
+                .define('n', Items.GOLD_NUGGET)
                 .unlockedBy(getSafeNameOfItem(AllBlocks.ACID_PURIFIER.asItem()), has(AllBlocks.ACID_PURIFIER.asItem()))
                 .save(recipeOutput, locationMiscCrafting(getSafeNameOfItem(AllItems.EMPTY_ACID_PACK.get())));
 

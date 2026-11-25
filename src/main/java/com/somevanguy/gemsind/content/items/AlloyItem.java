@@ -7,35 +7,25 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-public class AlloyItem extends GemItem {
-    public final Crafting crafting;
+public class AlloyItem extends ValuableItem {
+    public final CraftingData crafting;
 
-    @Override
-    public boolean isFlux() {
-        return false;
+    public AlloyItem(String name, Properties properties, CraftingData craftingData, GainInfo info) {
+        super(name, info, 2.5f, 3, properties);
+        this.crafting = craftingData;
     }
 
-    public AlloyItem(String name, Properties properties, Crafting crafting, GainInfo info) {
-        super(name, properties, info);
-        this.maxAcidTolerance = 3;
-        this.crafting = crafting;
-        if (gainInfo.maxPolishGain() + gainInfo.maxPurityGain() != 2.5f) {
-            GemstoneIndustryMod.LOGGER.warn("{} maxPurityGain and maxPolish gain don't add up to {}", name, 2.5f);
-        }
-    }
-
-    public static int getBonusValue(ItemStack result, ArrayList<ItemStack> elementsAndFluxes) {
-        //int baseValue = ((AlloyItem)result.getItem()).gainInfo.baseValue();
+    public static int getBonusValue(ArrayList<ItemStack> elementsAndFluxes) {
         int bonusValue = 0;
-        for (ItemStack ingredient : elementsAndFluxes)  {
-            int thisValue = ((GemItem)ingredient.getItem()).getValue(ingredient);
+        for (ItemStack stack : elementsAndFluxes)  {
+            int thisValue = ((ValuableItem)stack.getItem()).getValue(stack);
             bonusValue += thisValue;
         }
-        bonusValue = (int)(bonusValue * 1.15);
+        bonusValue = (int)(bonusValue * 1.05);
         return bonusValue;
     }
 
-    public record Crafting(int minFluxCount, int craftingTime, String el1, String el2, @Nullable String el3, @Nullable String el4) {
+    public record CraftingData(int minFluxCount, int craftingTime, String el1, String el2, @Nullable String el3, @Nullable String el4) {
         public @NotNull ArrayList<String> getRequiredElements() {
             var list = new ArrayList<String>();
             list.add(el1);
@@ -49,16 +39,16 @@ public class AlloyItem extends GemItem {
             return list;
         }
 
-        public Crafting {
+        public CraftingData {
             minFluxCount = Mth.clamp(minFluxCount, 1, 4);
             craftingTime = Mth.clamp(craftingTime, 1, 86400*20);
         }
 
-        public Crafting(int minFluxCount, int alloyingTime, String el1, String el2) {
+        public CraftingData(int minFluxCount, int alloyingTime, String el1, String el2) {
             this(minFluxCount, alloyingTime, el1, el2, null, null);
         }
 
-        public Crafting(int minFluxCount, int alloyingTime, String el1, String el2, String el3) {
+        public CraftingData(int minFluxCount, int alloyingTime, String el1, String el2, String el3) {
             this(minFluxCount, alloyingTime, el1, el2, el3, null);
         }
     };

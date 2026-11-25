@@ -29,14 +29,15 @@ public class RenderHelper {
 
     public static class DebugContainedList extends ArrayList<ItemStack> {
         public static final List<ItemStack> DEBUG_ITEMS = List.of(
-                //Items.DIAMOND.getDefaultInstance()
+                Items.LIME_STAINED_GLASS_PANE.getDefaultInstance(),
                 Items.WHITE_STAINED_GLASS_PANE.getDefaultInstance(),
                 Items.RED_STAINED_GLASS_PANE.getDefaultInstance(),
                 Items.BLUE_STAINED_GLASS_PANE.getDefaultInstance(),
                 Items.YELLOW_STAINED_GLASS_PANE.getDefaultInstance(),
                 Items.CYAN_STAINED_GLASS_PANE.getDefaultInstance(),
                 Items.MAGENTA_STAINED_GLASS_PANE.getDefaultInstance(),
-                Items.BLACK_STAINED_GLASS_PANE.getDefaultInstance()
+                Items.BLACK_STAINED_GLASS_PANE.getDefaultInstance(),
+                Items.ORANGE_STAINED_GLASS_PANE.getDefaultInstance()
         );
 
         @Override
@@ -46,7 +47,7 @@ public class RenderHelper {
 
         @Override
         public int size() {
-            return 999;//DEBUG_ITEMS.size();
+            return DEBUG_ITEMS.size();
         }
     }
 

@@ -4,10 +4,10 @@
 	"parent": "block/block",
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"top": "gemsind:block/acid_purifier_top",
-		"side": "gemsind:block/acid_purifier_side",
-		"particle": "gemsind:block/acid_purifier_bottom",
-		"bottom": "gemsind:block/acid_purifier_bottom"
+		"top": "gemsind:block/acid_purifier/acid_purifier_top",
+		"side": "gemsind:block/acid_purifier/acid_purifier_side",
+		"particle": "gemsind:block/acid_purifier/acid_purifier_bottom",
+		"bottom": "gemsind:block/acid_purifier/acid_purifier_bottom"
 	},
 	"elements": [
 		{

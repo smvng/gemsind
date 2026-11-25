@@ -21,8 +21,9 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import java.util.List;
 
 public class GeodeItem extends Item {
+    private static final int EXPECTED_DROP_COUNT = 4;
     public final int toughness;
-    public final String geodeName;
+    public final String name;
     public final String defaultLootTableName;
     private final List<DeferredItem<?>> defaultDrops; // should only be used by the datagen/tooltip
     public Item bestDrop;
@@ -39,23 +40,27 @@ public class GeodeItem extends Item {
         return level.getServer().reloadableRegistries().getLootTable(key);
     }
 
-    public GeodeItem(Properties properties, String geodeName, int toughness, List<DeferredItem<?>> drops) {
+    public GeodeItem(Properties properties, String name, int toughness, List<DeferredItem<?>> drops) {
         super(properties
-                .component(AllDataComponents.GEODE_LOOT_TABLE, GemstoneIndustryMod.MODID+":geode_drops/"+geodeName)
+                .fireResistant()
+                .component(AllDataComponents.GEODE_LOOT_TABLE, GemstoneIndustryMod.MODID+":geode_drops/"+name)
                 .component(AllDataComponents.GEODE_CRACK_PROGRESS, 0f)
         );
-        this.geodeName = geodeName;
+        this.name = name;
         this.toughness = toughness;
-        defaultLootTableName = GemstoneIndustryMod.MODID+":geode_drops/"+geodeName;
+        defaultLootTableName = GemstoneIndustryMod.MODID+":geode_drops/"+name;
         defaultDrops = drops;
         var highestValue = 0;
         for (DeferredItem<?> drop : drops) {
-            if (drop.get() instanceof GemItem gemItem) {
-                if (gemItem.gainInfo.baseValue() > highestValue) {
-                    highestValue = gemItem.gainInfo.baseValue();
-                    bestDrop = gemItem;
+            if (drop.get() instanceof ValuableItem valuableItem) {
+                if (valuableItem.gainInfo.baseValue() > highestValue) {
+                    highestValue = valuableItem.gainInfo.baseValue();
+                    bestDrop = valuableItem;
                 }
             }
+        }
+        if (drops.size() != EXPECTED_DROP_COUNT) {
+            GemstoneIndustryMod.LOGGER.warn("{} doesn't have the expected drop count ({})", name, EXPECTED_DROP_COUNT);
         }
     }
 
@@ -81,7 +86,7 @@ public class GeodeItem extends Item {
                     .withStyle(ChatFormatting.GRAY));
         }
         //if (Screen.hasShiftDown()) {
-        tooltipComponents.add(Component.translatable("item.gemsind."+geodeName+".tooltip")
+        tooltipComponents.add(Component.translatable("item.gemsind."+ name +".tooltip")
                 .withStyle(ChatFormatting.GRAY));
         //} else {
         //    tooltipComponents.add(Component.translatable("item.gemsind.gem.holdshifttoexpand"));
